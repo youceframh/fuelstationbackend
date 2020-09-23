@@ -1,0 +1,1388 @@
+
+.section1{
+    background: url("../images/HomeBackground-01.jpg");
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 40px;
+}
+.section1 .section1-left{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.section1 .section1-right{
+    color:white;
+    max-width: 500px;
+    font-size: 20px;
+}
+.btn{
+    width: 150px;
+    font-size: 20px;
+}
+
+.sect1btn{
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.section2{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.section2content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.section2 .section2content > div{
+    width: 100%;
+}
+.section2figures{
+    width: 100%;
+}
+#sect2btn{
+    margin-left: 20px;
+}
+.section3{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.section3-center{
+width: 100%;
+}
+
+.section3-content{
+    padding: 40px;
+    background-color: #CFCFCF;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap-reverse;
+}
+
+.section3 .section3-left{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.section3 .section3-right{
+    color:white;
+    max-width: 500px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: start;
+}
+
+.section4{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.section4-center{
+    
+width: 100%;
+}
+
+.section4-content{
+    padding: 40px;
+    background-color: #CFCFCF;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    flex-wrap: wrap-reverse;
+}
+.section4-left{
+    display: flex;
+}
+
+.section4 .section3-left{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.section4 .section4-right{
+    color:white;
+    max-width: 500px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: end;
+}
+.section5{
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.section5 .section5-center{
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #CFCFCF;
+    margin-top:20px;
+    flex-direction: column;
+}
+
+.reachtous{
+    display: flex;
+    justify-content: center;
+    max-width: 550px;
+    padding: 15px;
+    flex-wrap: wrap;
+    align-self: center;
+}
+.reachtous .reachtousright{
+    padding: 15px;
+}
+.reachtous .reachtousleft{
+    background-color: white;
+    width: 210px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 200px;
+}
+.reachtous .reachtousright form{
+display: flex;
+flex-direction: column;
+}
+.reachtous .reachtousright input{
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.reachtous .reachtousright textarea{
+        background-color: transparent;
+        border: 1px solid white;
+        margin-bottom: 10px;
+}
+
+.section6{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+.section6 .section6-left{
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.section6 .section6-right{
+    display: flex;
+    align-self: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: #308CBA;
+    border-radius: 75px;
+    padding: 20px;
+    box-shadow: #BEB8DC;
+    -webkit-box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    -moz-box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    margin-bottom: 30px;
+}
+
+.section6 .section6-right span{
+    font-size: 26px;
+    font-weight: 100;
+    color: white;
+}
+
+.section7{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.section7 .section7-left{
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.section7 .section7-right{
+    display: flex;
+    align-self: center;
+    text-align: center;
+    background-color: #308CBA;
+    border-radius: 75px;
+    padding: 20px;
+    box-shadow: #BEB8DC;
+    -webkit-box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    -moz-box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    box-shadow: 11px 9px 5px 0px rgba(190,184,220,1);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.section7 .section7-right button{
+    display: flex;
+    align-self: center;
+    text-align: center;
+    background-color: transparent;
+    border: 0px;
+}
+
+.section7 .section7-right button i{
+   font-size: 40px;
+   color: white;
+}
+
+/*Login page section */
+
+#login{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+    grid-template-areas: "sidebar logincontent"
+                         "sidebar logincontent"
+                         "sidebar logincontent";
+    
+
+}
+.loginSidebar{
+    background:url("../images/login-bg.svg");
+    background-size: cover;
+    width: 100%;
+    grid-area: sidebar;
+    background-color: teal;
+    display: grid;
+    grid-template-rows: 100px auto 100px;
+    grid-template-areas: "loginSidebarHeader"
+                         "LoginSidebarContent"
+                         "LoginSidebarFooter";
+    
+}
+
+.loginContent{
+    grid-area: logincontent;
+    display: grid;
+    grid-template-rows: auto 110px;
+    grid-template-areas: "LoginContentLogin"
+                         "LoginContentFooter";
+}
+
+.loginSidebarHeader{
+    display: flex;
+    padding: 15px;
+    grid-area: loginSidebarHeader;
+
+}
+
+.loginSidebarHeaderLeft{
+    align-self: flex-start;
+}
+
+.loginSidebarHeaderCenter{
+    align-self: center;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.loginSidebarHeaderCenter span{
+    color: white;
+    font-size: 25px;
+}
+
+.LoginSidebarContent{
+    grid-area: LoginSidebarContent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.LoginSidebarContent span{
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+
+}
+
+.LoginSidebarFooter{
+    grid-area: LoginSidebarFooter;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.LoginSidebarFooter a{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+
+}
+
+.LoginContentLogin{
+    grid-area: LoginContentLogin;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginContentFooter{
+    grid-area: LoginContentFooter;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.LoginContentFooter span{
+    font-size: 20px;
+}
+
+.LoginContentLogin div form div > input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+.LoginContentHeader{
+    display: none;
+}
+/*Registrations section*/
+#Signup{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+    grid-template-areas: "sidebar Signupcontent"
+                         "sidebar Signupcontent"
+                         "sidebar Signupcontent";
+    
+
+}
+.SignupSidebar{
+    background:url("../images/login-bg.svg");
+    background-size: cover;
+    width: 100%;
+    grid-area: sidebar;
+    background-color: teal;
+    display: grid;
+    grid-template-rows: 100px auto 100px;
+    grid-template-areas: "SignupSidebarHeader"
+                         "SignupSidebarContent"
+                         "SignupSidebarFooter";
+    
+}
+
+.SignupContent{
+    grid-area: Signupcontent;
+    display: grid;
+    grid-template-rows: auto 110px;
+    grid-template-areas: "SignupContentSignup"
+                         "SignupContentFooter";
+}
+
+.SignupSidebarHeader{
+    display: flex;
+    padding: 15px;
+    grid-area: SignupSidebarHeader;
+
+}
+
+.SignupSidebarHeaderLeft{
+    align-self: flex-start;
+}
+
+.SignupSidebarHeaderCenter{
+    align-self: center;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.SignupSidebarHeaderCenter span{
+    color: white;
+    font-size: 25px;
+}
+
+.SignupSidebarContent{
+    grid-area: SignupSidebarContent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.SignupSidebarContent span{
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+
+}
+
+.SignupSidebarFooter{
+    grid-area: SignupSidebarFooter;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.SignupSidebarFooter a{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+
+}
+
+.SignupContentSignup{
+    grid-area: SignupContentSignup;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SignupContentFooter{
+    grid-area: SignupContentFooter;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.SignupContentFooter span{
+    font-size: 20px;
+}
+
+.SignupContentSignup div form > input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+.SignupContentHeader{
+    display: none;
+}
+.p404{
+    display: flex;
+    justify-content: center;
+    text-align:center ;
+    width: 100%;
+    flex-direction: column;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media(max-width:1100px){
+    #login{
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px auto;
+        grid-template-areas: "logincontent"
+                             "logincontent"
+                             "logincontent";
+        
+    
+    }
+    .loginSidebar{
+       display: none;
+        
+    }
+    
+    .loginContent{
+        grid-area: logincontent;
+        display: grid;
+        grid-template-rows: 80px auto 110px;
+        grid-template-areas: "LoginContentHeader"
+                            "LoginContentLogin"
+                             "LoginContentFooter";
+    }
+    .loginContentHeaderLeft{
+        grid-area: LoginContentHeader ;
+        
+    }
+    .loginContentHeaderCenter span{
+        color: #308CBA;
+        font-size: 25px;
+    }
+    .LoginContentHeader{
+        display: flex;
+        padding: 20px;
+        align-items: center;
+    }
+    .loginContentHeaderCenter{
+        align-self: center;
+        width: 85%;
+        text-align: center;
+    }
+    /*Registrations part*/
+    #Signup{
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px auto;
+        grid-template-areas: "Signupcontent"
+                             "Signupcontent"
+                             "Signupcontent";
+        
+    
+    }
+    .SignupSidebar{
+       display: none;
+        
+    }
+    
+    .SignupContent{
+        grid-area: Signupcontent;
+        display: grid;
+        grid-template-rows: 80px auto 110px;
+        grid-template-areas: "SignupContentHeader"
+                            "SignupContentSignup"
+                             "SignupContentFooter";
+    }
+    .SignupContentHeaderLeft{
+        grid-area: SignupContentHeader ;
+        
+    }
+    .SignupContentHeaderCenter span{
+        color: #308CBA;
+        font-size: 25px;
+    }
+    .SignupContentHeader{
+        display: flex;
+        padding: 20px;
+        align-items: center;
+    }
+    .SignupContentHeaderCenter{
+        align-self: center;
+        width: 85%;
+        text-align: center;
+    }
+}
+
+/* 404 page*/
+.p404notfoundpicture{
+    min-width: 250px;
+}
+.p404 div span{
+    font-size: 5vw;
+}
+@media(max-width:305px){
+    .p404notfoundpicture{
+    min-width: 150px;
+}
+}
+@media(min-width: 610px){
+    .p404 div span{
+    font-size: 30px;
+}
+}
+
+/* forgot password page*/
+
+#forgotpassword{
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-rows: 100px auto 100px;
+    grid-template-columns: 100%;
+    grid-template-areas: "header"
+    "content"
+    "footer";
+}
+
+.headerfigure{
+    grid-area: header;
+    
+}
+
+.headerfigure figure img{
+    max-height: 40%;
+    max-width: 50%;
+    float: right;
+}
+.footerfigure{
+    grid-area: footer;
+    align-self: self-end;
+}
+
+.footerfigure figure img{
+    max-height: 80%;
+    max-width: 50%;
+    float: left;
+}
+.contentofforgotpassword{
+    grid-area: content;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.figureofcontentofforgotpassword figure img{
+    width: 300px;
+}
+
+.formofcontentofforgotpassword div form > input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+.formofcontentofforgotpassword div , .formofcontentofforgotpassword div form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.sendresetpassword{
+    width: 200px;
+}
+
+/* complete infos page*/
+
+.completeinfos{
+    width:100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 200px auto;
+    grid-template-areas:
+        "header"
+        "main";
+}
+
+.completeinfosheader{
+    grid-area: header;
+}
+
+.completeinfosheader div{
+    background:linear-gradient(
+        rgba(48, 140, 186, 0.77), 
+        rgba(48, 140, 186, 0.77)
+      ),url('../images/completeinfos.png');
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.completeinfosheader div h2{
+    color: white;
+    align-self: center;
+    text-align: center;
+}
+
+.completeinfosmain{
+    grid-area: main;
+}
+
+.completeinfosmain div form > input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+.completeinfosmain div form > textarea{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+
+/*Dashboard section*/
+.dashboardmain{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 90px;
+    grid-template-areas: "main sidebar";
+}
+.dashboardmaincontent{
+    grid-area: main;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 150px auto;
+    overflow-y: scroll;
+    position: relative;
+    grid-template-areas: "header"
+    "main";
+    
+}
+
+.mainofdashboardmaincontent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-area: main;
+}
+.headerofdashboardmaincontent {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+}
+.headerofdashboardmaincontent .one{
+    position: relative;
+    display: flex;
+    width: 50%;
+}
+
+.headerofdashboardmaincontent input{
+    width: 100%;
+    background-color: white;
+    border: 0px;
+    -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    border-radius: 50px;
+    outline: none;
+    padding: 10px 3vw 10px 10px;
+    text-align-last: right;
+}
+.dashboardmainsidebar{
+    grid-area: sidebar;
+    width: 100%;
+    height: 100vh;
+    background-color:#308CBA;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+
+}
+.dashboardmainsidebarnavigations{
+    display: flex;
+    flex-direction: column;
+}
+.dashboardmainsidebarnavigations{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#activebutton{
+    background-color: rgba(0,0,0,0.1);
+}
+.dashboardmainsidebarnavigations button{
+    width: 100%;
+    margin-bottom:2px;
+    border: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 60px;
+    outline: none;
+}
+.dashboardmainsidebarnavigations button:hover{
+    width: 100%;
+    margin-bottom:2px;
+    border: 0px;
+    background-color: rgba(0,0,0,0.1);
+    width: 100%;
+    height: 60px;
+    outline: none;
+}
+
+.mainofdashboardmaincontentsect1 div button{
+    -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    margin: 15px;
+}
+
+.mainofdashboardmaincontentsect1{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 90%;
+    text-align: center;
+    margin:20px;
+}
+.mainofdashboardmaincontentsect2{
+    width: 90%;
+    margin:20px;
+}
+.mainofdashboardmaincontentsect2 table tr th,td{
+   text-align: center;
+}
+.mainofdashboardmaincontentsect3{
+    margin:20px;
+}
+
+/* Dashboard of userprofile*/
+.mainofcontentuserprofile .one{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainofcontentuserprofile .two{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainofcontentuserprofile .one .usernameandimg{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: center;
+    text-align: center;
+}
+.mainofcontentuserprofile .one .usernameandimg h2{
+    margin:20px;
+}
+.mainofcontentuserprofile{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.mainofcontentuserinfos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+/* dashboard add task */
+.dashboardaddtask div form > input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: #DBDBDB;
+    border: 0px solid transparent;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align-last: right;
+}
+/* media queries and attributes changes*/
+::placeholder{
+    color:white;
+    opacity: 60%;
+}
+/* General assets */
+
+.inputype2container{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.inputsofuserprofile{
+    width: 100%;
+}
+
+.inputsofuserprofile i{
+    font-size: 30px;
+    padding: 10px;
+    margin-left: -2.3rem;
+}
+
+.inputsofuserprofile form{
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.inputsofuserprofile form .submitformofuserinfos{
+    margin-top: 50px;
+}
+.inputype2container input{
+    width: 70%;
+    border: 0px;
+    border-bottom: 3px solid #308CBA;
+    text-align: end;
+    padding-right: 2.3rem;
+    outline: none;
+    font-size: 30px;
+ }
+
+ .inputype1container{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    margin: 20px 0px 20px 0px;
+ }
+
+ .inputype1container input{
+    font-size: 30px;
+    margin: 20px;
+    background-color: white;
+    border: 1px solid #308CBA;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align: right;
+    width: 70%;
+    display: flex;
+    flex-direction: row-reverse;
+ }
+
+ .inputype1container select{
+    font-size: 30px;
+    margin: 20px;
+    background-color: white;
+    border: 1px solid #308CBA;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align: right;
+    width: 70%;
+    text-align-last: right;
+    color: #308CBA;
+    display: flex;
+    flex-direction: row-reverse;
+ }
+
+ .inputype1container textarea{
+    font-size: 30px;
+    margin: 20px;
+    background-color: white;
+    border: 1px solid #308CBA;
+    border-right: 12px solid #308CBA;
+    padding: 10px;
+    text-align: right;
+    width: 85%;
+    text-align-last: right;
+    color: #308CBA;
+    display: flex;
+    flex-direction: row-reverse;
+ }
+ .inputype1container select option{
+    text-align: right;
+    color: #308CBA;
+    background-color:white;
+    text-align-last: right;
+ }
+.inputsofuserprofile .checkings{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+
+.inputsofuserprofile .checkings .radiochecking{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.inputsofuserprofile .checkings .radiochecking div{
+    margin:10px;
+}
+.inputsofuserprofile .checkings .radiochecking div > input{
+    transform: scale(2.2);
+    margin:10px;
+}
+
+.inputsofuserprofile .checkings .checkboxchecking{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.inputsofuserprofile .checkings .checkboxchecking div{
+    margin:10px;
+}
+.inputsofuserprofile .checkings .checkboxchecking div > input{
+    transform: scale(2.2);
+    margin:10px;
+}
+.inputsofuserprofilebuttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+
+/* Dashboard balence */
+.mainofdashboardblence{
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+}
+#dashboardbalance{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 440px auto 90px;
+    grid-template-areas: "letstransactions main sidebar";
+}
+
+#dashboardbalance .latesttransactions{
+    grid-area: letstransactions;
+    border-radius: 0px 50px 50px 0px;
+    -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        padding: 20px;
+        height: 100vh;
+        overflow: scroll;
+}
+    /*customized scroll bar*/
+.latesttransactions::-webkit-scrollbar {
+     width: 0px;
+     height: 0px;
+}
+.searchbaroflatesttransactions{
+    display: flex;
+    justify-content: center;
+}
+.searchbaroflatesttransactions div{
+    position: relative;
+    display: flex;
+}
+.searchbaroflatesttransactions div input{
+    border-radius: 75px;
+    border: 0px;
+    -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+    text-align: end;
+    outline: none;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    font-size: 1.4rem;
+    
+}
+.searchbaroflatesttransactions div i {
+    align-self: center;
+    right: 0.5rem;
+    position: absolute;
+}
+
+.userinformationsoflatesttransactions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+.userinformationsoflatesttransactions .Qrcode{
+    width: 120px;
+    height: 120px;
+    border: 1px solid #308CBA;
+    background-color: #308CBA;
+    margin: 20px;
+}
+
+.userinformationsoflatesttransactions .userinfos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userinformationsoflatesttransactions .userinfos span:nth-child(1){
+    color: #308CBA;
+    font-size: 28px;
+}
+.userinformationsoflatesttransactions .userinfos span:nth-child(2){
+    font-size: 28px;
+}
+
+.latesttransactionsoflatesttransactionsdiv{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px;
+}
+
+.latesttransactionsoflatesttransactionsdiv span:nth-child(1){
+    font-size: 28px;
+    color: #308CBA;
+    align-self: flex-end;
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .right{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .left span{
+    font-size: 18px;
+    color: green;
+   
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .right .infosoftheresponsibleoftransaction{
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .right .infosoftheresponsibleoftransaction span:nth-child(1){
+    color: #308CBA;
+    font-size: 18px;
+}
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .right .infosoftheresponsibleoftransaction span:nth-child(2){
+    color: black;
+    font-size: 18px;
+}
+
+
+.latesttransactionsoflatesttransactionsdiv .transactionresponsible .right img{
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+}
+
+.totalbalence{
+    background: rgb(48,140,186);
+    background: linear-gradient(90deg, rgba(48,140,186,1) 25%, rgba(24,70,93,1) 75%);
+    color: white;
+    width: 500px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    align-self: flex-end;
+}
+.totalbalence .totalblancemoney{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.totalbalence .currentmoney{
+    text-align: right;
+}
+.totalbalence .currentmoney span:nth-child(1){
+    font-size: 37px;
+}
+.totalbalence .currentmoney span:nth-child(2){
+    font-size: 60px;
+}
+.totalbalence .lastmonthmoney{
+    align-self: center;
+}
+.totalbalence .lastmonthmoney span:nth-child(1){
+    font-size: 24px;
+}
+.totalbalence .lastmonthmoney span:nth-child(2){
+    font-size: 44px;
+}
+
+
+ /* Media querie */
+@media(min-width:250px){
+    .section2 .section2content > div{
+        width: 250px;
+    }
+    .section2figures{
+        width: 250px;
+        height: 250px;
+    }
+}
+@media(max-height:500px){
+    .dashboardmainsidebar{
+        grid-area: sidebar;
+        width: 100%;
+        height: 100vh;
+        background-color:#308CBA;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        overflow: scroll;
+    
+    }
+}
+@media(max-width:880px){
+    .section3 .section3-right {
+        text-align: center;
+    }
+    .section4 .section4-right {
+        text-align: center;
+    }
+    .headerofdashboardmaincontent input{
+        width: 100%;
+        background-color: white;
+        border: 0px;
+        -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        border-radius: 50px;
+        outline: none;
+        padding: 10px 4.2vw 10px 10px;
+        text-align-last: right;
+    }
+}
+@media(max-width:450px){
+    .formofcontentofforgotpassword div form > input{
+        font-size: 5vw;
+        margin: 20px;
+        background-color: #DBDBDB;
+        border: 0px solid transparent;
+        border-right: 12px solid #308CBA;
+        padding: 10px;
+        text-align-last: right;
+    }
+}
+
+@media(min-width:1366px){
+    .figureofcontentofforgotpassword figure img{
+        width: 350px;
+    }
+}
+
+@media(max-width:399px){
+    #sect2btn{
+        margin-left: 0px;
+    }
+}
+@media(max-width:590px){
+    .headerofdashboardmaincontent {
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+        align-items: center;
+        position: absolute;
+    }
+    .headerofdashboardmaincontent .one{
+        position: relative;
+        display: flex;
+        width: 80%;
+    }
+    .headerofdashboardmaincontent input{
+        width: 100%;
+        background-color: white;
+        border: 0px;
+        -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        box-shadow: 3px 3px 3px 3px rgba(0,0,0,.2);
+        border-radius: 50px;
+        outline: none;
+        padding: 10px 40px 10px 10px;
+        text-align-last: right;
+    }
+}
+@media(min-width:2000px){
+    .figureofcontentofforgotpassword figure img{
+        width: 650px;
+    }
+    .formofcontentofforgotpassword div form > input{
+        font-size: 50px;
+        margin: 20px;
+        background-color: #DBDBDB;
+        border: 0px solid transparent;
+        border-right: 12px solid #308CBA;
+        padding: 10px;
+        text-align-last: right;
+    }
+    #send{
+        font-size: 50px;
+        width: 650px;
+    }
+    h2{
+        font-size: 50px;
+    }
+    .sendresetpassword{
+        font-size: 50px;
+        width: 400px;
+    }
+}
+@media(max-width:695px){
+    .inputype2container {
+        display: flex;
+        width: 400px;
+        justify-content: center;
+        margin: 20px 0px 20px 0px;
+    }
+}
+/*customized scroll bar*/
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
