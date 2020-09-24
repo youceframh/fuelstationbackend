@@ -5,6 +5,7 @@ use App\Http\Controllers\login;
 use App\Http\Controllers\register;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\registercompanies;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,13 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/register/companies', function () {
-    return view('register-companies',[registercompanies::class,'get']);
-});
+Route::get('/register/companies', [registercompanies::class,'get']);
 
-Route::post('/register/companies', function () {
-    return view('register-companies',[registercompanies::class,'post']);
-});
+Route::post('/register/companies',[registercompanies::class,'post']);
 
 
 //verifying register information through registerverify() in register controller
