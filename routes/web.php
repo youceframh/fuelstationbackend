@@ -20,6 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/register/companies', function () {
+    return view('register-companies',[registercompanies::class,'get']);
+});
+
+Route::post('/register/companies', function () {
+    return view('register-companies',[registercompanies::class,'post']);
+});
+
+
 //verifying register information through registerverify() in register controller
 
 //Getting dashboard and verifying if user is loggedin  page
