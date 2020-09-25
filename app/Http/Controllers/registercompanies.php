@@ -12,7 +12,7 @@ class registercompanies extends Controller
     }
 
     public function post(Request $request){
-
+        //verification of inputs and their types
       $verification =  $request->validate([
             'commercialname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
@@ -30,7 +30,10 @@ class registercompanies extends Controller
             'logo' => ['required', 'image','size:3072'],
         ]);
 
+        //if verification goes well 
+
            if($verification){
+               //make inputs inside vars
                $commercial_name = $request->input('commercialname');
                $first_name =$request->input('firstname') ;
                $last_name =$request->input('lastname') ;
@@ -45,6 +48,8 @@ class registercompanies extends Controller
                $adress_1 =$request->input('adress1') ;
                $adress_2 = $request->input('adress2');
                $logo = $request->input('logo');
+
+               //insert into db the infos 
 
                $insertDB = DB::table('companies')->insert( array (
                    'idcompanies' => null,
@@ -63,9 +68,13 @@ class registercompanies extends Controller
                    'address 2' => $adress_2,
                    'logo' => $logo,   
                ));
+               //checking the status
                     if($insertDB){
                         return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);
-               }else{}
+               }else{
+                   //else returning error
+                   die('error');
+               }
            }
 
     }
