@@ -1,18 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="direction:rtl;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register companies') }}</div>
+                <div class="card-header" style="display:flex;">
+                <span>{{ __('تسجيل الشركات') }} </span>
+            </div>
 
                 <div class="card-body">
                     <form method="POST" action="/register/companies">
                         @csrf
-
+                    @if(isset($success))
+                    <div class="alert alert-success" role="alert">
+  {{$success}}
+</div>
+                    @endif
                         <div class="form-group row">
-                            <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('commercial name') }}</label>
+                            <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('الاسم التجاري') }}</label>
 
                             <div class="col-md-6">
                                 <input id="commercialname" type="text" class="form-control @error('commercialname') is-invalid @enderror" name="commercialname" value="{{ old('commercialname') }}" required autocomplete="commercial name" autofocus>
@@ -26,10 +32,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('first name') }}</label>
+                            <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('الاسم') }}</label>
 
                             <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control @error('familyname') is-invalid @enderror" name="firstname" value="{{ old('familyname') }}" required autocomplete="name" autofocus>
+                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
                                 @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -41,10 +47,10 @@
 
 
                         <div class="form-group row">
-                            <label for="last name" class="col-md-4 col-form-label text-md-right">{{ __('last name') }}</label>
+                            <label for="last name" class="col-md-4 col-form-label text-md-right">{{ __('اللقب') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('last name') }}" required autocomplete="name" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('last name') }}" required autocomplete="name" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +61,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('phone') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('رقم الجوال') }}</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="new-password">
@@ -69,7 +75,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('البلد') }}</label>
 
                             <div class="col-md-6">
                                 <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" required autocomplete="country">
@@ -83,7 +89,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('المدينة') }}</label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" required autocomplete="city">
@@ -97,7 +103,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
+                            <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('المقاطعة البلدية') }}</label>
 
                             <div class="col-md-6">
                                 <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" required autocomplete="state">
@@ -111,7 +117,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="zip" class="col-md-4 col-form-label text-md-right">{{ __('Zip') }}</label>
+                            <label for="zip" class="col-md-4 col-form-label text-md-right">{{ __('الرمز البريدي') }}</label>
 
                             <div class="col-md-6">
                                 <input id="zip" type="text" class="form-control @error('zip') is-invalid @enderror" name="zip" required autocomplete="zip">
@@ -125,7 +131,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="taxnumber" class="col-md-4 col-form-label text-md-right">{{ __('Tax number (FAT Nbr) ') }}</label>
+                            <label for="taxnumber" class="col-md-4 col-form-label text-md-right">{{ __('الرقم الضريبي (FAT Nbr) ') }}</label>
 
                             <div class="col-md-6">
                                 <input id="taxnumber" type="text" class="form-control @error('taxnumber') is-invalid @enderror" name="taxnumber" required autocomplete="taxnumber">
@@ -140,7 +146,7 @@
 
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('Language') }}</label>
+                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('اللغة') }}</label>
 
                             <div class="col-md-6">
                                 <input id="language" type="text" class="form-control @error('language') is-invalid @enderror" name="language" value="{{ old('language') }}" required autocomplete="language">
@@ -154,7 +160,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Commercial number') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('الرقم التجاري') }}</label>
 
                             <div class="col-md-6">
                                 <input id="commercialnumber" type="number" class="form-control @error('commercialnumber') is-invalid @enderror" name="commercialnumber" required autocomplete="new-commercialnumber">
@@ -170,7 +176,7 @@
                         
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('Adress 1') }}</label>
+                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الاول') }}</label>
 
                             <div class="col-md-6">
                                 <input id="adress1" type="text" class="form-control @error('language') is-invalid @enderror" name="adress1" value="{{ old('adress1') }}" required autocomplete="adress1">
@@ -184,7 +190,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('Adress 2') }}</label>
+                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الثاني') }}</label>
 
                             <div class="col-md-6">
                                 <input id="adress2" type="text" class="form-control @error('adress2') is-invalid @enderror" name="adress2" value="{{ old('adress2') }}" required autocomplete="adress2">
@@ -198,7 +204,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
+                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('شعار الشركة') }}</label>
 
                             <div class="col-md-6">
                                 <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}" required autocomplete="logo">
@@ -215,7 +221,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('سجل') }}
                                 </button>
                             </div>
                         </div>
