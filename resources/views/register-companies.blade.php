@@ -16,6 +16,11 @@
                     <div class="alert alert-success" role="alert">
   {{$success}}
 </div>
+@endif
+@if(isset($failed))
+                    <div class="alert alert-danger" role="alert">
+  {{$failed}}
+</div>
                     @endif
                         <div class="form-group row">
                             <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('الاسم التجاري') }}</label>
@@ -179,7 +184,7 @@
                             <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الاول') }}</label>
 
                             <div class="col-md-6">
-                                <input id="adress1" type="text" class="form-control @error('language') is-invalid @enderror" name="adress1" value="{{ old('adress1') }}" required autocomplete="adress1">
+                                <input id="adress1" type="text" class="form-control @error('adress1') is-invalid @enderror" name="adress1" value="{{ old('adress1') }}" required autocomplete="adress1">
 
                                 @error('adress1')
                                     <span class="invalid-feedback" role="alert">

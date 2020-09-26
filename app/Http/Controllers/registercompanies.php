@@ -7,6 +7,11 @@ use DB;
 
 class registercompanies extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function get(){
         return view('register-companies');
     }
@@ -72,7 +77,7 @@ class registercompanies extends Controller
                         return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);
                }else{
                    //else returning error
-                   die('error');
+                   return view('register-companies',['failed' => 'لا يمكن تسجيل الشركة حاليا حاول لاحقا']);
                }
            }
 
