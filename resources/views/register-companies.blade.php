@@ -10,7 +10,7 @@
             </div>
 
                 <div class="card-body">
-                    <form method="POST" action="/register/companies">
+                {{ Form::open( array('url' => '/register/companies', 'files' => true,'method' => 'post')) }}
                         @csrf
                     @if(isset($success))
                     <div class="alert alert-success" role="alert">
@@ -225,7 +225,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                        {{ Form::close() }}
                 </div>
             </div>
         </div>
