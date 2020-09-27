@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\registercompanies;
 use App\Http\Controllers\registeremployee;
+use App\Http\Controllers\registersuppliers;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +34,10 @@ Route::post('/register/companies',[registercompanies::class,'post']);
 Route::get('/register/employee', [registeremployee::class,'get']);
 
 Route::post('/register/employee',[registeremployee::class,'post']);
+
+Route::get('/register/suppliers',[registersuppliers::class,'get']);
+
+Route::post('/register/suppliers',[registersuppliers::class,'post']);
 
 
 

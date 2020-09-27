@@ -11,7 +11,7 @@ class registercompanies extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function get(){
         return view('register-companies');
     }
@@ -71,7 +71,7 @@ class registercompanies extends Controller
                    'address 2' => $adress_2,
                    'logo' => $logo, 
                    'role' => '1',  
-               ));
+               )); //don't forget to add password
                //checking the status
                     if($insertDB){
                         return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);
