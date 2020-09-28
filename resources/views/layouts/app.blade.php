@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -53,5 +55,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/registerannex.js') }}"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\registercompanies;
 use App\Http\Controllers\registeremployee;
 use App\Http\Controllers\registersuppliers;
+use App\Http\Controllers\registerannex;
 
 
 
@@ -38,6 +39,10 @@ Route::post('/register/employee',[registeremployee::class,'post']);
 Route::get('/register/suppliers',[registersuppliers::class,'get']);
 
 Route::post('/register/suppliers',[registersuppliers::class,'post']);
+
+Route::get('/register/annex',[registerannex::class,'get']);
+
+Route::post('/register/annex',[registerannex::class,'post']);
 
 
 
