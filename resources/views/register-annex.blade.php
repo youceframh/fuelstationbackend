@@ -119,7 +119,7 @@
 
                             <div class="col-md-6">
 
-                            <select id="renttype" name="renttype" id="renttype" required autocomplete="renttype">
+                            <select id="renttype" class="form-control @error('renttype') is-invalid @enderror" name="renttype" id="renttype" required autocomplete="renttype">
                                 <option value="BUY">شراء</option>
                                 <option value="RENT">كراء</option>
                             </select>

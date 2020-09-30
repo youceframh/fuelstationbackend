@@ -10,6 +10,7 @@ use App\Http\Controllers\registeremployee;
 use App\Http\Controllers\registersuppliers;
 use App\Http\Controllers\registerannex;
 use App\Http\Controllers\registershops;
+use App\Http\Controllers\registerrentshops;
 
 
 
@@ -48,6 +49,10 @@ Route::post('/register/annex',[registerannex::class,'post']);
 Route::get('/register/shop',[registershops::class,'get']);
 
 Route::post('/register/shop',[registershops::class,'post']);
+
+Route::get('/register/rent/shops',[registerrentshops::class,'get']);
+
+Route::post('/register/rent/shops',[registerrentshops::class,'post']);
 
 
 

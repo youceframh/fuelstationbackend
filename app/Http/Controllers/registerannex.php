@@ -77,12 +77,12 @@ class registerannex extends Controller
                     'city' => ['required', 'string', 'min:2'],
                     'phone' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'email'],
-                    'rentdatestart' => ['nullable','date'],
-                    'rentdateend' => ['nullable','date'],
-                    'price' => ['nullable', 'string'],
-                    'rentorname' => ['nullable', 'string'],
-                    'rentorphone' => ['nullable','digits_between:8,15', 'min:8'],
-                    'rentinovicenbr' => ['nullable','numeric']
+                    'rentdatestart' => ['required','date'],
+                    'rentdateend' => ['required','date'],
+                    'price' => ['required', 'string'],
+                    'rentorname' => ['required', 'string'],
+                    'rentorphone' => ['required','digits_between:8,15', 'min:8'],
+                    'rentinovicenbr' => ['required','numeric']
                 ]);
 
                 $name = $request->input('name');
