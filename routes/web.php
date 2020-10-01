@@ -11,6 +11,7 @@ use App\Http\Controllers\registersuppliers;
 use App\Http\Controllers\registerannex;
 use App\Http\Controllers\registershops;
 use App\Http\Controllers\registerrentshops;
+use App\Http\Controllers\sendreport;
 
 
 
@@ -53,6 +54,10 @@ Route::post('/register/shop',[registershops::class,'post']);
 Route::get('/register/rent/shops',[registerrentshops::class,'get']);
 
 Route::post('/register/rent/shops',[registerrentshops::class,'post']);
+
+Route::get('/sendreport',[sendreport::class,'get']);
+
+Route::post('/sendreport',[sendreport::class,'post']);
 
 
 
