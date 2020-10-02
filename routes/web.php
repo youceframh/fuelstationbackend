@@ -12,6 +12,7 @@ use App\Http\Controllers\registerannex;
 use App\Http\Controllers\registershops;
 use App\Http\Controllers\registerrentshops;
 use App\Http\Controllers\sendreport;
+use App\Http\Controllers\registertank;
 
 
 
@@ -29,35 +30,6 @@ use App\Http\Controllers\sendreport;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-
-Route::get('/register/companies', [registercompanies::class,'get']);
-
-Route::post('/register/companies',[registercompanies::class,'post']);
-
-Route::get('/register/employee', [registeremployee::class,'get']);
-
-Route::post('/register/employee',[registeremployee::class,'post']);
-
-Route::get('/register/suppliers',[registersuppliers::class,'get']);
-
-Route::post('/register/suppliers',[registersuppliers::class,'post']);
-
-Route::get('/register/annex',[registerannex::class,'get']);
-
-Route::post('/register/annex',[registerannex::class,'post']);
-
-Route::get('/register/shop',[registershops::class,'get']);
-
-Route::post('/register/shop',[registershops::class,'post']);
-
-Route::get('/register/rent/shops',[registerrentshops::class,'get']);
-
-Route::post('/register/rent/shops',[registerrentshops::class,'post']);
-
-Route::get('/sendreport',[sendreport::class,'get']);
-
-Route::post('/sendreport',[sendreport::class,'post']);
 
 
 
@@ -108,3 +80,35 @@ Route::get('/logout',[LoginController::class,'logout']); // making logout page
 
 Auth::routes(); // activating the auth routes
 
+
+Route::get('/register/companies', [registercompanies::class,'get']); // Getting Companies registration page
+
+Route::post('/register/companies',[registercompanies::class,'post']); // Creating Companies route in association with db
+
+Route::get('/register/employee', [registeremployee::class,'get']); // Getting employees registration page
+ 
+Route::post('/register/employee',[registeremployee::class,'post']); // Creating employees route in association with db
+
+Route::get('/register/suppliers',[registersuppliers::class,'get']); // Getting suppliers registration page
+
+Route::post('/register/suppliers',[registersuppliers::class,'post']); // Creating suppliers route in association with db
+
+Route::get('/register/annex',[registerannex::class,'get']); // Getting annex registration page
+
+Route::post('/register/annex',[registerannex::class,'post']); // Creating annex route in association with db
+
+Route::get('/register/shop',[registershops::class,'get']); // Getting shops registration page
+
+Route::post('/register/shop',[registershops::class,'post']); // Creating shops route in association with db
+
+Route::get('/register/rent/shops',[registerrentshops::class,'get']); // Getting shops renting registration page
+
+Route::post('/register/rent/shops',[registerrentshops::class,'post']); // Creating shops route in association with db
+
+Route::get('/sendreport',[sendreport::class,'get']);  // Getting send report page 
+
+Route::post('/sendreport',[sendreport::class,'post']); // Creating send report route in association with db
+
+Route::get('/register/tank',[registertank::class,'get']); // Getting tanks registration page
+
+Route::post('/register/tank',[registertank::class,'post']); // Creating tanks route in association with db
