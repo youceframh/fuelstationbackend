@@ -13,6 +13,7 @@ use App\Http\Controllers\registershops;
 use App\Http\Controllers\registerrentshops;
 use App\Http\Controllers\sendreport;
 use App\Http\Controllers\registertank;
+use App\Http\Controllers\registerpomp;
 
 
 
@@ -112,3 +113,7 @@ Route::post('/sendreport',[sendreport::class,'post']); // Creating send report r
 Route::get('/register/tank',[registertank::class,'get']); // Getting tanks registration page
 
 Route::post('/register/tank',[registertank::class,'post']); // Creating tanks route in association with db
+
+Route::get('/register/pomp',[registerpomp::class,'get']); // Getting pomps registration page
+
+Route::post('/register/pomp',[registerpomp::class,'post']); // Creating pomps route in association with db

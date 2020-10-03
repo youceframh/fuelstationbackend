@@ -6,11 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" style="display:flex;">
-                <span>{{ __('تسجيل خزان') }} </span>
+                <span>{{ __('تسجيل مضخة') }} </span>
             </div>
 
                 <div class="card-body">
-                {{ Form::open( array('url' => '/register/tank','method' => 'post')) }}
+                {{ Form::open( array('url' => '/register/pomp','method' => 'post')) }}
                         @csrf
                     @if(isset($success))
                     <div class="alert alert-success" role="alert">
@@ -23,12 +23,12 @@
 </div>
                     @endif
                         <div class="form-group row">
-                            <label for="tanknbr" class="col-md-4 col-form-label text-md-right">{{ __('رقم الخزان') }}</label>
+                            <label for="pompserial" class="col-md-4 col-form-label text-md-right">{{ __('رقم المضخة التسلسي') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tanknbr" type="text" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr" value="{{ old('tanknbr') }}" required autocomplete="tanknbr" autofocus>
+                                <input id="pompserial" type="text" class="form-control @error('pompserial') is-invalid @enderror" name="pompserial" value="{{ old('pompserial') }}" required autocomplete="pompserial" autofocus>
 
-                                @error('tanknbr')
+                                @error('pompserial')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -38,12 +38,12 @@
 
     
                         <div class="form-group row">
-                            <label for="volumeoftank" class="col-md-4 col-form-label text-md-right">{{ __('حجم الخزان') }}</label>
+                            <label for="pomplastrecord" class="col-md-4 col-form-label text-md-right">{{ __('اخر تسجيل للمضحة') }}</label>
 
                             <div class="col-md-6">
-                                <input id="volumeoftank" type="text" class="form-control @error('volumeoftank') is-invalid @enderror" name="volumeoftank" value="{{ old('volumeoftank') }}" required autocomplete="volumeoftank">
+                                <input id="pomplastrecord" type="text" class="form-control @error('pomplastrecord') is-invalid @enderror" name="pomplastrecord" value="{{ old('pomplastrecord') }}" required autocomplete="pomplastrecord">
 
-                                @error('volumeoftank')
+                                @error('pomplastrecord')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,30 +53,16 @@
                         
                         
                         <div class="form-group row">
-                            <label for="fueltype" class="col-md-4 col-form-label text-md-right">{{ __('نوع البترول') }}</label>
+                            <label for="tanknbr" class="col-md-4 col-form-label text-md-right">{{ __('رقم الخزان التابعة له') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fueltype" type="text" class="form-control @error('fueltype') is-invalid @enderror" name="fueltype" required autocomplete="fueltype">
-
-                                @error('fueltype')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="reliedtoannex" class="col-md-4 col-form-label text-md-right">{{ __('تابع الى الفرع') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="reliedtoannex" type="date" class="form-control @error('reliedtoannex') is-invalid @enderror" name="reliedtoannex" required autocomplete="reliedtoannex">
-                                    @foreach ($annexes as $annex)
-                                    <option value="{{$annex->idannexes}}">{{$annex->name}}</option>
+                            <select id="tanknbr" type="date" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr" required autocomplete="tanknbr">
+                                    @foreach ($tanks as $tank)
+                                    <option value="{{$tank['tank number']}}">{{$tank['tank number']}}</option>
                                     @endforeach
                                 </select>
 
-                                @error('reliedtoannex')
+                                @error('tanknbr')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
