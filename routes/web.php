@@ -14,6 +14,7 @@ use App\Http\Controllers\registerrentshops;
 use App\Http\Controllers\sendreport;
 use App\Http\Controllers\registertank;
 use App\Http\Controllers\registerpomp;
+use App\Http\Controllers\registerdelegate;
 
 
 
@@ -117,3 +118,7 @@ Route::post('/register/tank',[registertank::class,'post']); // Creating tanks ro
 Route::get('/register/pomp',[registerpomp::class,'get']); // Getting pomps registration page
 
 Route::post('/register/pomp',[registerpomp::class,'post']); // Creating pomps route in association with db
+
+Route::get('/register/delegate',[registerdelegate::class,'get']); // Getting delegates registration page
+
+Route::post('/register/delegate',[registerdelegate::class,'post']); // Creating delegates route in association with db
