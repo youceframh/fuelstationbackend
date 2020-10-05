@@ -15,6 +15,7 @@ use App\Http\Controllers\sendreport;
 use App\Http\Controllers\registertank;
 use App\Http\Controllers\registerpomp;
 use App\Http\Controllers\registerdelegate;
+use App\Http\Controllers\maintenance;
 
 
 
@@ -123,6 +124,6 @@ Route::get('/register/delegate',[registerdelegate::class,'get']); // Getting del
 
 Route::post('/register/delegate',[registerdelegate::class,'post']); // Creating delegates route in association with db
 
-Route::get('/maintenance ',[registerdelegate::class,'get']); // Getting maintenance page
+Route::get('/maintenance ',[maintenance::class,'get']); // Getting maintenance page
 
-Route::post('/maintenance',[registerdelegate::class,'post']); // Creating maintenance route in association with db
+Route::post('/maintenance',[maintenance::class,'post']); // Creating maintenance route in association with db

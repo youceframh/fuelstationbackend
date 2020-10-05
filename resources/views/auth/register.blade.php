@@ -74,7 +74,8 @@
                         <input type="text" placeholder="الاسم الكامل" name="fullname" id="fullname" onkeyup="verifyname()">
                         <input type="email" placeholder="الايمايل" name="email" id="email" onkeyup="verifyemail()">
                         <input type="password" placeholder="كلمة المرور" name="password" id="password" onkeyup="verifypassword()">
-                        <input type="password" placeholder=" اعد كلمة المرور" name="passwordverify" id="passwordv" onkeyup="verifypasswordv()" >
+                        <input type="password" placeholder=" اعد كلمة المرور" name="password_confirmation" id="passwordv" onkeyup="verifypasswordv()" >
+                        <input type="text" placeholder="رقم الهاتف" name="phone" id="phone">
                         <div style="display: flex;flex-direction: center;justify-content: space-between;align-self: center;margin: 0px 20px 0px 20px;padding: 0px 10px 10px 10px">
                             <div>
                                 <a href="">لديك حساب؟ سجل الدخول</a>
@@ -164,7 +165,7 @@
 
     function verifyname(){
         var fullname = document.getElementById('fullname').value;
-        var pattern = /^[a-zA-Z]{4,}$/;
+        var pattern = /^[a-zA-Z][\w\s]+{4,}$/;
 
         if(fullname.match(pattern)){
             document.getElementById('fullname').style.borderRight = "12px solid #308CBA"
