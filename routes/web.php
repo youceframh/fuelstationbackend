@@ -122,3 +122,7 @@ Route::post('/register/pomp',[registerpomp::class,'post']); // Creating pomps ro
 Route::get('/register/delegate',[registerdelegate::class,'get']); // Getting delegates registration page
 
 Route::post('/register/delegate',[registerdelegate::class,'post']); // Creating delegates route in association with db
+
+Route::get('/maintenance ',[registerdelegate::class,'get']); // Getting maintenance page
+
+Route::post('/maintenance',[registerdelegate::class,'post']); // Creating maintenance route in association with db
