@@ -16,6 +16,7 @@ use App\Http\Controllers\registertank;
 use App\Http\Controllers\registerpomp;
 use App\Http\Controllers\registerdelegate;
 use App\Http\Controllers\maintenance;
+use App\Http\Controllers\registerpatrol;
 
 
 
@@ -127,3 +128,7 @@ Route::post('/register/delegate',[registerdelegate::class,'post']); // Creating 
 Route::get('/maintenance ',[maintenance::class,'get']); // Getting maintenance page
 
 Route::post('/maintenance',[maintenance::class,'post']); // Creating maintenance route in association with db
+
+Route::get('/register/patrol ',[registerpatrol::class,'get']); // Getting patrol registration page
+
+Route::post('/register/patrol',[registerpatrol::class,'post']); // Creating patrol route in association with db
