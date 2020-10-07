@@ -18,7 +18,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Fuelstation</a>
+        <a class="navbar-brand" href="#"><img src="{{ asset('Assets/images/logo.svg') }}" width='55px'></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,37 +26,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">عنوان</a>
+              <a class="nav-link" href="/login">سجل الدخول</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">عنوان</a>
+                <a class="nav-link" href="#section2">مميزتنا</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">عنوان</a>
+                <a class="nav-link" href="#section5">تواصل معنا</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">عنوان</a>
+                <a class="nav-link" href="#section7">قيم المنصة</a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">عنوان</a>
-              </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                عنوان
-              </a>
-              <div class="dropdown-menu
-                                                                                  dropdown-menu-left" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
+           
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -85,8 +70,8 @@
             </div>
 
             <div class="section1-left">
-              <button type="button" class="btn btn-light sect1btn">تسجيل الدخول</button>
-              <button type="button" class="btn btn-secondary sect1btn">مستخدم جديد</button>
+              <a class="btn btn-light sect1btn" href="/login" role="button">تسجيل الدخول</a>
+              <a class="btn btn-secondary sect1btn" href="/register" role="button">مستخدم جديد</a>
             </div>
 
           </div>
@@ -95,7 +80,7 @@
 
            <!--section 2-->
 
-           <div class="section2">
+           <div class="section2" id="section2">
 
             <div class="section2-center">
 
@@ -228,7 +213,7 @@
 
                        <!--section 5-->
 
-                       <div class="section5">
+                       <div class="section5" id="section5">
 
                          <h1 style="color:#308CBA;margin-bottom: 30px;">لنبقى على تواصل</h1>
 
@@ -301,7 +286,7 @@
 
                         <div style="display: flex;justify-content: center;"><h1>قيم منصتنا</h1></div>
 
-                        <div class="section7">
+                        <div class="section7" id="section7">
                           
                          
 

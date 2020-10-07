@@ -1,4 +1,7 @@
 
+html{
+    scroll-behavior: smooth;
+}
 .section1{
     background: url("../images/HomeBackground-01.jpg");
     background-size: cover;
