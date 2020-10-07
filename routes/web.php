@@ -132,3 +132,5 @@ Route::post('/maintenance',[maintenance::class,'post']); // Creating maintenance
 Route::get('/register/patrol ',[registerpatrol::class,'get']); // Getting patrol registration page
 
 Route::post('/register/patrol',[registerpatrol::class,'post']); // Creating patrol route in association with db
+
+//maintenance
