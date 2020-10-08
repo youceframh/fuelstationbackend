@@ -17,6 +17,7 @@ use App\Http\Controllers\registerpomp;
 use App\Http\Controllers\registerdelegate;
 use App\Http\Controllers\maintenance;
 use App\Http\Controllers\registerpatrol;
+use App\Http\Controllers\dashboardprofile;
 
 
 
@@ -44,24 +45,20 @@ Route::get('/dashboard',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-main');
     }
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
 
 //Getting dashboard company profile  page and verifying if user is loggedin 
-Route::get('/dashboard/profile',function(Request $request){
-    if (Auth::check()) {
-        return view('dashboard-profile');
-    }
-    return redirect()->route('home');
-    
-});
+Route::get('/dashboard/profile', [dashboardprofile::class,'get']);
+
+Route::post('/dashboard/profile', [dashboardprofile::class,'post']);
 
 //Getting dashboard user balance page and verifying if user is loggedin 
 Route::get('/dashboard/balance',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-accountbalance');
     }
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
 
 //Getting dashboard add (tank,annex,pomp) page and verifying if user is loggedin 
@@ -69,7 +66,7 @@ Route::get('/dashboard/add',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-add');
     }
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
 
 //Getting dashboard company's (tanks,annexs,pomps) page and verifying if user is loggedin 
@@ -77,7 +74,7 @@ Route::get('/dashboard/show',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-show');
     }
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
 
 Route::get('/logout',[LoginController::class,'logout']); // making logout page
