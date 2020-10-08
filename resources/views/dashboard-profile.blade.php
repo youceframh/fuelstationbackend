@@ -14,7 +14,16 @@
     ::placeholder{
         color:black;
         opacity: 60%;
-    }</style>
+    }
+    .invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+    text-align: center;
+}
+    </style>
 </head>
 <body>
     <div class="dashboardmain">
@@ -23,6 +32,16 @@
             <div class="headerofdashboardmaincontent" style="justify-content: center;">
                <div class="two">
                    <h1 style="color:#308CBA;">الحساب الشخصي</h1>
+                   @if(isset($success))
+                    <div class="alert alert-success" role="alert">
+  {{$success}}
+</div>
+@endif
+@if(isset($failed))
+                    <div class="alert alert-danger" role="alert">
+  {{$failed}}
+</div>
+                    @endif
                </div>
             </div>
             <div class="mainofdashboardmaincontent" >
@@ -33,7 +52,7 @@
                     <div class="one">
                         <div class="usernameandimg">
                             <img src="../Assets/images/userimg.svg" alt="" width="150px">
-                            <h2 style="color: #308CBA;">اسم الحساب</h2>
+                            <h2 style="color: #308CBA;">{{Auth::user()->name }}</h2>
                         </div>
                     </div>
   
@@ -43,52 +62,99 @@
   
                 </div>
                 <div class="inputsofuserprofile">
-                    <form action="">
+                {{ Form::open( array('url' => '/dashboard/profile','method' => 'post')) }}
+
+                        <div class="first">
 
                         <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="الايمايل" name="email" class="form-control @error('email') @enderror" value="{{Auth::user()->email }}">
+                            <i class="far fa-envelope"></i>
+                            @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
 
                         <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
+                            <input type="text" placeholder="الاسم الكامل" name="name" class="form-control @error('name') @enderror" value="{{Auth::user()->name }}">
                             <i class="fas fa-user"></i>
+                            @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
 
+
                         <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-birthday-cake"></i>
+                            <input type="text" placeholder="رقم الهاتف" name="phone" class="form-control @error('phone') @enderror" value="{{Auth::user()->phone }}">
+                            <i class="fas fa-mobile-alt"></i>
+                            @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        </div>
+                        <h3 style="padding: 50px;
+    text-align-last: end;width: 96%;"> <u>تغيير كلمة المرور</u></h3>
+   
+                        <div class="second">
+                       
+                        <div class="inputype2containerspecial">
+                            <div>
+                        <input type="password" placeholder="كلمة المرور الجديدة" name="newpassword" class="@error('newpassword') not-valid @enderror">
+                            <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                            @error('newpassword')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
                         </div>
                         
-                        <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
 
-                        <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-user"></i>
-                        </div>
+                        <div class="inputype2containerspecial">
 
-                        <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-user"></i>
-                        </div>
+                            <div>
+                            <input type="password" placeholder="كلمة المرور الحالية" name="oldpassword" class="@error('oldpassword') not-valid @enderror">
+                            <i class="fas fa-lock-open"></i>
+                            </div>
 
-                        <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                            @error('oldpassword')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
                         </div>
                         
-                        <div class="inputype2container">
-                            <input type="text" placeholder="الاسم الكامل">
-                            <i class="fas fa-briefcase"></i>
+                        <div class="inputype2containerspecial">
+                        <div>
+                            <input type="password" placeholder="اعد كتابة كلمة المرور الجديدة" name="password_confirmation" class="@error('password_confirmation') not-valid @enderror">
+                            <i class="fas fa-lock"></i>
+                            </div>
+
+                            <div>
+                            @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                        </div>
+                      
                         </div>
                         <div class="submitformofuserinfos">
-                            <button type="button" class="btn btn-secondary" style="border-radius: 20px 0px 0px 20px;" >الغاء</button>
-                            <button type="button" class="btn btn-primary" style="border-radius: 0px 20px 20px 0px;"  >حفظ</button>
+                            <button type="submit" class="btn btn-secondary" style="border-radius: 20px 0px 0px 20px;" >الغاء</button>
+                            <button type="submit" class="btn btn-primary" style="border-radius: 0px 20px 20px 0px;"  >حفظ</button>
                         </div>
-                    </form>
+                        {{ Form::close() }}
 
                     
                 </div>

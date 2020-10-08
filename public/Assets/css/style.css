@@ -939,6 +939,27 @@ flex-direction: column;
     justify-content: center;
     margin: 20px 0px 20px 0px;
 }
+.inputype2containerspecial{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.inputype2containerspecial div:nth-child(1){
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.inputype2containerspecial div:nth-child(1) input{
+    width: 70%;
+    border: 0px;
+    border-bottom: 3px solid #308CBA;
+    text-align: end;
+    padding-right: 2.3rem;
+    outline: none;
+    font-size: 30px;
+}
 
 .inputsofuserprofile{
     width: 100%;
@@ -950,15 +971,24 @@ flex-direction: column;
     margin-left: -2.3rem;
 }
 
-.inputsofuserprofile form{
+.inputsofuserprofile form .first{
    width: 100%;
    display: flex;
    flex-wrap: wrap;
-   justify-content: center;
+   justify-content: flex-end;
+}
+
+.inputsofuserprofile form .second{
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-end;
 }
 
 .inputsofuserprofile form .submitformofuserinfos{
     margin-top: 50px;
+    text-align-last: center;
+    margin-bottom: 50px;
 }
 .inputype2container input{
     width: 70%;
@@ -1389,3 +1419,6 @@ flex-direction: column;
     background: #555; 
   }
   
+  .not-valid{
+      border-bottom: 3px solid red !important;
+  }
