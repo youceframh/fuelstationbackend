@@ -57,5 +57,6 @@
     </div>
     <script src="{{ asset('js/registerannex.js') }}"></script>
     <script src="{{ asset('js/rentshop.js') }}"></script>
+    <script src="{{ asset('js/profilepicture.js') }}"></script>
 </body>
 </html>

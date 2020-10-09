@@ -18,7 +18,7 @@ use App\Http\Controllers\registerdelegate;
 use App\Http\Controllers\maintenance;
 use App\Http\Controllers\registerpatrol;
 use App\Http\Controllers\dashboardprofile;
-
+use App\Http\Controllers\profilepic;
 
 
 /*
@@ -129,5 +129,9 @@ Route::post('/maintenance',[maintenance::class,'post']); // Creating maintenance
 Route::get('/register/patrol ',[registerpatrol::class,'get']); // Getting patrol registration page
 
 Route::post('/register/patrol',[registerpatrol::class,'post']); // Creating patrol route in association with db
+
+Route::put('/dashboard/profilepic',[profilepic::class,'post']);
+
+Route::get('/dashboard/profilepic',[profilepic::class,'get']);
 
 //maintenance

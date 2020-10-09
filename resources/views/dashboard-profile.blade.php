@@ -8,6 +8,7 @@
     <script src="../Assets/js/jquery.min.js"></script>
     <script src="../Assets/js/popper.min.js"></script>
     <script src="../Assets/js/bootstrap.min.js"></script>
+    <script src="../Assets/js/profilepicture.js"></script>
     <link  rel="stylesheet" href="../Assets/css/style.css"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
@@ -22,6 +23,9 @@
     font-size: 80%;
     color: #dc3545;
     text-align: center;
+}
+.awesome{
+    display:flex;flex-direction:column;
 }
     </style>
 </head>
@@ -57,9 +61,17 @@
                     </div>
   
                     <div class="two">
-                      <button type="button"  class="btn" type="submit" style="background-color:transparent;color: white;border: 0px; width: auto;text-align: center; "><i class="far fa-edit" style="color:#308cba;font-size: 35px;"></i></button>
+                    {{ Form::open( array('url' => '/dashboard/profilepic','method' => 'put', 'class' => 'awesome', 'files' => 'true')) }}
+                      <button type="button" id="uploadfile"  class="btn" style="background-color:transparent;color: white;border: 0px; width: auto;text-align: center;"><i class="far fa-edit" style="color:#308cba;font-size: 35px;"></i></button>
+                      <input type="file" id="uploadfileinput" name="profilepic" style="display:none;">
+                      <input type="submit" name="submit" id="submitprofilepic" class="form-control @error('profilepic') @enderror" disabled> 
+                      @error('profilepic')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     </div>
-  
+                    {{ Form::close() }}
                 </div>
                 <div class="inputsofuserprofile">
                 {{ Form::open( array('url' => '/dashboard/profile','method' => 'post')) }}
