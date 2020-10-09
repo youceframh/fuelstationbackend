@@ -57,5 +57,5 @@ class dashboardprofile extends Controller
             }
         }
         
-    }
+    } //adding profile picture
 }
