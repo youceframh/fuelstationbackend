@@ -55,7 +55,11 @@
 
                     <div class="one">
                         <div class="usernameandimg">
-                            <img src="../Assets/images/userimg.svg" alt="" width="150px">
+                            @if(isset($pic))
+                            <img src="{{asset('storage/'.$pic) }}" alt="" width="150px" height="150px" style="border-radius:100px;">
+                            @else
+                            <img src="../Assets/images/userimg.svg" width="150px">
+                            @endif
                             <h2 style="color: #308CBA;">{{Auth::user()->name }}</h2>
                         </div>
                     </div>

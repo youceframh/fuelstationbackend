@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Rules\IsCurrentPassword;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class dashboardprofile extends Controller
 {
@@ -14,7 +15,7 @@ class dashboardprofile extends Controller
     }
 
     public function get(){
-       return view('dashboard-profile');
+       return view('dashboard-profile',['pic' => Auth::user()->picture ]);
     }
 
     public function post(Request $request){
