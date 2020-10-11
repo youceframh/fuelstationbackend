@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+//adding password and checking if company already exists in db
 class registercompanies extends Controller
 {
     public function __construct()
