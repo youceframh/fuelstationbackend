@@ -79,7 +79,7 @@
     </div>
 @endif
                 <div>
-                    <form method="POST" action="/login" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                    <form method="POST" action="/admin/login" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 
                     <div>
                     <input type="text" placeholder="الايمايل" name="email" id="email" class=" @error('email') is-invalid @enderror" onkeyup="verifyemail()">
