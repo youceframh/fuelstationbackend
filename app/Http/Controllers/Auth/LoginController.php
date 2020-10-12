@@ -20,10 +20,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    public function guard()
-    {
-     return Auth::guard('web');
-    }
 
     use AuthenticatesUsers;
 
@@ -42,12 +38,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:web')->except('logout');
-        $this->middleware('guest:companies')->except('logout');
     }
 
     public function logout(Request $request) {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
       }
 }

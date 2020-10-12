@@ -16,7 +16,6 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
-        "sarav/laravel-multiauth": "dev-master",
         "simplesoftwareio/simple-qrcode": "^4.0"
     },
     "require-dev": {

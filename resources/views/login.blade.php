@@ -80,32 +80,15 @@
 @endif
                 <div>
                     <form method="POST" action="/login" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-
-                    <div>
-                    <input type="text" placeholder="الايمايل" name="email" id="email" class=" @error('email') is-invalid @enderror" onkeyup="verifyemail()">
-        
-                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    </div>
-                        <div>
-                        <input type="password" placeholder="كلمة المرور" class=" @error('password') is-invalid @enderror" name="password" id="password" onkeyup="verifypassword()"> 
-                        @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
-                        
+                        <input type="text" placeholder="الايمايل" name="email" id="email" onkeyup="verifyemail()">
+                        <input type="password" placeholder="كلمة المرور" name="password" id="password" onkeyup="verifypassword()"> 
                         <div style="display: flex;flex-direction: row-reverse;justify-content: space-between;align-self: normal;margin: 0px 20px 0px 20px;padding: 0px 10px 10px 10px">
                             <div>
                                 <span style="color: #308CBA;">ابقني متصلا بالحساب</span>
-                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input type="checkbox">
                             </div>
                             <div>
-                                <a href="/forget">نسيت كلمة المرور؟</a>
+                                <a href="">نسيت كلمة المرور؟</a>
                             </div>
                         </div>
                         @csrf

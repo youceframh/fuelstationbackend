@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 use Illuminate\Support\Facades\Hash;
 
 //adding password and checking if company already exists in db
@@ -22,8 +23,6 @@ class registercompanies extends Controller
         //verification of inputs and their types
       $verification =  $request->validate([
             'commercialname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'digits_between:6,15', 'min:8'],
@@ -42,8 +41,6 @@ class registercompanies extends Controller
            if($verification){
                //make inputs inside vars
                $commercial_name = $request->input('commercialname');
-               $email = $request->input('email');
-               $password = $request->input('password');
                $first_name =$request->input('firstname') ;
                $last_name =$request->input('lastname') ;
                $phone = $request->input('phone');
@@ -57,20 +54,19 @@ class registercompanies extends Controller
                $adress_1 =$request->input('adress1') ;
                $adress_2 = $request->input('adress2');
                $logo = $request->logo;
+               $user_type = "companies";
 
                //insert into db the infos 
 
                $insertDB = DB::table('companies')->insert( array (
                    'idcompanies' => null,
                    'commercial name' => $commercial_name,
-                   'email' => $email,
-                   'password' => Hash::make($password),
                    'first name' => $first_name,
                    'last name' => $last_name,
                    'phone' => $phone,
                    'country' => $country,
                    'city' => $city,
-                   'state' => $state,
+                   'state' => $state ,
                    'zip' => $zip,
                    'tax number' => $tax_number,
                    'language' => $language,
@@ -79,7 +75,18 @@ class registercompanies extends Controller
                    'address 2' => $adress_2,
                    'logo' => $logo, 
                    'role' => '1',  
-               )); //don't forget to add password
+               ));
+
+               User::create([
+                'name' => $commercial_name,
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'phone' => $request->input('phone'),
+                'picture' => null,
+                'is_admin' => false,
+                'typeofuser' => $user_type,
+            ]);
+               //don't forget to add password
                //checking the status
                     if($insertDB){
                         return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);

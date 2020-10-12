@@ -19,7 +19,6 @@ use App\Http\Controllers\maintenance;
 use App\Http\Controllers\registerpatrol;
 use App\Http\Controllers\dashboardprofile;
 use App\Http\Controllers\profilepic;
-use App\Http\Controllers\companieslogin;
 
 
 /*
@@ -44,11 +43,9 @@ Route::get('/', function () {
 //Getting dashboard and verifying if user is loggedin  page
 Route::get('/dashboard',function(Request $request){
     if (Auth::check()) {
-        return view('dashboard-add');
-    }else{
-        return redirect('/login');
+        return view('dashboard-main');
     }
-    
+    return redirect()->route('login');
 });
 
 //Getting dashboard company profile  page and verifying if user is loggedin 
@@ -59,22 +56,17 @@ Route::post('/dashboard/profile', [dashboardprofile::class,'post']);
 //Getting dashboard user balance page and verifying if user is loggedin 
 Route::get('/dashboard/balance',function(Request $request){
     if (Auth::check()) {
-        return view('dashboard-add');
-    }else{
-        
-        return redirect('/login');
+        return view('dashboard-accountbalance');
     }
-    
+    return redirect()->route('login');
 });
 
 //Getting dashboard add (tank,annex,pomp) page and verifying if user is loggedin 
 Route::get('/dashboard/add',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-add');
-    }else{
-        return redirect('/login');
     }
-    
+    return redirect()->route('login');
 });
 
 //Getting dashboard company's (tanks,annexs,pomps) page and verifying if user is loggedin 
@@ -82,39 +74,15 @@ Route::get('/dashboard/show',function(Request $request){
     if (Auth::check()) {
         return view('dashboard-show');
     }
-    return redirect('/login');
+    return redirect()->route('login');
 });
 
 Route::get('/logout',[LoginController::class,'logout']); // making logout page
 
+Auth::routes(); // activating the auth routes
 
 
-
-//webmaster login and registrations
-
-Route::get('/admin/login', 'Auth\LoginController@showLoginForm')->name('adminlogin');
-Route::post('/admin/login', 'Auth\LoginController@login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-Route::get('/admin/register', 'Auth\RegisterController@showRegistrationForm')->name('adminregister');
-Route::post('/admin/register', 'Auth\RegisterController@register');
-
-
-//normal company login
-
-Route::get('/login', [companieslogin::class,'showLoginForm']);
-Route::post('/login', [companieslogin::class,'login']); 
-Route::post('/logout',[companieslogin::class,'logout'])->name('logout');
-
-// Registration Routes...
-Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\RegisterController@register');
-
-
-// companies registrations
-
-Route::get('/register/companies', [registercompanies::class,'get']); // Getting Companies registration page //treating
+Route::get('/register/companies', [registercompanies::class,'get']); // Getting Companies registration page
 
 Route::post('/register/companies',[registercompanies::class,'post']); // Creating Companies route in association with db
 
