@@ -25,10 +25,18 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+          @if(!Auth::check())
             <li class="nav-item">
               <a class="nav-link" href="/login">سجل الدخول</a>
             </li>
-
+        @else
+        <li class="nav-item">
+              <a class="nav-link" href="/dashboard/profile">مرحبا {{Auth::user()->name}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">لوحة التحكم</a>
+              </li>
+          @endif
             <li class="nav-item">
                 <a class="nav-link" href="#section2">مميزتنا</a>
               </li>
