@@ -19,6 +19,7 @@ use App\Http\Controllers\maintenance;
 use App\Http\Controllers\registerpatrol;
 use App\Http\Controllers\dashboardprofile;
 use App\Http\Controllers\profilepic;
+use App\Http\Controllers\submitdocuments;
 
 
 /*
@@ -46,12 +47,12 @@ Route::get('/dashboard',function(Request $request){
         return view('dashboard-main');
     }
     return redirect()->route('login');
-});
+})->middleware('company');
 
 //Getting dashboard company profile  page and verifying if user is loggedin 
-Route::get('/dashboard/profile', [dashboardprofile::class,'get']);
+Route::get('/dashboard/profile', [dashboardprofile::class,'get'])->middleware('company');
 
-Route::post('/dashboard/profile', [dashboardprofile::class,'post']);
+Route::post('/dashboard/profile', [dashboardprofile::class,'post'])->middleware('company');
 
 //Getting dashboard user balance page and verifying if user is loggedin 
 Route::get('/dashboard/balance',function(Request $request){
@@ -59,7 +60,7 @@ Route::get('/dashboard/balance',function(Request $request){
         return view('dashboard-accountbalance');
     }
     return redirect()->route('login');
-});
+})->middleware('company');
 
 //Getting dashboard add (tank,annex,pomp) page and verifying if user is loggedin 
 Route::get('/dashboard/add',function(Request $request){
@@ -67,7 +68,7 @@ Route::get('/dashboard/add',function(Request $request){
         return view('dashboard-add');
     }
     return redirect()->route('login');
-});
+})->middleware('company');
 
 //Getting dashboard company's (tanks,annexs,pomps) page and verifying if user is loggedin 
 Route::get('/dashboard/show',function(Request $request){
@@ -75,7 +76,7 @@ Route::get('/dashboard/show',function(Request $request){
         return view('dashboard-show');
     }
     return redirect()->route('login');
-});
+})->middleware('company');
 
 Route::get('/logout',[LoginController::class,'logout']); // making logout page
 
@@ -133,5 +134,10 @@ Route::post('/register/patrol',[registerpatrol::class,'post']); // Creating patr
 Route::put('/dashboard/profilepic',[profilepic::class,'post']);
 
 Route::get('/dashboard/profilepic',[profilepic::class,'get']);
+
+
+Route::get('/submitdocuments',[submitdocuments::class,'get']);
+
+Route::post('/submitdocuments',[submitdocuments::class,'post']);
 
 //maintenance

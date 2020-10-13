@@ -51,6 +51,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('كلمة المرور') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('الاسم') }}</label>
 
                             <div class="col-md-6">

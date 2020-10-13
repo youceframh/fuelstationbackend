@@ -19,8 +19,7 @@ class CompaniesFiles extends Migration
             $table->string('type');
             $table->binary('content');
             $table->string('size');
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('idcompanies')->on('companies')->onDelete('cascade');
+            $table->integer('company_id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,6 +32,6 @@ class CompaniesFiles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('companies_files');
     }
 }
