@@ -82,9 +82,9 @@ Route::get('/logout',[LoginController::class,'logout']); // making logout page
 Auth::routes(); // activating the auth routes
 
 
-Route::get('/register/companies', [registercompanies::class,'get']); // Getting Companies registration page
+Route::get('/register/companies', [registercompanies::class,'get'])->middleware('auth'); // Getting Companies registration page
 
-Route::post('/register/companies',[registercompanies::class,'post']); // Creating Companies route in association with db
+Route::post('/register/companies',[registercompanies::class,'post'])->middleware('auth'); // Creating Companies route in association with db
 
 Route::get('/register/employee', [registeremployee::class,'get']); // Getting employees registration page
  

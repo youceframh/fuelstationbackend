@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\companies;
+
 use Illuminate\Support\Facades\Hash;
 
 //adding password and checking if company already exists in db
@@ -58,42 +60,62 @@ class registercompanies extends Controller
 
                //insert into db the infos 
 
-               $insertDB = DB::table('companies')->insert( array (
-                   'idcompanies' => null,
-                   'commercial name' => $commercial_name,
-                   'first name' => $first_name,
-                   'last name' => $last_name,
-                   'phone' => $phone,
-                   'country' => $country,
-                   'city' => $city,
-                   'state' => $state ,
-                   'zip' => $zip,
-                   'tax number' => $tax_number,
-                   'language' => $language,
-                   'commercial number' => $commercial_number,
-                   'address 1' => $adress_1,
-                   'address 2' => $adress_2,
-                   'logo' => $logo, 
-                   'role' => '1',  
-               ));
+            try{
+                $userinsert =  User::create(array(
+                    'name' => $commercial_name,
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('password')),
+                    'phone' => $request->input('phone'),
+                    'picture' => null,
+                    'is_admin' => false,
+                    'typeofuser' => $user_type,
+                ));
 
-               User::create([
-                'name' => $commercial_name,
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-                'phone' => $request->input('phone'),
-                'picture' => null,
-                'is_admin' => false,
-                'typeofuser' => $user_type,
-            ]);
+            }catch (\Illuminate\Database\QueryException $e){
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == 1062){
+                    return view('register-companies',['failed' => 'الايمايل المدخل مسجل حاليا']);
+                }
+            }
+               
+
+               if($userinsert){
+
+                $insertDB = companies::create ([
+                    'commercial name' => $commercial_name,
+                    'email' => $request->input('email'),
+                    'first name' => $first_name,
+                    'last name' => $last_name,
+                    'phone' => $phone,
+                    'country' => $country,
+                    'city' => $city,
+                    'state' => $state ,
+                    'zip' => $zip,
+                    'tax number' => $tax_number,
+                    'language' => $language,
+                    'commercial number' => $commercial_number,
+                    'address 1' => $adress_1,
+                    'address 2' => $adress_2,
+                    'logo' => $logo, 
+                    'role' => '1',  
+                ]);
+
+                if($insertDB){
+                    return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);
+           }else{
+               //else returning error
+               return view('register-companies',['failed' => 'لا يمكن تسجيل الشركة حاليا حاول لاحقا']);
+           }
+
+               }else{
+                return view('register-companies',['failed' => 'لا يمكن تسجيل الشركة حاليا حاول لاحقا']);
+               }
+
+              
+
+            
                //don't forget to add password
                //checking the status
-                    if($insertDB){
-                        return view('register-companies',['success' => 'تم تسجيل الشركة بنجاح']);
-               }else{
-                   //else returning error
-                   return view('register-companies',['failed' => 'لا يمكن تسجيل الشركة حاليا حاول لاحقا']);
-               }
            }
 
     }
