@@ -50,6 +50,16 @@
             </div>
             <div class="mainofdashboardmaincontent" >
 
+            @if(isset($verified) && $verified == 2)
+            <div class="alert alert-info" role="alert">
+            نحن نقوم بدراسة ملفات التعريف الخاصة بلشركة
+            </div>
+            @elseif(isset($verified) && $verified == 3)
+            <div class="alert alert-danger" role="alert">
+            من فضلك اعد ارسال ملفات التعريف
+            </div>
+            @endif
+
               <div class="mainofcontentuserinfos">
                 <div class="mainofcontentuserprofile" >
 
@@ -58,9 +68,20 @@
                             @if(isset($pic))
                             <img src="{{asset('storage/'.$pic) }}" alt="" width="150px" height="150px" style="border-radius:100px;">
                             @else
-                            <img src="../Assets/images/userimg.svg" width="150px">
+                            <img src="../Assets/images/userimg.svg" width="150px" style="margin:20px;">
                             @endif
+                            <div>
                             <h2 style="color: #308CBA;">{{Auth::user()->name }}</h2>
+                            @if(isset($verified) && $verified == 1)
+            <div class="alert alert-success" role="alert">
+            الحساب فعال
+                        </div>
+                        @elseif(isset($verified) && $verified == 0)
+                        <div class="alert alert-danger" role="alert">
+  من فضلك فعل حسابك  <a href="/submitdocuments">هنا</a>
+            </div>
+            @endif
+            </div>
                         </div>
                     </div>
   

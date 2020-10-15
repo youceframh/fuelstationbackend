@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Rules\IsCurrentPassword;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DB;
 
 class dashboardprofile extends Controller
 {
@@ -16,7 +17,14 @@ class dashboardprofile extends Controller
 
     public function get(){
         //send verification status for companies
-       return view('dashboard-profile',['pic' => Auth::user()->picture ]);
+
+        if(Auth::user()->is_admin){
+            return view('dashboard-profile',['pic' => Auth::user()->picture ]);
+        }else{
+            $userinfos = DB::table('companies')->where('email',Auth::user()->email)->first();
+            return view('dashboard-profile',['pic' => Auth::user()->picture],['verified'=>$userinfos->verified]);
+        }
+       
     }
 
     public function post(Request $request){
