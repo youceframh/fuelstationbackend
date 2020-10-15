@@ -15,6 +15,7 @@ class dashboardprofile extends Controller
     }
 
     public function get(){
+        //send verification status for companies
        return view('dashboard-profile',['pic' => Auth::user()->picture ]);
     }
 
