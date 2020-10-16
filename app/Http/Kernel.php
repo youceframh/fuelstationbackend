@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'auth.web' => \App\Http\Middleware\checkifuseriswebmaster::class,
         'company'  => \App\Http\Middleware\checkifcompany::class,
         'company.isverified' => \App\Http\Middleware\checkifcompanyisverified::class,
+        'company.status' => \App\Http\Middleware\checkcompanyverificationstatus::class,
     ];
 }
