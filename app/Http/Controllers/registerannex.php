@@ -9,19 +9,20 @@ use Auth;
 class registerannex extends Controller
 {
     public function __construct(){
-        $this->middleware('company.status');
+        $this->middleware('company.status'); //checking if the company is eligible to add annexes through verification
     }
 
     public function get(){
-        return view('register-annex');
+        return view('register-annex'); //returning the html view of the page
     }
     
     public function post(Request $request){
 
-        $rent_type = $request->input('renttype');
-        switch($rent_type){
-            case 'BUY' : 
-                $validation = $request->validate([
+        $rent_type = $request->input('renttype'); //switching for rent type cases
+
+        switch($rent_type){ 
+            case 'BUY' : //buying case
+                $validation = $request->validate([ //validating all the inputs
                     'name' => ['required', 'string', 'max:255'],
                     'adress' => ['required', 'string', 'min:2'],
                     'country' => ['required', 'string', 'min:2'],
@@ -31,7 +32,8 @@ class registerannex extends Controller
                     'renttype' => ['required', 'string'],
                 ]);
 
-                $name = $request->input('name');
+                //adding inputs in variables so the work gets more structured
+                $name = $request->input('name'); 
                 $adress = $request->input('adress');
                 $country = $request->input('country');
                 $city = $request->input('city') ;
@@ -40,7 +42,7 @@ class registerannex extends Controller
                 $rent_type = $request->input('renttype') ;
                 $company_id = Auth::user()->id;
 
-                $insertDB = DB::table('annexes')->insert( array (
+                $insertDB = DB::table('annexes')->insert( array ( //inserting infos into the table after verification
                     'idannexes' => null,
                     'name' => $name,
                     'address' => $adress,
@@ -60,7 +62,7 @@ class registerannex extends Controller
                     'companies_id' => $company_id,
                 ));
 
-                if($insertDB){
+                if($insertDB){ //if insert is successful 
                     return view('register-annex',['success' => 'تم تسجيل الفرع بنجاح']);
            }else{
                //else returning error
@@ -69,8 +71,8 @@ class registerannex extends Controller
                 
             break;
 
-            case 'RENT' :
-                $validation = $request->validate([
+            case 'RENT' : // in case of rent
+                $validation = $request->validate([ //checking inputs
                     'name' => ['required', 'string', 'max:255'],
                     'adress' => ['required', 'string', 'min:2'],
                     'country' => ['required', 'string', 'min:2'],
@@ -84,6 +86,8 @@ class registerannex extends Controller
                     'rentorphone' => ['required','digits_between:8,15', 'min:8'],
                     'rentinovicenbr' => ['required','numeric']
                 ]);
+
+                 //adding inputs in variables so the work gets more structured
 
                 $name = $request->input('name');
                 $adress = $request->input('adress');
@@ -100,7 +104,7 @@ class registerannex extends Controller
                 $rent_inovice_number = $request->input('rentinovicenbr') ;
                 $company_id = Auth::user()->id;
 
-                $insertDB = DB::table('annexes')->insert( array (
+                $insertDB = DB::table('annexes')->insert( array ( //inserting infos into the table after verification
                     'idannexes' => null,
                     'name' => $name,
                     'address' => $adress,
@@ -119,7 +123,7 @@ class registerannex extends Controller
                     'companies_id' => $company_id,
                 ));
 
-                if($insertDB){
+                if($insertDB){ //if insert is successful 
                     return view('register-annex',['success' => 'تم تسجيل الفرع بنجاح']);
            }else{
                //else returning error
@@ -129,4 +133,3 @@ class registerannex extends Controller
         }
     }
 }
-//securing this route
