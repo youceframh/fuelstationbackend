@@ -10,7 +10,7 @@ class registerdelegate extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth.web','company.isverified']);
+        $this->middleware('auth.verified');
     }
 
     public function get(){
