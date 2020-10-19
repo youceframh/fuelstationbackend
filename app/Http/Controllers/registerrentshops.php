@@ -7,23 +7,23 @@ use Auth;
 use DB;
 
 
-class registerrentshops extends Controller //securing register rent shop and setting privilages
+class registerrentshops extends Controller 
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('company'); //setting  middle to
     }
 
     public function get(){
-        return view('register-rent-shop');
+        return view('register-rent-shop'); //returning view of shop registrations html and css page
     }
 
     public function post(Request $request){
-       $rent_type = $request->input('rentshoptype');
+       $rent_type = $request->input('rentshoptype'); //checking type of rent
 
        switch($rent_type){
-           case 'INDIVIDUAL' :
+           case 'INDIVIDUAL' : //in case individual
           
-             $validation = $request->validate([
+             $validation = $request->validate([ //validate all inputs
                 'name' => ['required', 'string', 'max:255'],
                 'phone' => ['required', 'digits_between:8,15', 'min:8'],
                 'address' => ['required', 'string', 'min:2'],
@@ -42,7 +42,7 @@ class registerrentshops extends Controller //securing register rent shop and set
                 'notes' => ['required', 'string'],
                 'rentconditions' => ['required', 'string'],
              ]);
-             
+             //setting all variables
              $name = $request->input('name');
              $adress = $request->input('address');
              $phone = $request->input('phone');
@@ -62,7 +62,7 @@ class registerrentshops extends Controller //securing register rent shop and set
              $rentconditions = $request->input('rentconditions');
              $company_id = Auth::user()->id;
 
-             $insertDB = DB::table('rent_shop')->insert( array (
+             $insertDB = DB::table('rent_shop')->insert( array ( //inserting into table
                 'id' => null,
                 'full name' => $name,
                 'phone number' => $phone,
@@ -90,7 +90,7 @@ class registerrentshops extends Controller //securing register rent shop and set
                 'company_id' => $company_id,
             ));
 
-            if($insertDB){
+            if($insertDB){ //confirming insert
                 return view('register-rent-shop',['success' => 'تم تسجيل المحل بنجاح']);
        }else{
            //else returning error
@@ -98,8 +98,8 @@ class registerrentshops extends Controller //securing register rent shop and set
        }
            break;
 
-            case 'COMPANY' :
-              $validation = $request->validate([
+            case 'COMPANY' : //in case of company
+              $validation = $request->validate([ //validate inputs
                  'name' => ['required', 'string', 'max:255'],
                 'phone' => ['required', 'digits_between:8,15', 'min:8'],
                 'address' => ['required', 'string', 'min:2'],
@@ -125,7 +125,7 @@ class registerrentshops extends Controller //securing register rent shop and set
                 'notes' => ['required', 'string'],
                 'rentconditions' => ['required', 'string'],
               ]);
- 
+                //setting vars 
               $name = $request->input('name');
               $adress = $request->input('address');
               $phone = $request->input('phone');
@@ -152,7 +152,7 @@ class registerrentshops extends Controller //securing register rent shop and set
               $rentconditions = $request->input('rentconditions');
               $company_id = Auth::user()->id;
              
-              $insertDB = DB::table('rent_shop')->insert( array (
+              $insertDB = DB::table('rent_shop')->insert( array ( //inserting fields into db table named rent_shop
                 'id' => null,
                 'full name' => $name,
                 'phone number' => $phone,
@@ -180,7 +180,7 @@ class registerrentshops extends Controller //securing register rent shop and set
                  'company_id' => $company_id,
              ));
  
-             if($insertDB){
+             if($insertDB){ //retuning infos about the insert
                  return view('register-rent-shop',['success' => 'تم تسجيل المحل بنجاح']);
         }else{
             //else returning error

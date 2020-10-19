@@ -16,9 +16,13 @@ class checkifuseriswebmaster
      */
     public function handle($request, Closure $next)
     {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
         if(!Auth::user()->is_admin){
             return redirect('/dashboard');
         }
         return $next($request);
+    }
     }
 }

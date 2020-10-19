@@ -17,6 +17,9 @@ class checkifcompanyisverified
      */
     public function handle($request, Closure $next)
     {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
             $getuseremail = Auth::user()->email;
             $query = DB::table('companies')->where('email',$getuseremail)->first();
             if($query){
@@ -24,7 +27,9 @@ class checkifcompanyisverified
                 return redirect('/dashboard');
                }
                return $next($request);
+        }else{
+            return redirect('/dashboard');
         }
-        
+    }
     }
 }
