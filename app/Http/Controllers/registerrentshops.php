@@ -6,37 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
-/*
-CREATE TABLE `fuelstation`.`rent_shop` (
-     `id` INT NOT NULL AUTO_INCREMENT ,
-      `full name` VARCHAR(255) NOT NULL ,
-       `phone number` VARCHAR(255) NOT NULL ,
-        `address` VARCHAR(255) NOT NULL ,
-         `nationality` VARCHAR(255) NOT NULL ,
-          `rent type` VARCHAR(15) NOT NULL ,
-           `id type` VARCHAR(255) NOT NULL ,
-            `id number` BIGINT NOT NULL ,
-             `commercial number` VARCHAR(255) NULL ,
-              `representative name` VARCHAR(255) NULL ,
-               `representative number` INT NULL ,
-                `representative id number` INT NULL ,
-                 `id authority` VARCHAR(255) NULL ,
-                  `id expire date` DATE NULL ,
-                   ` rent start date` DATE NOT NULL ,
-                    `rent end date` DATE NOT NULL ,
-                     `price` INT NOT NULL ,
-                      `electricity number` INT NOT NULL ,
-                       `water number` INT NOT NULL ,
-                        `activity type` VARCHAR(255) NOT NULL ,
-                         `payment type` VARCHAR(255) NOT NULL ,
-                          `shop type` VARCHAR(255) NOT NULL ,
-                           `notes` LONGTEXT NOT NULL ,
-                            `rent conditions` LONGTEXT NOT NULL ,
-                             PRIMARY KEY (`id`)
-                             ) ENGINE = MyISAM;
 
-*/
-class registerrentshops extends Controller
+class registerrentshops extends Controller //securing register rent shop and setting privilages
 {
     public function __construct(){
         $this->middleware('auth');
