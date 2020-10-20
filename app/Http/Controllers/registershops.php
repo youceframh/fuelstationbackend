@@ -9,7 +9,7 @@ use Auth;
 class registershops extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth'); //commenting and securing this route
     }
 
     public function get(){
