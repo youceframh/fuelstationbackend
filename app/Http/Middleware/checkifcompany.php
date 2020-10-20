@@ -17,8 +17,8 @@ class checkifcompany
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect('/login');
+        if (!Auth::check()) { //checking authentication
+            return redirect('/login'); 
         }else{
         $getuseremail = Auth::user()->email;
             $query = DB::table('companies')->where('email',$getuseremail)->first();
