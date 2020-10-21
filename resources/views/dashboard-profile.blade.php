@@ -80,6 +80,10 @@
                         <div class="alert alert-danger" role="alert">
   من فضلك فعل حسابك  <a href="/submitdocuments">هنا</a>
             </div>
+            @elseif(isset($type))
+                        <div class="alert alert-info" role="alert">
+ <span>{{$type}}</span>
+            </div>
             @endif
             </div>
                         </div>

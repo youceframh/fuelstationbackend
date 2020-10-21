@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'company.isverified' => \App\Http\Middleware\checkifcompanyisverified::class,
         'company.status' => \App\Http\Middleware\checkcompanyverificationstatus::class,
         'auth.verified' => \App\Http\Middleware\authverified::class,
+        'annex' => \App\Http\Middleware\checkifannex::class,
     ];
 }

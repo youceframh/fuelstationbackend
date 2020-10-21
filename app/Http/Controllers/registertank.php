@@ -10,32 +10,32 @@ class registertank extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('annex'); // restricting this page for annex users only
     }
 
     public function get(){
-        $company_id = Auth::user()->id;
-        $get_annexes = DB::table('annexes')->where('companies_id',$company_id)->get();
-        return view('register-tank', ['annexes' => $get_annexes]);
+        $annex_email = Auth::user()->email; // getting email of annex user 
+        $get_annexes = DB::table('annexes')->where('email',$annex_email)->get(); //returning available annexes
+        return view('register-tank', ['annexes' => $get_annexes]); //sending html to user
     }
 
     public function post(Request $request){
-        $company_id = Auth::user()->id;
-        $get_annexes = DB::table('annexes')->where('companies_id',$company_id)->get();
+        $annex_email = Auth::user()->email; // getting email of annex user 
+        $get_annexes = DB::table('annexes')->where('email',$annex_email)->get(); //returning available annexes
         
-        $validation = $request->validate([
+        $validation = $request->validate([ //validating inputs
             'tanknbr' => ['required','string'],
             'volumeoftank' => ['required','string'],
             'fueltype' => ['required','string'],
             'reliedtoannex' => ['required','numeric'],
         ]);
-
+            //setting vars
         $tank_number = $request->input('tanknbr');
         $tank_volume = $request->input('volumeoftank');
         $fuel_type = $request->input('fueltype');
         $related_to_annex = $request->input('reliedtoannex');
 
-        $insertDB = DB::table('tanks')->insert( array (
+        $insertDB = DB::table('tanks')->insert( array ( //inserting into db
             'id_tank' => null,
             'tank number'=>$tank_number,
             'tank volume'=>$tank_volume,
@@ -43,7 +43,7 @@ class registertank extends Controller
             'annex_id'=>$related_to_annex,
         ));
 
-        if($insertDB){
+        if($insertDB){ //retruning infos of insert process
             return view('register-tank',['success' => 'تم تسجيل الخزان بنجاح'],['annexes' => $get_annexes]);
    }else{
        //else returning error

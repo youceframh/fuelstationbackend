@@ -11,15 +11,15 @@ class registeremployee extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('company'); // restrcting this page to companies only
     }
 
     public function get(){
-        return view('register-employee');
+        return view('register-employee'); // returning html of the page
     }
 
     public function post(Request $request){
-        $verification =  $request->validate([
+        $verification =  $request->validate([ // verfication of fields
             'fullname' => ['required', 'string', 'max:255'],
             'nationalidcardnumber' => ['required', 'numeric', 'min:2'],
             'phone' => ['required', 'digits_between:6,15', 'min:8'],

@@ -6,29 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
-/*ALTER TABLE `suppliers` ADD 
-id
-name
-`number` VARCHAR(255) NOT NULL AFTER `name`, ADD 
-`general director name` VARCHAR(255) NOT NULL AFTER `number`, ADD
-`general director number` VARCHAR(255) NOT NULL AFTER `general director name`, ADD
-`adress` VARCHAR(255) NOT NULL AFTER `general director number`, ADD
- `city` VARCHAR(255) NOT NULL AFTER `adress`, ADD
- `country` VARCHAR(255) NOT NULL AFTER `city`, ADD 
- `fat number` INT(55) NOT NULL AFTER `country`, ADD
- `email` VARCHAR(255) NOT NULL AFTER `fat number`, ADD
-`opening credit` VARCHAR(255) NOT NULL AFTER `email`, ADD
-`add time` DATE NOT NULL AFTER `opening credit`, ADD
-`serial id` VARCHAR(255) NOT NULL AFTER `add time`, ADD
-`notes` LONGTEXT NOT NULL AFTER `serial id`, ADD
-`product type` VARCHAR(255) NOT NULL AFTER `notes`, ADD
-`volume` VARCHAR(255) NOT NULL AFTER `product type`, ADD
-`aramco inovice number` VARCHAR(255) NOT NULL AFTER `volume`, ADD
-`truck number` INT(55) NOT NULL AFTER `aramco inovice number`, ADD
- `name of person` VARCHAR(255) NOT NULL AFTER `truck number`, ADD
-`time` TIME NOT NULL AFTER `name of person`;
- */
-
 class registersuppliers extends Controller
 { 
     public function __construct()

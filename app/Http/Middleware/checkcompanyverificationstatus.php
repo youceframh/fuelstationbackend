@@ -34,6 +34,9 @@ class checkcompanyverificationstatus
                 case 0 :
                     abort(403, "للجوء الى هذه الصفحة يجب ان يتم التحقق من ملقات تعريف الشركة");
                 break;
+                case 'null':
+                    return redirect('/submitdocuments');
+                break;
             }
         }
         return $next($request);

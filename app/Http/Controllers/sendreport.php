@@ -10,7 +10,7 @@ class sendreport extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('annex');
     }
 
     public function get(){
@@ -36,6 +36,7 @@ class sendreport extends Controller
             'message' => $message,
             'report number' => $reportnbr,
             'report date' => $reportdate,
+            'annex_email' => Auth::user()->email,
         ));
 
         if($insertDB){

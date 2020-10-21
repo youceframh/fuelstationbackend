@@ -20,9 +20,12 @@ class dashboardprofile extends Controller
 
         if(Auth::user()->is_admin){
             return view('dashboard-profile',['pic' => Auth::user()->picture ]);
-        }else{
+        }elseif(Auth::user()->typeofuser == 'companies'){
             $userinfos = DB::table('companies')->where('email',Auth::user()->email)->first();
             return view('dashboard-profile',['pic' => Auth::user()->picture],['verified'=>$userinfos->verified]);
+        }else{
+            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'فرع']);
         }
        
     }
