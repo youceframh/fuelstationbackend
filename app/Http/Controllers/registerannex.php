@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class registerannex extends Controller
 {
@@ -29,6 +31,7 @@ class registerannex extends Controller
                     'city' => ['required', 'string', 'min:2'],
                     'phone' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'email'],
+                    'password' => ['required', 'string','min:8'],
                     'renttype' => ['required', 'string'],
                 ]);
 
@@ -39,35 +42,60 @@ class registerannex extends Controller
                 $city = $request->input('city') ;
                 $phone = $request->input('phone');
                 $email = $request->input('email');
+                $password = $request->input('password');
                 $rent_type = $request->input('renttype') ;
                 $company_id = Auth::user()->id;
 
-                $insertDB = DB::table('annexes')->insert( array ( //inserting infos into the table after verification
-                    'idannexes' => null,
-                    'name' => $name,
-                    'address' => $adress,
-                    'country' => $country ,
-                    'city' => $city,
-                    'email' => $email,
-                    'phone' => $phone,
-                    'email' => $email,
-                    'rent type' => $rent_type, 
-                    'rent start date' => null,
-                    'rent end date' => null,
-                    'price' => null,
-                    'rentor name' => null,
-                    'phone 2' => null,
-                    'rent inovice number' => null,
-                    'rent inovice number' => null ,
-                    'companies_id' => $company_id,
-                ));
-
-                if($insertDB){ //if insert is successful 
-                    return view('register-annex',['success' => 'تم تسجيل الفرع بنجاح']);
-           }else{
-               //else returning error
-               return view('register-annex',['failed' => 'لا يمكن تسجيل الفرع حاليا حاول لاحقا']);
-           }
+                ///////////////////////////////////////
+                try{
+                    $userinsert =  User::create(array(
+                        'name' =>  $name,
+                        'email' => $request->input('email'),
+                        'password' => Hash::make($request->input('password')),
+                        'phone' => $request->input('phone'),
+                        'picture' => null,
+                        'is_admin' => false,
+                        'typeofuser' => 'annex',
+                    ));
+    
+                }catch (\Illuminate\Database\QueryException $e){
+                    $errorCode = $e->errorInfo[1];
+                    if($errorCode == 1062){
+                        return view('register-annex',['failed' => 'الايمايل المدخل مسجل حاليا']);
+                    }
+                }
+                   
+                   if($userinsert){
+    
+                    $insertDB = DB::table('annexes')->insert( array ( //inserting infos into the table after verification
+                        'idannexes' => null,
+                        'name' => $name,
+                        'address' => $adress,
+                        'country' => $country ,
+                        'city' => $city,
+                        'phone' => $phone,
+                        'email' => $email,
+                        'rent type' => $rent_type, 
+                        'rent start date' => null,
+                        'rent end date' => null,
+                        'price' => null,
+                        'rentor name' => null,
+                        'phone 2' => null,
+                        'rent inovice number' => null,
+                        'companies_id' => $company_id,
+                    ));
+    
+                    if($insertDB){ //if insert is successful 
+                        return view('register-annex',['success' => 'تم تسجيل الفرع بنجاح']);
+               }else{
+                   //else returning error
+                   return view('register-annex',['failed' => 'لا يمكن تسجيل الفرع حاليا حاول لاحقا']);
+               }
+    
+                   }else{
+                    return view('register-annex',['failed' => 'لا يمكن تسجيل الفرع حاليا حاول لاحقا']);
+                   }
+    
                 
             break;
 
@@ -79,6 +107,7 @@ class registerannex extends Controller
                     'city' => ['required', 'string', 'min:2'],
                     'phone' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'email'],
+                    'password' => ['required', 'string','min:8'],
                     'rentdatestart' => ['required','date'],
                     'rentdateend' => ['required','date'],
                     'price' => ['required', 'string'],
@@ -95,6 +124,7 @@ class registerannex extends Controller
                 $city = $request->input('city') ;
                 $phone = $request->input('phone');
                 $email = $request->input('email');
+                $password = $request->input('password');
                 $rent_type = $request->input('renttype') ;
                 $rent_date_start = $request->input('rentdatestart') ;
                 $rent_date_end = $request->input('rentdateend') ;
@@ -104,13 +134,33 @@ class registerannex extends Controller
                 $rent_inovice_number = $request->input('rentinovicenbr') ;
                 $company_id = Auth::user()->id;
 
+                try{
+                    $userinsert =  User::create(array(
+                        'name' =>  $name,
+                        'email' => $request->input('email'),
+                        'password' => Hash::make($request->input('password')),
+                        'phone' => $request->input('phone'),
+                        'picture' => null,
+                        'is_admin' => false,
+                        'typeofuser' => 'annex',
+                    ));
+    
+                }catch (\Illuminate\Database\QueryException $e){
+                    $errorCode = $e->errorInfo[1];
+                    if($errorCode == 1062){
+                        return view('register-annex',['failed' => 'الايمايل المدخل مسجل حاليا']);
+                    }
+                }
+
+
+                if($userinsert){
+
                 $insertDB = DB::table('annexes')->insert( array ( //inserting infos into the table after verification
                     'idannexes' => null,
                     'name' => $name,
                     'address' => $adress,
                     'country' => $country ,
                     'city' => $city,
-                    'email' => $email,
                     'phone' => $phone,
                     'email' => $email,
                     'rent type' => $rent_type, 
@@ -129,6 +179,9 @@ class registerannex extends Controller
                //else returning error
                return view('register-annex',['failed' => 'لا يمكن تسجيل الفرع حاليا حاول لاحقا']);
            }
+        }else{
+            return view('register-annex',['failed' => 'لا يمكن تسجيل الفرع حاليا حاول لاحقا']);
+        }
                 break;
         }
     }
