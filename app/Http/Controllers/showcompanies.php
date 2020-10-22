@@ -9,12 +9,13 @@ use Auth;
 class showcompanies extends Controller
 {
     public function __construct(){
-        $this->midlleware('auth.web');
+        $this->middleware('auth.web');
     }
     public function get(){
-        return ('show-companies');
+        $get_companies = DB::table('companies')->get();
+        return view ('show-companies',['companies'=>json_decode($get_companies,true)]);
     }
     public function post(Request $request){
-        
+
     }
 }

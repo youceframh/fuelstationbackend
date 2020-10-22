@@ -20,6 +20,7 @@ use App\Http\Controllers\registerpatrol;
 use App\Http\Controllers\dashboardprofile;
 use App\Http\Controllers\profilepic;
 use App\Http\Controllers\submitdocuments;
+use App\Http\Controllers\showcompanies;
 
 
 /*
@@ -53,6 +54,11 @@ Route::get('/dashboard',function(Request $request){
 Route::get('/dashboard/profile', [dashboardprofile::class,'get']);
 
 Route::post('/dashboard/profile', [dashboardprofile::class,'post']);
+
+//Getting dashboard company profile  page and verifying if user is loggedin 
+Route::get('/dashboard/companies', [showcompanies::class,'get']);
+
+Route::post('/dashboard/companies', [showcompanies::class,'post']);
 
 //Getting dashboard user balance page and verifying if user is loggedin 
 Route::get('/dashboard/balance',function(Request $request){
