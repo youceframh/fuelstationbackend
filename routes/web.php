@@ -21,6 +21,7 @@ use App\Http\Controllers\dashboardprofile;
 use App\Http\Controllers\profilepic;
 use App\Http\Controllers\submitdocuments;
 use App\Http\Controllers\showcompanies;
+use App\Http\Controllers\showcompanyinfos;
 
 
 /*
@@ -55,10 +56,14 @@ Route::get('/dashboard/profile', [dashboardprofile::class,'get']);
 
 Route::post('/dashboard/profile', [dashboardprofile::class,'post']);
 
-//Getting dashboard company profile  page and verifying if user is loggedin 
+//Getting all companies
 Route::get('/dashboard/companies', [showcompanies::class,'get']);
 
-Route::post('/dashboard/companies', [showcompanies::class,'post']);
+
+//Getting dashboard company profile  page and verifying if user is loggedin 
+Route::get('/dashboard/companies/{id}', [showcompanyinfos::class,'get']);
+
+Route::post('/dashboard/companies/{id}', [showcompanyinfos::class,'post']);
 
 //Getting dashboard user balance page and verifying if user is loggedin 
 Route::get('/dashboard/balance',function(Request $request){

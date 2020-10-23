@@ -71,7 +71,7 @@
                </div>
             </div>
             <div class="mainofdashboardmaincontent">
-
+@if(isset($companies))
         @foreach($companies as $company)
               <div class="companiescard">
 
@@ -104,11 +104,12 @@
               </div>
              
               <div class="sectthree">
-              <a type="button" href="/dashboard/companies/id" class="btn btn-info">المزيد من المعلومات</a>
+              <a type="button" href="/dashboard/companies/{{$company['idcompanies']}}" class="btn btn-info">المزيد من المعلومات</a>
               </div>
 
               </div>
     @endforeach
+    @endif
             </div>
         </div>
 
