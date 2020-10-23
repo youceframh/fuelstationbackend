@@ -57,10 +57,15 @@
 
         <div class="dashboardmaincontent">
             <div class="headerofdashboardmaincontent">
+            <form action="/dashboard/companies" method="GET" style="width:80%;">
                <div class="one">
-                <input type="text" placeholder="ابحث" >
-                <i class="fas fa-search" style="align-self: center;position: absolute;right: 2%;"></i>   
+                <input type="text" placeholder="ابحث" style="padding: 10px 2rem 10px 5rem;text-align:right;" name="searchquery">
+                <i class="fas fa-search" style="align-self: center;position: absolute;right: 10px;"></i>   
+                <button type="submit" style="    position: absolute;
+    align-self: center;
+    left: 1rem;">ابحث</button>
                </div>
+               </form>
                <div class="two">
                    <h1 style="color:#308CBA;">لوحة القيادة</h1>
                </div>
