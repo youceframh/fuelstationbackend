@@ -9,7 +9,7 @@ use Auth;
 class registershops extends Controller
 {
     public function __construct(){
-        $this->middleware('company'); //using the company middleware in order to make this page only accessible for companies
+        $this->middleware('annex'); //using the company middleware in order to make this page only accessible for companies
     }
 
     public function get(){
