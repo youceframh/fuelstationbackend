@@ -51,7 +51,9 @@
             <div class="mainofdashboardmaincontent">
             @if(isset($annex))
         @foreach($annex as $annexinfos)
-              <div class="companyinfoscard">
+              <div class="companyinfoscard" style="    display: flex;
+    flex-direction: column;
+    align-items: center;">
               <div class="persinfosofcomp">
                 <span>{{$annexinfos['name']}}<b>الاسم</b></span>
                 <span>{{$annexinfos['address']}}<b>العنوان</b></span>
@@ -66,7 +68,7 @@
 
                 <div class="buttonsofvalidatio">
                 
-             <form action="/dashboard/companies/{{$annexinfos['idannexes']}}" method="post">
+             <form action="/dashboard/annexes/{{$annexinfos['idannexes']}}" method="post">
              @csrf
                 <button type="submit" name="type" value="remove" class="btn btn-danger btn2" type="submit" style="">نزع المحل</button>
                    </form>

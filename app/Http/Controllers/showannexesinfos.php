@@ -18,7 +18,7 @@ class showannexesinfos extends Controller
             return view ('show-annex-infos',['annex'=>json_decode($get_annex,true)]);
 
         }else{
-            return redirect('/dashboard/companies');
+            return redirect('/dashboard/annexes');
         }
            
     }
@@ -26,11 +26,18 @@ class showannexesinfos extends Controller
         
         if(preg_match('/^[1-9][0-9]*$/',$id)){
             $ids = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
-            $typeofreq = $request->input('type');
-            $get_company = DB::table('companies')->where('idcompanies',$ids)->get();
-            if(isset($_GET['type'])){
-                
+            $get_company = DB::table('annexes')->where('idannexes',$ids)->get();
+            if($get_company !== '[]'){
+                if(isset($_POST['type'])){
+                    $get_company = DB::table('annexes')->where('idannexes',$ids)->delete();
+                    return redirect('/dashboard/annexes');
+                }else{
+                    return redirect("/dashboard/annexes/$id");
+                }
+            }else{
+                return redirect('/dashboard/annexes');
             }
+           
         }else{
             return redirect('/dashboard/companies');
         }
