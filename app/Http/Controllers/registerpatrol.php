@@ -11,6 +11,7 @@ class registerpatrol extends Controller
     public function __construct()
     {
         $this->middleware('annex'); // restricting this page for companies only
+        //make special middleware for teamleader and add row in db 
     }
 
     public function get(){
