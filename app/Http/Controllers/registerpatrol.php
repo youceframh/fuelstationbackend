@@ -10,7 +10,7 @@ class registerpatrol extends Controller
 {
     public function __construct()
     {
-        $this->middleware('annex'); // restricting this page for companies only
+        $this->middleware('auth'); // restricting this page for companies only
         //make special middleware for teamleader and add row in db 
     }
 
@@ -23,12 +23,13 @@ class registerpatrol extends Controller
             }else{
                 $pomp_serial = $_GET['pompserial']; //getting pomp serial
 
-                $get_annex_id = DB::table('annexes')->where('email',Auth::user()->email)->first(); //getting annex email
-            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id->idannexes)->get(); //getting tanks by annex
+                $get_user_email = Auth::user()->email;
+            $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
+            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get(); //getting tanks by annex
     
                 if(DB::table('pomps')->where('serial', $pomp_serial)->get() != "[]" ){ //if theres's pomps loop
-                    foreach($get_tanks as $tank){
-                        $get_pomp = DB::table('pomps')->where('serial', $pomp_serial)->get();
+                    foreach(json_decode($get_tanks,true) as $tank){
+                        $get_pomp = DB::table('pomps')->where('serial', $pomp_serial)->where('tank_nbr',$tank['tank number'])->get();
                     }
         
                     $decodeddata = json_decode($get_pomp, true);
@@ -45,11 +46,12 @@ class registerpatrol extends Controller
             
         
         }else{
-            $get_annex_id = DB::table('annexes')->where('email',Auth::user()->email)->first(); //getting annex email
-            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id->idannexes)->get(); //getting tanks by annex
+            $get_user_email = Auth::user()->email;
+            $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
+            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get(); //getting tanks by annex
         if($get_tanks != "[]"){
-            foreach($get_tanks as $tank){ //looping tanks if found
-                $get_pomps = DB::table('pomps')->where('tank_nbr',$tank->id_tank)->get();
+            foreach(json_decode($get_tanks,true) as $tank){ //looping tanks if found
+                $get_pomps = DB::table('pomps')->where('tank_nbr',$tank['tank number'])->get();
             }
     
             $decodeddata = json_decode($get_pomps, true);

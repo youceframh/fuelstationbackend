@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Hash;
+use App\User;
 
 class registeremployee extends Controller
 {
@@ -23,6 +25,10 @@ class registeremployee extends Controller
     }
 
     public function post(Request $request){
+        $company_id = Auth::user()->id;
+        $annexes = DB::table('annexes')->where('companies_id',$company_id)->get();
+        $decoded_data = json_decode($annexes,true);
+        
         $verification =  $request->validate([ // verfication of fields
             'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
@@ -32,8 +38,8 @@ class registeremployee extends Controller
             'adress' =>[ 'required', 'string', 'min:5'],
             'salary' => ['required','numeric'],
             'jobstartdate' => ['required','date'],
-            'patrolstarttime' => ['required','time'],
-            'patrolendtime' => ['required','time'],
+            'patrolstarttime' => ['required','date_format:H:i'],
+            'patrolendtime' => ['required','date_format:H:i'],
             'patroltype' => ['required','string'],
             'possitioninannex' => ['required','string'],
             'annex' => ['required','string'],
@@ -42,18 +48,91 @@ class registeremployee extends Controller
         ]);
         //if verification goes well 
            if($verification){
-               //make inputs inside vars
+         
+            $fullname = $request->input('fullname') ;
+            $email = $request->input('email');
+            $password = $request->input('email');
+            $nationalidcardnumber = $request->input('nationalidcardnumber');
+            $phone = $request->input('phone');
+            $adress = $request->input('adress') ;
+            $salary = $request->input('salary') ;
+            $jobstartdate = $request->input('jobstartdate') ;
+            $patrolstarttime = $request->input('patrolstarttime');
+            $patrolendtime = $request->input('patrolendtime');
+            $patroltype = $request->input('patroltype') ;
+            $postioninannex = $request->input('possitioninannex') ;
+            $annex = $request->input('annex') ;
+            $closepersoname = $request->input('closepersoname') ;
+            $closepersonumber = $request->input('closepersonumber') ;
+             $company_id = Auth::user()->id; 
+             //F5.iT/C57
+            try{
+                $userinsert =  User::create(array(
+                    'name' => $fullname,
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('password')),
+                    'phone' => $request->input('phone'),
+                    'picture' => null,
+                    'is_admin' => false,
+                    'typeofuser' => "annex_$postioninannex",
+                ));
 
-               //adding email,password, patrol time start , patrol time end,position in annex, annex_id in db and here
-               // register in users and in type we write annex
+            }catch (\Illuminate\Database\QueryException $e){
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == 1062){
+                    return view('register-employee',['failed' => 'الايمايل المدخل مسجل حاليا'],['annexes'=>$decoded_data]);
+                }
+            }
 
-               $fullname = $request->input('fullname') ;
+            if($userinsert){
+                $insertDB = DB::table('employees')->insert( array (
+                    'id' => null,
+                    'full name' => $fullname,
+                    'email' => $email,
+                    'password' => Hash::make($password),
+                    'national id card number' => $nationalidcardnumber,
+                    'phone' => $phone,
+                    'address' => $adress,
+                    'salary' => $salary,
+                    'job start date' => $jobstartdate,
+                     'patrol time start' => $patrolstarttime,
+                     'patrol time end' =>  $patrolendtime,	
+                    'type of patrol' => $patroltype,
+                    'position in annex'=> $postioninannex,
+                        'annex_id' => $annex ,
+                    'close person name' => $closepersoname,
+                    'close person number' => $closepersonumber,
+                    'worksincompanyid' => $company_id,
+                ));
+                //checking the status
+                     if($insertDB){
+                         return view('register-employee',['success' => 'تم تسجيل الموظف بنجاح'],['annexes'=>$decoded_data]);
+                }else{
+                    //else returning error
+                    return view('register-employee',['failed' => 'لا يمكن تسجيل الموظف حاليا حاول لاحقا'].['annexes'=>$decoded_data]);
+                }
+            }
+               
+              
+           }
+
+    }
+}
+
+/*
+  $fullname = $request->input('fullname') ;
+               $email = $request->input('email');
+               $password = $request->input('email');
                $nationalidcardnumber = $request->input('nationalidcardnumber');
                $phone = $request->input('phone');
                $adress = $request->input('adress') ;
                $salary = $request->input('salary') ;
                $jobstartdate = $request->input('jobstartdate') ;
+               $patrolstarttime = $request->input('patrolstarttime');
+               $patrolendtime = $request->input('patrolendtime');
                $patroltype = $request->input('patroltype') ;
+               $postioninannex = $request->input('possitioninannex') ;
+               $annex = $request->input('annex') ;
                $closepersoname = $request->input('closepersoname') ;
                $closepersonumber = $request->input('closepersonumber') ;
                 $company_id = Auth::user()->id;
@@ -62,13 +141,18 @@ class registeremployee extends Controller
 
                $insertDB = DB::table('employees')->insert( array (
                    'id' => null,
-                   'full name' => $fullname,
+                   'email' => $email,
+                   'password' => Hash::make($password),
                    'national id card number' => $nationalidcardnumber,
                    'phone' => $phone,
                    'address' => $adress,
                    'salary' => $salary,
                    'job start date' => $jobstartdate,
-                   'type of patrol' => $patroltype ,
+                    'patrol time start' => $patrolstarttime,
+                    'patrol time end' =>  $patrolendtime,	
+                   'type of patrol' => $patroltype,
+                   'position in annex'=> $postioninannex,
+                   	'annex_id' => $annex ,
                    'close person name' => $closepersoname,
                    'close person number' => $closepersonumber,
                    'worksincompanyid' => $company_id,
@@ -80,7 +164,4 @@ class registeremployee extends Controller
                    //else returning error
                    return view('register-employee',['failed' => 'لا يمكن تسجيل الموظف حاليا حاول لاحقا']);
                }
-           }
-
-    }
-}
+ */

@@ -23,9 +23,15 @@ class dashboardprofile extends Controller
         }elseif(Auth::user()->typeofuser == 'companies'){
             $userinfos = DB::table('companies')->where('email',Auth::user()->email)->first();
             return view('dashboard-profile',['pic' => Auth::user()->picture],['verified'=>$userinfos->verified]);
-        }else{
+        }elseif(Auth::user()->typeofuser == 'annex'){
             $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
             return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'فرع']);
+        }elseif(Auth::user()->typeofuser == 'annex_TL'){
+            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'رئيس فريق في الفرع']);
+        }elseif(Auth::user()->typeofuser == 'annex_ُ'){
+            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'موظف  في الفرع']);
         }
        
     }
