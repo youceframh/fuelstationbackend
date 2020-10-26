@@ -15,24 +15,38 @@ class registeremployee extends Controller
     }
 
     public function get(){
-        return view('register-employee'); // returning html of the page
+        //return annexes of that comp
+        $company_id = Auth::user()->id;
+        $annexes = DB::table('annexes')->where('companies_id',$company_id)->get();
+        $decoded_data = json_decode($annexes,true);
+        return view('register-employee',['annexes'=>$decoded_data]); // returning html of the page
     }
 
     public function post(Request $request){
         $verification =  $request->validate([ // verfication of fields
             'fullname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string','min:8'],
             'nationalidcardnumber' => ['required', 'numeric', 'min:2'],
             'phone' => ['required', 'digits_between:6,15', 'min:8'],
             'adress' =>[ 'required', 'string', 'min:5'],
             'salary' => ['required','numeric'],
             'jobstartdate' => ['required','date'],
+            'patrolstarttime' => ['required','time'],
+            'patrolendtime' => ['required','time'],
             'patroltype' => ['required','string'],
+            'possitioninannex' => ['required','string'],
+            'annex' => ['required','string'],
             'closepersoname' => ['required','string'],
             'closepersonumber' => ['required','string'],
         ]);
         //if verification goes well 
            if($verification){
                //make inputs inside vars
+
+               //adding email,password, patrol time start , patrol time end,position in annex, annex_id in db and here
+               // register in users and in type we write annex
+
                $fullname = $request->input('fullname') ;
                $nationalidcardnumber = $request->input('nationalidcardnumber');
                $phone = $request->input('phone');
