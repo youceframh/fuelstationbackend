@@ -24,6 +24,7 @@ use App\Http\Controllers\showcompanies;
 use App\Http\Controllers\showcompanyinfos;
 use App\Http\Controllers\showannexes;
 use App\Http\Controllers\showannexesinfos;
+use App\Http\Controllers\patrol;
 
 /*
 |--------------------------------------------------------------------------
@@ -163,5 +164,9 @@ Route::get('/dashboard/profilepic',[profilepic::class,'get']);
 Route::get('/submitdocuments',[submitdocuments::class,'get']);
 
 Route::post('/submitdocuments',[submitdocuments::class,'post']);
+
+Route::get('/patrol',[patrol::class,'get']);
+
+Route::post('/patrol',[patrol::class,'post']);
 
 //maintenance

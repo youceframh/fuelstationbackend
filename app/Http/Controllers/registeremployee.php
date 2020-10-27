@@ -61,7 +61,7 @@ class registeremployee extends Controller
             $patrolendtime = $request->input('patrolendtime');
             $patroltype = $request->input('patroltype') ;
             $postioninannex = $request->input('possitioninannex') ;
-            $annex = $request->input('annex') ;
+            $annex = $request->input('annex');
             $closepersoname = $request->input('closepersoname') ;
             $closepersonumber = $request->input('closepersonumber') ;
              $company_id = Auth::user()->id; 
