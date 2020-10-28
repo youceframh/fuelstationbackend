@@ -75,9 +75,10 @@
 <tbody>
 <tr>
 <td>رقم الطرمبة</td>
+
 @foreach($gas_pomps as $gas_pomp)
 @foreach(json_decode($gas_pomp,true) as $data)
-<td>{{$data['id']}}</td>
+<td>{{$data['pomp_id']}}</td>
 @endforeach
 @endforeach
 <td>الاجمالي</td>
@@ -88,7 +89,6 @@
 @foreach($gas_pomps as $gas_pomp)
 @foreach(json_decode($gas_pomp,true) as $data)
 <td>{{$data['last record']}}</td>
-
 @endforeach
 @endforeach
 <td><input type="text" name="lasttotal"></td>
@@ -97,6 +97,46 @@
 <td>التسجيل الجديد</td>
 @foreach($gas_pomps as $gas_pomp)
 @foreach(json_decode($gas_pomp,true) as $data)
+<td><input type="text" name="{{$data['id']}}"></td>
+@endforeach
+@endforeach
+<td><input type="text" name="newtotal"></td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+<h1>بنزين</h1>
+              <table border="1" style="
+    direction: rtl;
+">
+<tbody>
+<tr>
+<td>رقم الطرمبة</td>
+
+@foreach($es_pomps as $es_pomp)
+@foreach(json_decode($es_pomp,true) as $data)
+<td>{{$data['pomp_id']}}</td>
+@endforeach
+@endforeach
+<td>الاجمالي</td>
+</tr>
+<tr>
+
+<td>اخر تسجيل</td>
+@foreach($es_pomps as $es_pomp)
+@foreach(json_decode($es_pomp,true) as $data)
+<td>{{$data['last record']}}</td>
+@endforeach
+@endforeach
+<td><input type="text" name="lasttotal"></td>
+</tr>
+<tr>
+<td>التسجيل الجديد</td>
+@foreach($es_pomps as $es_pomp)
+@foreach(json_decode($es_pomp,true) as $data)
 <td><input type="text" name="{{$data['id']}}"></td>
 @endforeach
 @endforeach

@@ -27,7 +27,8 @@ class registerpomp extends Controller
         $annex_id =  DB::table('annexes')->where('email',$userid)->first();
         $get_tanks = DB::table('tanks')->where('annex_id',$annex_id->idannexes)->get();
         $decodeddata = json_decode($get_tanks, true);
-
+        $user_email = Auth::user()->email;
+        $annex_id_d = DB::table('annexes')->where('email',$user_email)->first()->id;
         $validation = $request->validate([ //validating inputs
             'pompserial' => ['required','string'],
             'pomplastrecord' => ['required','string'],
@@ -39,13 +40,25 @@ class registerpomp extends Controller
         $pompserial = $request->input('pompserial');
         $pomplastrecord = $request->input('pomplastrecord');
         $tanknbr = implode(',',$request->input('tanknbr'));
-
-        $insertDB = DB::table('pomps')->insert( array ( //inserting into db
+    
+        $insertDB = DB::table('pomps')->insertGetId( array ( //inserting into db
             'id' => null,
             'serial'=>$pompserial,
             'last record'=>$pomplastrecord,
             'tank_nbr'=>$tanknbr,
+            'annex_id' => $annex_id_d,
         ));
+
+        foreach($request->input('tanknbr') as $tanks){
+            $insertDB2 = DB::table('tanks_has_pomps')->insert(array(
+                'id' => null,
+                'tank_id' => $tanks,
+                'pomp_id' => $insertDB,
+                'last record' => $pomplastrecord
+            ));
+        }
+
+       
 
         if($insertDB){ //insert into db
             return view('register-pomp',['success' => 'تم تسجيل المظخة بنجاح'],['tanks' => $decodeddata]);
