@@ -22,6 +22,7 @@ class registerpomp extends Controller
     }
 
     public function post(Request $request){
+
         $userid = Auth::user()->email;
         $annex_id =  DB::table('annexes')->where('email',$userid)->first();
         $get_tanks = DB::table('tanks')->where('annex_id',$annex_id->idannexes)->get();
@@ -30,14 +31,14 @@ class registerpomp extends Controller
         $validation = $request->validate([ //validating inputs
             'pompserial' => ['required','string'],
             'pomplastrecord' => ['required','string'],
-            'tanknbr' => ['required','string'],
+            'tanknbr' => ['required'],
         ]);
 
         //setting vars
 
         $pompserial = $request->input('pompserial');
         $pomplastrecord = $request->input('pomplastrecord');
-        $tanknbr = $request->input('tanknbr');
+        $tanknbr = implode(',',$request->input('tanknbr'));
 
         $insertDB = DB::table('pomps')->insert( array ( //inserting into db
             'id' => null,

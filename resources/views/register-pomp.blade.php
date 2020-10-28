@@ -56,11 +56,13 @@
                             <label for="tanknbr" class="col-md-4 col-form-label text-md-right">{{ __('رقم الخزان التابعة له') }}</label>
 
                             <div class="col-md-6">
-                            <select id="tanknbr" type="date" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr" required autocomplete="tanknbr">
-                                    @foreach ($tanks as $tank)
-                                    <option value="{{$tank['tank number']}}">{{$tank['tank number']}}</option>
-                                    @endforeach
-                                </select>
+                            @foreach ($tanks as $tank)
+                            <div style="    display: flex;
+    flex-direction: row-revers">
+                            <span style="align-self: center;">{{$tank['tank number']}}</span>
+                            <input type="checkbox" style="width: 15%;" id="tanknbr" value="{{$tank['tank number']}}" type="date" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr[]" autocomplete="tanknbr">
+                            </div>
+                            @endforeach
 
                                 @error('tanknbr')
                                     <span class="invalid-feedback" role="alert">

@@ -102,15 +102,7 @@
 @endforeach
 <td><input type="text" name="newtotal"></td>
 </tr>
-<tr>
-<td>لتر</td>
-@foreach($gas_pomps as $gas_pomp)
-@foreach(json_decode($gas_pomp,true) as $data)
-<td><input type="text" name="{{$data['serial']}}"></td>
-@endforeach
-@endforeach
-<td><input type="text" name="literstotal"></td>
-</tr>
+
 
 
 </tbody>

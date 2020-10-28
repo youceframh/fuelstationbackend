@@ -38,6 +38,7 @@ class patrol extends Controller
         foreach(json_decode($get_tanks_gasoline,true) as $t){
             $gas_pomps[] = DB::table('pomps')->where('tank_nbr',$t['tank number'])->get();
             }
+            
             foreach($gas_pomps as $pomp){
                 foreach(json_decode($pomp,true) as $p){
                     $p_id = $p['id'];
