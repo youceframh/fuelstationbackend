@@ -42,18 +42,22 @@ class registerpomp extends Controller
     
         $insertDB = DB::table('pomps')->insertGetId( array ( //inserting into db
             'id' => null,
-            'serial'=>$pompserial,
-            'last record'=>$pomplastrecord,
+            'serial'=> strtoupper($pompserial),
+            'last_record'=>$pomplastrecord,
             'tank_nbr'=>$tanknbr,
             'annex_id' => $annex_id_d,
         ));
 
         foreach($request->input('tanknbr') as $tanks){
+            $tank_fuel_type = DB::table('tanks')->where('tank_number',$tanks)->first()->fuel_type;
             $insertDB2 = DB::table('tanks_has_pomps')->insert(array(
                 'id' => null,
                 'tank_id' => $tanks,
                 'pomp_id' => $insertDB,
-                'last_record' => $pomplastrecord
+                'pomp_serial' => strtoupper($pompserial),
+                'last_record' => $pomplastrecord,
+                'tank_fuel_type' =>$tank_fuel_type,
+
             ));
         }
 

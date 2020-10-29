@@ -66,7 +66,9 @@
               </div>
 
               <div class="middlesection">
-              <form action="/patrol" method="POST">
+              <form action="/patrol" method="POST" style="display: flex;
+    flex-direction: column;
+    align-items: flex-end;">
               @csrf
               <h1>ديزل</h1>
               <table border="1" style="
@@ -77,7 +79,7 @@
 <td>رقم الطرمبة</td>
 
 @foreach($gas_pomps as $data)
-<td>{{$data->pomp_id}}</td>
+<td>{{$data->pomp_serial}}</td>
 @endforeach
 <td>الاجمالي</td>
 </tr>
@@ -92,7 +94,7 @@
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($gas_pomps as $data)
-<td><input type="text" name="{{$data->id}}"></td>
+<td><input type="text" name="g{{$data->pomp_serial}}"></td>
 @endforeach
 <td><input type="text" name="newtotal"></td>
 </tr>
@@ -111,7 +113,7 @@
 <td>رقم الطرمبة</td>
 
 @foreach($es_pomps as $es_pomp)
-<td>{{$es_pomp->pomp_id}}</td>
+<td>{{$es_pomp->pomp_serial}}</td>
 @endforeach
 <td>الاجمالي</td>
 </tr>
@@ -126,16 +128,69 @@
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($es_pomps as $es_pomp)
-<td><input type="text" name="{{$es_pomp->id}}"></td>
+<td><input type="text" name="e{{$es_pomp->pomp_serial}}"></td>
 @endforeach
 <td><input type="text" name="newtotal"></td>
 </tr>
 
 
 
+
+
 </tbody>
 </table>
 
+
+<br><br>
+<div style="    display: flex;
+    flex-direction: row-reverse;">
+<table border="1px" style="direction:rtl;">
+	<tbody>
+		<tr>
+            <td>الصنف</td>
+			<td>الكمية</td>
+			<td>المبلغ</td>
+		</tr>
+		<tr>
+			<td>مبيعات essence</td>
+			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="" id=""></td>
+		</tr>
+		<tr>
+			<td>مبيعات gasoline</td>
+			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="" id=""></td>
+		</tr>
+		<tr>
+			<td>ATM</td>
+			<td><input type="text" name="" id=""></td>
+		</tr>
+		<tr>
+			<td>اجل</td>
+			<td><input type="text" name="" id=""></td>
+		</tr>
+		<tr>
+			<td colspan="2"> اجمالي الكاش</td>
+			<td><input type="text" name="" id=""></td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="1px" style="align-self: flex-end;direction:rtl;">
+	<tbody>
+		<tr>
+			<td>العجز</td>
+			<td> نوعه</td>
+			<td colspan="2">الاجمالي</td>
+		</tr>
+		<tr>
+			<td><input type="text"></td>
+			<td><textarea></textarea></td>
+			<td>ببب </td>
+		</tr>
+	</tbody>
+</table>
+</div>
 <input type="submit">
 </form>
               </div>
