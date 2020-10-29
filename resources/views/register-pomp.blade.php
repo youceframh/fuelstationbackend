@@ -59,8 +59,8 @@
                             @foreach ($tanks as $tank)
                             <div style="    display: flex;
     flex-direction: row-revers">
-                            <span style="align-self: center;">{{$tank['tank number']}}</span>
-                            <input type="checkbox" style="width: 15%;" id="tanknbr" value="{{$tank['tank number']}}" type="date" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr[]" autocomplete="tanknbr">
+                            <span style="align-self: center;">{{$tank->tank_number}}</span>
+                            <input type="checkbox" style="width: 15%;" id="tanknbr" value="{{$tank->tank_number}}" type="date" class="form-control @error('tanknbr') is-invalid @enderror" name="tanknbr[]" autocomplete="tanknbr">
                             </div>
                             @endforeach
 

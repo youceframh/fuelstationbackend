@@ -20,30 +20,14 @@ class patrol extends Controller
         //$poms = DB::table('poms')->where('annex_id',$team_leader_annex)->get();
         $gas_pomps = [];
         $essense_pomps = [];
-        foreach(json_decode($get_tanks,true) as $tank){
-            $get_pomps = DB::table('tanks_has_pomps')->where('tank_id',$tank['tank number'])->get();    
+        //SELECT * FROM tanks t LEFT JOIN tanks_has_pomps thp  
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
+         $searchQEssence = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence'");
 
-            foreach($get_pomps as $get_pomp){
-                echo('hi');
-                $get_tank_fuel_type =  DB::table('tanks')->where('tank number',$get_pomp->tank_id)->get();
-                $tank_fueltype = json_decode($get_tank_fuel_type,true);
-             }
-             
-             foreach($tank_fueltype as $tft){
-                 if($get_tank_fuel_type && $tft['fuel type'] == 'gasoline'){
-                     array_push($gas_pomps,$get_pomps);
-                 }
-                 if($get_tank_fuel_type && $tft['fuel type'] == 'essence'){
-                     array_push($essense_pomps,$get_pomps);  
-                 }
-                } 
-                
-        }
 
-       
+        return view('patrol-add',['gas_pomps'=>$searchQGasoline],['es_pomps'=>$searchQEssence]);
+       //SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank number` WHERE annex_id=6
 
-        return view('patrol-add',['gas_pomps'=>$gas_pomps],['es_pomps'=>$essense_pomps]);
-       
     }
     public function post(Request $request){
         $team_leader_email = Auth::user()->email;

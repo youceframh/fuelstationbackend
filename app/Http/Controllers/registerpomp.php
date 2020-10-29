@@ -17,8 +17,7 @@ class registerpomp extends Controller
         $userid = Auth::user()->email;
         $annex_id =  DB::table('annexes')->where('email',$userid)->first();
         $get_tanks = DB::table('tanks')->where('annex_id',$annex_id->idannexes)->get();
-        $decodeddata = json_decode($get_tanks, true);
-        return view('register-pomp', ['tanks' => $decodeddata]);
+        return view('register-pomp', ['tanks' => $get_tanks]);
     }
 
     public function post(Request $request){
@@ -28,7 +27,7 @@ class registerpomp extends Controller
         $get_tanks = DB::table('tanks')->where('annex_id',$annex_id->idannexes)->get();
         $decodeddata = json_decode($get_tanks, true);
         $user_email = Auth::user()->email;
-        $annex_id_d = DB::table('annexes')->where('email',$user_email)->first()->id;
+        $annex_id_d = DB::table('annexes')->where('email',$user_email)->first()->idannexes;
         $validation = $request->validate([ //validating inputs
             'pompserial' => ['required','string'],
             'pomplastrecord' => ['required','string'],
@@ -54,7 +53,7 @@ class registerpomp extends Controller
                 'id' => null,
                 'tank_id' => $tanks,
                 'pomp_id' => $insertDB,
-                'last record' => $pomplastrecord
+                'last_record' => $pomplastrecord
             ));
         }
 

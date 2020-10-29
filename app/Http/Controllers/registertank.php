@@ -37,9 +37,9 @@ class registertank extends Controller
 
         $insertDB = DB::table('tanks')->insert( array ( //inserting into db
             'id_tank' => null,
-            'tank number'=>$tank_number,
-            'tank volume'=>$tank_volume,
-            'fuel type'=>$fuel_type,
+            'tank_number'=>$tank_number,
+            'tank_volume'=>$tank_volume,
+            'fuel_type'=>$fuel_type,
             'annex_id'=>$related_to_annex,
         ));
 
