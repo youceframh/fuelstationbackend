@@ -152,26 +152,36 @@
 			<td>المبلغ</td>
 		</tr>
 		<tr>
-			<td>مبيعات essence</td>
-			<td><input type="text" name="" id=""></td>
-			<td><input type="text" name="" id=""></td>
+			<td>مبيعات essence 91</td>
+			<td><input type="text" name="quantityofessence91" id=""></td>
+			<td><input type="text" name="totalpriceofessence91" id=""></td>
+		</tr>
+        <tr>
+			<td>مبيعات essence 95</td>
+			<td><input type="text" name="quantityofessence95" id=""></td>
+			<td><input type="text" name="totalpriceofessence95" id=""></td>
+		</tr>
+        <tr>
+			<td>مبيعات diesel</td>
+			<td><input type="text" name="quantityofdiesel" id=""></td>
+			<td><input type="text" name="totalpriceofdiesel" id=""></td>
 		</tr>
 		<tr>
 			<td>مبيعات gasoline</td>
-			<td><input type="text" name="" id=""></td>
-			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="quantityofgasoline" id=""></td>
+			<td><input type="text" name="totalpriceofgasoline" id=""></td>
 		</tr>
 		<tr>
 			<td>ATM</td>
-			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="ATM" id=""></td>
 		</tr>
 		<tr>
 			<td>اجل</td>
-			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="retard" id=""></td>
 		</tr>
 		<tr>
 			<td colspan="2"> اجمالي الكاش</td>
-			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="totalofcash" id=""></td>
 		</tr>
 	</tbody>
 </table>
@@ -184,9 +194,9 @@
 			<td colspan="2">الاجمالي</td>
 		</tr>
 		<tr>
-			<td><input type="text"></td>
-			<td><textarea></textarea></td>
-			<td>ببب </td>
+			<td><input type="text" name="impotance"></td>
+			<td><textarea name="notes"></textarea></td>
+			<td><input type="text" name="nettotal"></td>
 		</tr>
 	</tbody>
 </table>
