@@ -70,7 +70,44 @@
     flex-direction: column;
     align-items: flex-end;">
               @csrf
+
               <h1>ديزل</h1>
+
+              <table border="1" style="
+    direction: rtl;
+">
+<tbody>
+<tr>
+<td>رقم الطرمبة</td>
+
+@foreach($diesel_pomps as $data)
+<td>{{$data->pomp_serial}}</td>
+@endforeach
+<td>الاجمالي</td>
+</tr>
+<tr>
+
+<td>اخر تسجيل</td>
+@foreach($diesel_pomps as $data)
+<td>{{$data->last_record}}</td>
+@endforeach
+<td><input type="text" name="dlasttotal"></td>
+</tr>
+<tr>
+<td>التسجيل الجديد</td>
+@foreach($diesel_pomps as $data)
+<td><input type="text" name="d{{$data->pomp_serial}}"></td>
+@endforeach
+<td><input type="text" name="dnewtotal"></td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+<h1>غاز</h1>
+
               <table border="1" style="
     direction: rtl;
 ">
@@ -104,7 +141,8 @@
 </tbody>
 </table>
 
-<h1>بنزين</h1>
+
+<h1>91 بنزين</h1>
               <table border="1" style="
     direction: rtl;
 ">
@@ -112,7 +150,7 @@
 <tr>
 <td>رقم الطرمبة</td>
 
-@foreach($es_pomps as $es_pomp)
+@foreach($es91_pomps as $es_pomp)
 <td>{{$es_pomp->pomp_serial}}</td>
 @endforeach
 <td>الاجمالي</td>
@@ -120,21 +158,52 @@
 <tr>
 
 <td>اخر تسجيل</td>
-@foreach($es_pomps as $es_pomp)
+@foreach($es91_pomps as $es_pomp)
 <td>{{$es_pomp->last_record}}</td>
 @endforeach
-<td><input type="text" name="lasttotal"></td>
+<td><input type="text" name="es91lasttotales"></td>
 </tr>
 <tr>
 <td>التسجيل الجديد</td>
-@foreach($es_pomps as $es_pomp)
-<td><input type="text" name="e{{$es_pomp->pomp_serial}}"></td>
+@foreach($es91_pomps as $es_pomp)
+<td><input type="text" name="es91{{$es_pomp->pomp_serial}}"></td>
 @endforeach
-<td><input type="text" name="newtotal"></td>
+<td><input type="text" name="es91newtotales"></td>
 </tr>
 
 
+</tbody>
+</table>
 
+
+<h1>95 بنزين</h1>
+              <table border="1" style="
+    direction: rtl;
+">
+<tbody>
+<tr>
+<td>رقم الطرمبة</td>
+
+@foreach($es95_pomps as $es_pomp)
+<td>{{$es_pomp->pomp_serial}}</td>
+@endforeach
+<td>الاجمالي</td>
+</tr>
+<tr>
+
+<td>اخر تسجيل</td>
+@foreach($es95_pomps as $es_pomp)
+<td>{{$es_pomp->last_record}}</td>
+@endforeach
+<td><input type="text" name="es95lasttotales"></td>
+</tr>
+<tr>
+<td>التسجيل الجديد</td>
+@foreach($es95_pomps as $es_pomp)
+<td><input type="text" name="es95{{$es_pomp->pomp_serial}}"></td>
+@endforeach
+<td><input type="text" name="es95newtotales"></td>
+</tr>
 
 
 </tbody>
@@ -173,7 +242,7 @@
 		</tr>
 		<tr>
 			<td>ATM</td>
-			<td><input type="text" name="ATM" id=""></td>
+			<td><input type="text" name="atm" id=""></td>
 		</tr>
 		<tr>
 			<td>اجل</td>
@@ -194,7 +263,7 @@
 			<td colspan="2">الاجمالي</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="impotance"></td>
+			<td><input type="text" name="impotence"></td>
 			<td><textarea name="notes"></textarea></td>
 			<td><input type="text" name="nettotal"></td>
 		</tr>

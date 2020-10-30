@@ -24,7 +24,8 @@ use App\Http\Controllers\showcompanies;
 use App\Http\Controllers\showcompanyinfos;
 use App\Http\Controllers\showannexes;
 use App\Http\Controllers\showannexesinfos;
-use App\Http\Controllers\patrol;
+use App\Http\Controllers\patrolshow;
+use App\Http\Controllers\patroladd;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,8 +166,12 @@ Route::get('/submitdocuments',[submitdocuments::class,'get']);
 
 Route::post('/submitdocuments',[submitdocuments::class,'post']);
 
-Route::get('/patrol',[patrol::class,'get']);
+Route::get('/patrol/show',[patrolshow::class,'get']);
 
-Route::post('/patrol',[patrol::class,'post']);
+Route::post('/patrol/show',[patrolshow::class,'post']);
+
+Route::get('/patrol/add',[patroladd::class,'get']);
+
+Route::post('/patrol/add',[patroladd::class,'post']);
 
 //maintenance

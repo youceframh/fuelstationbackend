@@ -56,7 +56,13 @@
                             <label for="fueltype" class="col-md-4 col-form-label text-md-right">{{ __('نوع البترول') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fueltype" type="text" class="form-control @error('fueltype') is-invalid @enderror" name="fueltype" required autocomplete="fueltype">
+
+                                <select id="fueltype" type="text" class="form-control @error('fueltype') is-invalid @enderror" name="fueltype" required autocomplete="fueltype">
+                                <option value="essence91">بنزين 91</option>
+                                <option value="essence95">بنزين 95</option>
+                                <option value="diesel">ديزل</option>
+                                <option value="gasoline">غاز</option>
+                                </select>
 
                                 @error('fueltype')
                                     <span class="invalid-feedback" role="alert">

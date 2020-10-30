@@ -64,10 +64,10 @@ class registerpomp extends Controller
        
 
         if($insertDB){ //insert into db
-            return view('register-pomp',['success' => 'تم تسجيل المظخة بنجاح'],['tanks' => $decodeddata]);
+            return view('register-pomp',['success' => 'تم تسجيل المظخة بنجاح'],['tanks' => $get_tanks]);
    }else{
        //else returning error
-       return view('register-pomp',['failed' => 'لا يمكن تسجيل المظخة حاليا حاول لاحقا'],['tanks' => $decodeddata]);
+       return view('register-pomp',['failed' => 'لا يمكن تسجيل المظخة حاليا حاول لاحقا'],['tanks' => $get_tanks]);
    }
     }
 
