@@ -26,6 +26,7 @@ use App\Http\Controllers\showannexes;
 use App\Http\Controllers\showannexesinfos;
 use App\Http\Controllers\patrolshow;
 use App\Http\Controllers\patroladd;
+use App\Http\Controllers\fuelprices;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,21 +158,23 @@ Route::get('/register/patrol ',[registerpatrol::class,'get']); // Getting patrol
 
 Route::post('/register/patrol',[registerpatrol::class,'post']); // Creating patrol route in association with db
 
-Route::put('/dashboard/profilepic',[profilepic::class,'post']);
+Route::put('/dashboard/profilepic',[profilepic::class,'post']); //profile picture changing route
 
-Route::get('/dashboard/profilepic',[profilepic::class,'get']);
+Route::get('/dashboard/profilepic',[profilepic::class,'get']); // showing new profile pic
 
+Route::get('/submitdocuments',[submitdocuments::class,'get']); //company documents submition
 
-Route::get('/submitdocuments',[submitdocuments::class,'get']);
+Route::post('/submitdocuments',[submitdocuments::class,'post']); //company documents submition post route
 
-Route::post('/submitdocuments',[submitdocuments::class,'post']);
+Route::get('/patrol/show',[patrolshow::class,'get']); //showing patrol
 
-Route::get('/patrol/show',[patrolshow::class,'get']);
+Route::post('/patrol/show',[patrolshow::class,'post']);//showing patrol
 
-Route::post('/patrol/show',[patrolshow::class,'post']);
+Route::get('/patrol/add',[patroladd::class,'get']); //showing patrol
 
-Route::get('/patrol/add',[patroladd::class,'get']);
+Route::post('/patrol/add',[patroladd::class,'post']);//saving patrol
 
-Route::post('/patrol/add',[patroladd::class,'post']);
+Route::get('/fuelprices',[fuelprice::class,'get']); //fuelprices route
 
-//maintenance
+Route::post('/fuelprices',[fuelprice::class,'post']); //fuel prices route save
+
