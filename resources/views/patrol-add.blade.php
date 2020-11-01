@@ -38,14 +38,12 @@
         <tr>
         <td colspan="2">تسعيرة الشهر</td>
         </tr>
+        @foreach($fuelprices as $fuelprice)
         <tr>
-        <td>بنزين 91</td>
-        <td>1.47</td>
+        <td>{{$fuelprice->fuel_type}}</td>
+        <td>{{$fuelprice->price}}</td>
         </tr>
-        <tr>
-        <td>ديزل</td>
-        <td>0.52</td>
-        </tr>
+      @endforeach
         </table>
 
               </div>

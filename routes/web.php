@@ -174,7 +174,7 @@ Route::get('/patrol/add',[patroladd::class,'get']); //showing patrol
 
 Route::post('/patrol/add',[patroladd::class,'post']);//saving patrol
 
-Route::get('/fuelprices',[fuelprice::class,'get']); //fuelprices route
+Route::get('/fuelprices',[fuelprices::class,'get']); //fuelprices route
 
-Route::post('/fuelprices',[fuelprice::class,'post']); //fuel prices route save
+Route::post('/fuelprices',[fuelprices::class,'post']); //fuel prices route save
 

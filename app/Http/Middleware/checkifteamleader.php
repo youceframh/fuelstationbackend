@@ -20,6 +20,7 @@ class checkifteamleader
     {
         if(Auth::check()){
             $get_user_type = Auth::user()->typeofuser;
+            if($get_user_type == 'annex_TL'){
             $get_user_email= Auth::user()->email;
             $get_user_time = DB::table('employees')->where('email',$get_user_email)->first();
             $employee_starttime = date('H:i',strtotime($get_user_time->patrol_time_start));
@@ -40,4 +41,5 @@ class checkifteamleader
         }
     
     }
+}
 }

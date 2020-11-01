@@ -14,6 +14,7 @@ class patroladd extends Controller
     }
     public function get(){
         //date("Y-m-d", time() - 60 * 60 * 24);
+        $fuel_prices = DB::table('fuel_price')->get();
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
 
@@ -26,7 +27,7 @@ class patroladd extends Controller
         $get_es95_pomps = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $last_table_infos;
 
-        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'gas_pomps'=>$get_gas_pomps,'fuelprices'=>$fuel_prices,'last_table'=>$last_table_infos],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       }else{
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
@@ -38,12 +39,13 @@ class patroladd extends Controller
          $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
          $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
-        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'gas_pomps'=>$searchQGasoline],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
+        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
     
       }
         
     }
     public function post(Request $request){
+        $fuel_prices = DB::table('fuel_price')->get();
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
         $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
@@ -191,7 +193,7 @@ class patroladd extends Controller
             'iddaily' => $iddaily
          ));
 
-        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'gas_pomps'=>$searchQGasoline],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
+        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
    
 }
 
