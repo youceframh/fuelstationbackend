@@ -64,7 +64,7 @@
               </div>
 
               <div class="middlesection">
-              <form action="/patrol" method="POST" style="display: flex;
+              <form action="/patrol/add" method="POST" style="display: flex;
     flex-direction: column;
     align-items: flex-end;">
               @csrf

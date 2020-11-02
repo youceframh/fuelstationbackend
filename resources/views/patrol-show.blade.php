@@ -47,7 +47,17 @@
         </table>
 
               </div>
-
+              <div style="display:flex;flex-direction:column;">
+              @if(DB::table('daily')->where('timing',date('Y-m-d'))->first())
+              @php $daily_code = DB::table('daily')->where('timing',date('Y-m-d'))->first()->code; @endphp
+              {!! QrCode::size(250)->generate($daily_code) !!}
+              {{$daily_code}}
+              @elseif(DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first())
+              @php $daily_code = DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first()->code; @endphp
+               {!! QrCode::size(250)->generate($daily_code) !!}
+               {{$daily_code}}
+               @endif
+               </div>
               <div class="left"></div>
               <table border="1">
 <tbody>
