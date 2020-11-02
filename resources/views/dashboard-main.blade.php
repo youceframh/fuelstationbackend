@@ -29,7 +29,43 @@
                </div>
             </div>
             <div class="mainofdashboardmaincontent">
-              
+              @php
+              if(Auth::user()->typeofuser == 'delegate'){
+                  if(count(DB::table('daily')->where('confirmed',0)->get()) != 0){
+                    $get_unconfirmed_patrols = count(DB::table('daily')->where('confirmed',0)->get());
+                    @endphp
+                    <div class="alert alert-info" role="alert">
+         لديك {{$get_unconfirmed_patrols}} دوريات لم تقم بتاكيدها 
+         <a href="/parol/confirm">اكدها من هنا</a>
+                        </div>
+                    @php
+                  }else{
+                   @endphp <div class="alert alert-success" role="alert">
+       كل شيء مؤكد
+                        </div>
+                        @php
+                  }
+              }
+              @endphp
+              <ul>
+              <li><a href="/dashboard/companies"> تفحص كل الشركات {الويب ماستر}</a></li>
+               <li><a href="/dashboard/annexes"> تفحص كل الفروع { الشركة المفعلة}</a></li>
+                  <li><a href="/register/companies">تسجيل شركة {الويب ماستر}</a></li>
+                  <li><a href="/register/employee">تسجيل موظف { الشركة المفعلة}</a></li>
+                  <li><a href="/register/annex">تسجيل فرع { الشركة المفعلة}</a></li>
+                  <li><a href="/register/suppliers">تسجيل مورد {الويب ماستر}</a></li>
+                  <li><a href="/register/shop">تسجيل محل { الشركة المفعلة}</a></li>
+                  <li><a href="/register/rent/shop">تسجيل  كراء محل { الشركة المفعلة}</a></li>
+                  <li><a href="/report">{الفرع}ارسال تقرير</a></li>
+                  <li><a href="/register/tank">{الفرع}تسجيل خزان </a></li>
+                  <li><a href="/register/pomp">{الفرع}تسجيل مضخة </a></li>
+                  <li><a href="/register/delegate">{الشركة}تسجيل مندوب </a></li>
+                  <li><a href="/maintenance">{الفرع}الصيانة</a></li>
+                  <li><a href="/patrol/add">اضافة دورية{قائد فريق الفرع}</a></li>
+                  <li><a href="/patrol/show">روية دورية{قائد فريق الفرع}</a></li>
+                  <li><a href="/patrol/confirm">تاكيد دورية {المندوب}</a></li>
+                  <li><a href="/fuelprices">تغيير ثمن البنزين {الشركة}</a></li>
+              </ul>
             </div>
         </div>
 

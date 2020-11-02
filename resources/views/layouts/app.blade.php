@@ -58,5 +58,6 @@
     <script src="{{ asset('js/registerannex.js') }}"></script>
     <script src="{{ asset('js/rentshop.js') }}"></script>
     <script src="{{ asset('js/profilepicture.js') }}"></script>
+    <script src="{{ asset('js/patrolconfirmation.js') }}"></script>
 </body>
 </html>

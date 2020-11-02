@@ -32,6 +32,10 @@ class dashboardprofile extends Controller
         }elseif(Auth::user()->typeofuser == 'annex_ُ'){
             $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
             return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'موظف  في الفرع']);
+        }elseif(Auth::user()->typeofuser == 'delegate'){
+            $userinfos = DB::table('delegates')->where('email',Auth::user()->email)->first();
+            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'مندوب شركة']);
+
         }
        
     }

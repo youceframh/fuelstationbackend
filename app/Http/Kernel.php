@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'auth.verified' => \App\Http\Middleware\authverified::class,
         'annex' => \App\Http\Middleware\checkifannex::class,
         'teamleader'=> \App\Http\Middleware\checkifteamleader::class,
+        'delegate'=> \App\Http\Middleware\checkifdelegate::class,
     ];
 }

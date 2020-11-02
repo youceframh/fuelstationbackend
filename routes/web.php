@@ -27,6 +27,8 @@ use App\Http\Controllers\showannexesinfos;
 use App\Http\Controllers\patrolshow;
 use App\Http\Controllers\patroladd;
 use App\Http\Controllers\fuelprices;
+use App\Http\Controllers\confirmpatrol;
+use App\Http\Controllers\showpatrolfordelegate;
 
 /*
 |--------------------------------------------------------------------------
@@ -177,4 +179,12 @@ Route::post('/patrol/add',[patroladd::class,'post']);//saving patrol
 Route::get('/fuelprices',[fuelprices::class,'get']); //fuelprices route
 
 Route::post('/fuelprices',[fuelprices::class,'post']); //fuel prices route save
+
+Route::get('/patrol/confirm',[confirmpatrol::class,'get']); //confirm patrol get
+
+Route::post('/patrol/confirm',[confirmpatrol::class,'post']); //confirm patrol post
+
+Route::get('/patrol/confirm/{id}',[showpatrolfordelegate::class,'get']); //confirm patrol get show patrol with id
+
+Route::post('/patrol/confirm/{id}',[showpatrolfordelegate::class,'post']); //confirm patrol post show patrol with id
 
