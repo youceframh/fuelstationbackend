@@ -53,10 +53,10 @@
                   <li><a href="/register/companies">تسجيل شركة {الويب ماستر}</a></li>
                   <li><a href="/register/employee">تسجيل موظف { الشركة المفعلة}</a></li>
                   <li><a href="/register/annex">تسجيل فرع { الشركة المفعلة}</a></li>
-                  <li><a href="/register/suppliers">تسجيل مورد {الويب ماستر}</a></li>
-                  <li><a href="/register/shop">تسجيل محل { الشركة المفعلة}</a></li>
-                  <li><a href="/register/rent/shop">تسجيل  كراء محل { الشركة المفعلة}</a></li>
-                  <li><a href="/report">{الفرع}ارسال تقرير</a></li>
+                  <li><a href="/register/suppliers">تسجيل مورد {الشركة المفعلة}</a></li>
+                  <li><a href="/register/shop">تسجيل محل { الفرع}</a></li>
+                  <li><a href="/register/rent/shops">تسجيل  كراء محل { الشركة المفعلة}</a></li>
+                  <li><a href="/sendreport">{الفرع}ارسال تقرير</a></li>
                   <li><a href="/register/tank">{الفرع}تسجيل خزان </a></li>
                   <li><a href="/register/pomp">{الفرع}تسجيل مضخة </a></li>
                   <li><a href="/register/delegate">{الشركة}تسجيل مندوب </a></li>

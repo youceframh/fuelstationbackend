@@ -10,7 +10,7 @@ use DB;
 class registerrentshops extends Controller 
 {
     public function __construct(){
-        $this->middleware('company'); //setting  middle to
+        $this->middleware('annex'); 
     }
 
     public function get(){
