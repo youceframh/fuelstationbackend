@@ -81,7 +81,7 @@
 @foreach($diesel_pomps as $data)
 <td>{{$data->pomp_serial}}</td>
 @endforeach
-<td>الاجمالي</td>
+
 </tr>
 <tr>
 
@@ -89,14 +89,12 @@
 @foreach($diesel_pomps as $data)
 <td>{{$data->last_record}}</td>
 @endforeach
-<td><input type="text" name="dlasttotal"></td>
 </tr>
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($diesel_pomps as $data)
 <td><input type="text" name="d{{$data->pomp_serial}}"></td>
 @endforeach
-<td><input type="text" name="dnewtotal"></td>
 </tr>
 
 
@@ -116,7 +114,6 @@
 @foreach($gas_pomps as $data)
 <td>{{$data->pomp_serial}}</td>
 @endforeach
-<td>الاجمالي</td>
 </tr>
 <tr>
 
@@ -124,14 +121,12 @@
 @foreach($gas_pomps as $data)
 <td>{{$data->last_record}}</td>
 @endforeach
-<td><input type="text" name="lasttotal"></td>
 </tr>
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($gas_pomps as $data)
 <td><input type="text" name="g{{$data->pomp_serial}}"></td>
 @endforeach
-<td><input type="text" name="newtotal"></td>
 </tr>
 
 
@@ -151,7 +146,6 @@
 @foreach($es91_pomps as $es_pomp)
 <td>{{$es_pomp->pomp_serial}}</td>
 @endforeach
-<td>الاجمالي</td>
 </tr>
 <tr>
 
@@ -159,14 +153,12 @@
 @foreach($es91_pomps as $es_pomp)
 <td>{{$es_pomp->last_record}}</td>
 @endforeach
-<td><input type="text" name="es91lasttotales"></td>
 </tr>
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($es91_pomps as $es_pomp)
 <td><input type="text" name="es91{{$es_pomp->pomp_serial}}"></td>
 @endforeach
-<td><input type="text" name="es91newtotales"></td>
 </tr>
 
 
@@ -185,7 +177,6 @@
 @foreach($es95_pomps as $es_pomp)
 <td>{{$es_pomp->pomp_serial}}</td>
 @endforeach
-<td>الاجمالي</td>
 </tr>
 <tr>
 
@@ -193,14 +184,12 @@
 @foreach($es95_pomps as $es_pomp)
 <td>{{$es_pomp->last_record}}</td>
 @endforeach
-<td><input type="text" name="es95lasttotales"></td>
 </tr>
 <tr>
 <td>التسجيل الجديد</td>
 @foreach($es95_pomps as $es_pomp)
 <td><input type="text" name="es95{{$es_pomp->pomp_serial}}"></td>
 @endforeach
-<td><input type="text" name="es95newtotales"></td>
 </tr>
 
 
@@ -216,27 +205,6 @@
 		<tr>
             <td>الصنف</td>
 			<td>الكمية</td>
-			<td>المبلغ</td>
-		</tr>
-		<tr>
-			<td>مبيعات essence 91</td>
-			<td><input type="text" name="quantityofessence91" id=""></td>
-			<td><input type="text" name="totalpriceofessence91" id=""></td>
-		</tr>
-        <tr>
-			<td>مبيعات essence 95</td>
-			<td><input type="text" name="quantityofessence95" id=""></td>
-			<td><input type="text" name="totalpriceofessence95" id=""></td>
-		</tr>
-        <tr>
-			<td>مبيعات diesel</td>
-			<td><input type="text" name="quantityofdiesel" id=""></td>
-			<td><input type="text" name="totalpriceofdiesel" id=""></td>
-		</tr>
-		<tr>
-			<td>مبيعات gasoline</td>
-			<td><input type="text" name="quantityofgasoline" id=""></td>
-			<td><input type="text" name="totalpriceofgasoline" id=""></td>
 		</tr>
 		<tr>
 			<td>ATM</td>

@@ -73,6 +73,6 @@ class RegisterController extends Controller
             'picture' => null,
             'is_admin' => true,
             'typeofuser' => 'admin'
-        ]);
+        ]); 
     }
 }
