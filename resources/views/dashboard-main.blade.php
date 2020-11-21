@@ -36,7 +36,7 @@
                     @endphp
                     <div class="alert alert-info" role="alert">
          لديك {{$get_unconfirmed_patrols}} دوريات لم تقم بتاكيدها 
-         <a href="/parol/confirm">اكدها من هنا</a>
+         <a href="/patrol/confirm">اكدها من هنا</a>
                         </div>
                     @php
                   }else{

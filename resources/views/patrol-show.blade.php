@@ -357,7 +357,7 @@ $es95_price = $es_pomp->price_of_fuel;
 		</tr>
 		<tr>
 			<td><input type="text" name="impotance" value="{{$last_table->impotence}}" disabled></td>
-			<td><textarea name="notes"  value="{{$last_table->notes}}" disabled></textarea></td>
+			<td><textarea name="notes"  value="" disabled>{{$last_table->notes}}</textarea></td>
 			<td><input type="text"  value="{{$last_table->total}}" disabled name="nettotal"></td>
 		</tr>
 	</tbody>

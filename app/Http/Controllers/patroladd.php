@@ -186,10 +186,10 @@ class patroladd extends Controller
          DB::table('patrol_summ')->insert(array(
             'atm' => $atm,
             'retard' => $retard,
-            'impotence' => $impotence,
+            'impotence' => null,
             'total_cash' => $total_cash,
-            'notes' => $notes,
-            'total' => $total_net,
+            'notes' => null,
+            'total' => null,
             'iddaily' => $iddaily
          ));
 

@@ -10,7 +10,7 @@ class confirmpatrol extends Controller
 {
     public function __construct()
     {
-        $this->middleware('delegate'); //make delegate middleware
+        $this->middleware('delegate');
     }
 
     public function get(){
@@ -48,11 +48,15 @@ class confirmpatrol extends Controller
 
             $patrol_id = $request->input('patrol');
             $patrol_code = DB::table('daily')->where('iddaily',$patrol_id)->first()->code;
+            $patrol_iddaily =  DB::table('daily')->where('iddaily',$patrol_id)->first()->iddaily;
             $moneyplace = $request->input('moneyplace');
             $totalofmoney = $request->input('totalofmoney');
             $restofmoney = $request->input('restofmoney');
             $receiptnumber = $request->input('receiptnumber');
              $receiptnumberofbank = $request->input('receiptnumberofbank');
+             $impotence = $request->input('impotence');
+             $total_cash = $request->input('totalnet');
+             $notes = $request->input('notes');
 
             $insertDB = DB::table('safe')->insert(array(
                 'id'=> null,
@@ -65,6 +69,12 @@ class confirmpatrol extends Controller
 
             $insertDBupdate = DB::table('daily')->where('code',$patrol_code)->update([
                 'confirmed' =>true,
+            ]);
+
+            $insertDBupdatepatrolsumm = DB::table('patrol_summ')->where('iddaily',$patrol_iddaily)->update([
+                'impotence' => $impotence,
+            'notes' => $notes,
+            'total' => $total_cash,
             ]);
 
             return redirect('/patrol/confirm');

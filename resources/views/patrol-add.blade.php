@@ -221,20 +221,6 @@
 	</tbody>
 </table>
 
-<table border="1px" style="align-self: flex-end;direction:rtl;">
-	<tbody>
-		<tr>
-			<td>العجز</td>
-			<td> نوعه</td>
-			<td colspan="2">الاجمالي</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="impotence"></td>
-			<td><textarea name="notes"></textarea></td>
-			<td><input type="text" name="nettotal"></td>
-		</tr>
-	</tbody>
-</table>
 </div>
 <input type="submit">
 </form>

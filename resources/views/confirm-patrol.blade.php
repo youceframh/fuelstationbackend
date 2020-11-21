@@ -115,6 +115,48 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row" id="receiptnumberofbank">
+                            <label for="impotence" class="col-md-4 col-form-label text-md-right">{{ __('العجز') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="impotence"   type="text" class="form-control @error('impotence') is-invalid @enderror" name="impotence" value="{{ old('impotence') }}" autocomplete="impotence" autofocus>
+
+                                @error('impotence')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="receiptnumberofbank">
+                            <label for="notes" class="col-md-4 col-form-label text-md-right">{{ __('نوعه') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="notes"   type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ old('notes') }}" autocomplete="notes" autofocus>
+
+                                @error('notes')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="receiptnumberofbank">
+                            <label for="totalnet" class="col-md-4 col-form-label text-md-right">{{ __('الكاش الاجمالي') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="totalnet"   type="text" class="form-control @error('totalnet') is-invalid @enderror" name="totalnet" value="{{ old('totalnet') }}" autocomplete="totalnet" autofocus>
+
+                                @error('totalnet')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                       
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
