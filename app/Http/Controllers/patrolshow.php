@@ -23,23 +23,27 @@ class patrolshow extends Controller
         $last_table_infos_getting_iddaily = $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
         $last_table_infos = DB::table('patrol_summ')->where('iddaily',$last_table_infos_getting_iddaily)->first();
         $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
+        $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->name_of_saver;
+
         $get_diesel_pomps = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_es91_pomps = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_es95_pomps = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $last_table_infos;
 
-        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       
     }elseif(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get() != "[]"){
         $last_table_infos_getting_iddaily = $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->first()->iddaily;
         $last_table_infos = DB::table('patrol_summ')->where('iddaily',$last_table_infos_getting_iddaily)->first();
+
+        $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->first()->name_of_saver;
 
         $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get();
         $get_diesel_pomps = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get();
         $get_es91_pomps = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get();
         $get_es95_pomps = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get();
 
-        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
 
       }else{
 /*Patrol-add */
@@ -208,7 +212,7 @@ $fuel_prices = DB::table('fuel_price')->get();
             'iddaily' => $iddaily
          ));
 
-        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
+        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
    
 }
 

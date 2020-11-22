@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" style="display:flex;">
-                <span>{{ __('سجل دورية') }} </span>
+                <span>{{ __('سجل وردية') }} </span>
             </div>
 
                 <div class="card-body">

@@ -23,7 +23,7 @@
                <div class="one">
                </div>
                <div class="two">
-                   <h1 style="color:#308CBA;">الدوريات</h1>
+                   <h1 style="color:#308CBA;">الورديات</h1>
                </div>
             </div>
             <div class="mainofdashboardmaincontent" style="flex-wrap:no-wrap;flex-direction: column;">

@@ -13,7 +13,29 @@
     ::placeholder{
         color:black;
         opacity: 60%;
-    }</style>
+    }
+    @media print{
+
+        .dashboardmain {
+     display: block; 
+    }
+    .dashboardmaincontent {
+    display: block;
+    position:unset;
+    overflow-y:unset;
+}
+        .dashboardmainsidebar{
+            display:none;
+        }
+        .headerofdashboardmaincontent{
+            display:none;
+        }
+      
+    }
+    @page {
+            page-break-after: always;
+        }
+    </style>
 </head>
 <body>
     <div class="dashboardmain">
@@ -23,7 +45,7 @@
                <div class="one">
                </div>
                <div class="two">
-                   <h1 style="color:#308CBA;">الدوريات</h1>
+                   <h1 style="color:#308CBA;">الورديات</h1>
                </div>
             </div>
             <div class="mainofdashboardmaincontent" style="flex-wrap:no-wrap;flex-direction: column;">
@@ -63,11 +85,11 @@
               @elseif(DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first())
               @php $daily_code = DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first()->code; @endphp
                {!! QrCode::size(250)->generate($daily_code) !!}
-               {{$daily_code}}
+               
                @endif
                @endif
                </div>
-              <div class="left"></div>
+              <div class="left">
               <table border="1">
 <tbody>
 <tr>
@@ -78,8 +100,18 @@
 <td><?php echo date('G:i:s'); ?></td>
 <td>الوقت</td>
 </tr>
+<tr>
+<td>{{$saver_name}}</td>
+<td>اسم المسجل</td>
+</tr>
+<tr>
+<td>{{$daily_code}}</td>
+<td>رقم الدورية</td>
+</tr>
 </tbody>
 </table>
+              </div>
+
               </div>
 
               <div class="middlesection">
@@ -109,8 +141,9 @@ $es91_price;
 $es95_price;
 
 @endphp
-
+@if(count($diesel_pomps) > 0)
               <h1>ديزل</h1>
+
 
 <table border="1" style="
 direction: rtl;
@@ -159,6 +192,7 @@ $diesel_price = $data->price_of_fuel;
 </tbody>
 </table>
 
+@endif
 <h1>غاز</h1>
 
 <table border="1" style="
@@ -313,26 +347,39 @@ $es95_price = $es_pomp->price_of_fuel;
 			<td>الكمية</td>
 			<td>المبلغ</td>
 		</tr>
+
+        @if(count($es91_pomps) > 0)
 		<tr>
 			<td>مبيعات essence 91</td>
 			<td><input type="text" value="{{$essence91_liter_record_count}}" disabled name="quantityofessence91" id=""></td>
 			<td><input type="text" value="{{$essence91_liter_record_count*$es91_price}}" disabled name="totalpriceofessence91" id=""></td>
 		</tr>
+        @endif
+
+        @if(count($es95_pomps) > 0)
         <tr>
 			<td>مبيعات essence 95</td>
 			<td><input type="text" value="{{$essence95_liter_record_count}}" disabled name="quantityofessence95" id=""></td>
 			<td><input type="text" value="{{$essence95_liter_record_count*$es95_price}}" disabled name="totalpriceofessence95" id=""></td>
 		</tr>
+        @endif
+
+        @if(count($diesel_pomps) > 0)
         <tr>
 			<td>مبيعات diesel</td>
 			<td><input type="text" value="{{$diesel_liter_record_count}}" disabled name="quantityofdiesel" id=""></td>
 			<td><input type="text" value="{{$diesel_liter_record_count*$diesel_price}}" disabled name="totalpriceofdiesel" id=""></td>
 		</tr>
+        @endif
+
+        @if(count($gas_pomps) > 0)
 		<tr>
 			<td>مبيعات gasoline</td>
 			<td><input type="text" value="{{$gas_liter_record_count}}" disabled name="quantityofgasoline" id=""></td>
 			<td><input type="text" value="{{$gas_liter_record_count*$gas_price}}" disabled name="totalpriceofgasoline" id=""></td>
 		</tr>
+        @endif
+        
 		<tr>
 			<td>ATM</td>
 			<td><input type="text" value="{{$last_table->atm}}" disabled name="atm" id=""></td>
