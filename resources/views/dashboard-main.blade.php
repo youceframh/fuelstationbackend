@@ -61,7 +61,7 @@
                   <li><a href="/register/pomp">{الفرع}تسجيل مضخة </a></li>
                   <li><a href="/register/delegate">{الشركة}تسجيل مندوب </a></li>
                   <li><a href="/maintenance">{الفرع}الصيانة</a></li>
-                  <li><a href="/patrol/add">اضافة دورية{قائد فريق الفرع}</a></li>
+                  <li><a href="/register/patrol">اضافة دورية{قائد فريق الفرع}</a></li>
                   <li><a href="/patrol/show">روية دورية{قائد فريق الفرع}</a></li>
                   <li><a href="/patrol/confirm">تاكيد دورية {المندوب}</a></li>
                   <li><a href="/fuelprices">تغيير ثمن البنزين {الشركة}</a></li>
