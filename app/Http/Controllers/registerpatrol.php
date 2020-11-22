@@ -15,168 +15,95 @@ class registerpatrol extends Controller
     }
 
     public function get(){
-       
+        $todaysdate = date('Y-m-d');
         if(isset($_GET['pompserial'])){ //getting pomp serial
-
-            if(!preg_match("/^[a-zA-Z0-9]+$/", $_GET['pompserial'])){ //checkinf for sql injection
+            $pompserialandtype = explode('&',$_GET['pompserial']);
+            $checkPompSerial = preg_match("/^[a-zA-Z0-9]+$/", $pompserialandtype[0]);
+            $checkPompFueltype = preg_match("/^[a-zA-Z0-9]+$/", $pompserialandtype[1]);
+            if(!$checkPompSerial && !$checkPompFueltype){ //checkinf for sql injection
                 die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
             }else{
-                $pomp_serial = $_GET['pompserial']; //getting pomp serial
 
                 $get_user_email = Auth::user()->email;
             $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get(); //getting tanks by annex
-    
-                if(DB::table('pomps')->where('serial', $pomp_serial)->get() != "[]" ){ //if theres's pomps loop
-                    foreach(json_decode($get_tanks,true) as $tank){
-                        $get_pomp = DB::table('pomps')->where('serial', $pomp_serial)->where('tank_nbr',$tank['tank number'])->get();
-                    }
-        
-                    $decodeddata = json_decode($get_pomp, true);
-        
-                    return view('register-patrol',['pomp_serial' => $decodeddata]); //send pomps to view
                
-                }else{
-                    die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>'); //or die there's no pomp
-                }
-    
-            }
+            //get all pomps
 
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND pomp_serial='."'$pompserialandtype[0]'".' AND tank_fuel_type='."'$pompserialandtype[1]'");
             
-            
+            return view('register-patrol',['pomp_serial' => $getpomps]);
+
+            }
         
         }else{
             $get_user_email = Auth::user()->email;
             $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-            $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get(); //getting tanks by annex
-        if($get_tanks != "[]"){
-            foreach(json_decode($get_tanks,true) as $tank){ //looping tanks if found
-                $get_pomps = DB::table('pomps')->where('tank_nbr',$tank['tank number'])->get();
-            }
-    
-            $decodeddata = json_decode($get_pomps, true);
-            return view('choose-pomp', ['pomps' => $decodeddata]); //sending tanks to user
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
+        if($getpomps != "[]"){
+            return view('choose-pomp', ['pomps' => $getpomps]); //sending tanks to user
         }else{
             die("<center><h1>سجل خزان اولا</h1></center>");
         }
         
     }
 }
-    public function post(Request $request){
+    public function post(Request $request){ 
+        $todaysdate = date('Y-m-d');
+        $get_user_email = Auth::user()->email;
+        $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
+        $pompserialandtype = explode('&',$_POST['pomp']);
+        $checkPompSerial = preg_match("/^[a-zA-Z0-9]+$/", $pompserialandtype[0]);
+        $checkPompFueltype = preg_match("/^[a-zA-Z0-9]+$/", $pompserialandtype[1]);
+
         $validate = $request->validate([ //validating inputs
             'lastrecord' => ['required','numeric'],
             'newrecord' => ['required','numeric'],
-            'paymenttype' => ['required','string'],
-            'total' => ['required','string'],
-            'canberegistredby' => ['required','string']
+            'atm' => ['nullable','numeric'],
+            'retard' => ['nullable','numeric'],
         ]);
-            //setting vars
-        $pomp_nbr = $_POST['pomp'];
-        $last_record = $request->input('lastrecord');
-        $new_record = $request->input('newrecord');
-        $payment_type = $request->input('paymenttype');
-        $total = $request->input('total');
-        $can_be_registred_by = $request->input('canberegistredby');
-
-        $insertDB = DB::table('patrol')->insert( array ( //inserting into db
-            'date' => date('Y-m-d'),
-            'pomp nbr'=>$pomp_nbr,
-            'last record'=>$last_record,
-            'new record'=>$new_record,
-            'type of cash'=>$payment_type,
-            'total'=>$total,
-            'can be added by'=>$can_be_registred_by,
-        ));
-
-        $insertDB2 = DB::table('pomps')->where('serial',$pomp_nbr)->update(['last record'=> $new_record]); //updating last record
-
-        if($insertDB && $insertDB2){
-            if(isset($_GET['pompserial'])){
-
-                if(!preg_match("/^[a-zA-Z0-9]+$/", $_GET['pompserial'])){ // reverfication of sql injection same as above
-                    die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
-                }else{
-                    $pomp_serial = $_GET['pompserial'];
-    
-                    $get_tanks = DB::table('tanks')->where('annex_id',Auth::user()->id)->get();
+            
         
-                    if(DB::table('pomps')->where('serial', $pomp_serial)->get() != "[]" ){
-                        foreach($get_tanks as $tank){
-                            $get_pomp = DB::table('pomps')->where('serial', $pomp_serial)->get();
-                        }
-            
-                        $decodeddata = json_decode($get_pomp, true);
-            
-                        return view('register-patrol',['pomp_serial' => $decodeddata],['success' => 'تم التسجيل بنجاح']);
-                   
-                    }else{
-                        die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
-                    }
-        
-                }
-    
-                
-                
-            
-            }else{
-    
-                $get_tanks = DB::table('tanks')->where('annex_id',Auth::user()->id)->get();
-            if($get_tanks != "[]"){
-                foreach($get_tanks as $tank){
-                    $get_pomps = DB::table('pomps')->where('tank_nbr',$tank->id_tank)->get();
-                }
-        
-                $decodeddata = json_decode($get_pomps, true);
-                return view('choose-pomp', ['pomps' => $decodeddata],['success' => 'تم التسجيل بنجاح']);
-            }else{
-                die("<center><h1>سجل خزان اولا</h1></center>");
-            }
-            
-        }
-   }else{
-    if(isset($_GET['pompserial'])){
-
-        if(!preg_match("/^[a-zA-Z0-9]+$/", $_GET['pompserial'])){
+        if(!$checkPompSerial && !$checkPompFueltype){ //checkinf for sql injection
             die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
         }else{
-            $pomp_serial = $_GET['pompserial'];
 
-            $get_tanks = DB::table('tanks')->where('annex_id',Auth::user()->id)->get();
+            //setting vars
 
-            if(DB::table('pomps')->where('serial', $pomp_serial)->get() != "[]" ){
-                foreach($get_tanks as $tank){
-                    $get_pomp = DB::table('pomps')->where('serial', $pomp_serial)->get();
-                }
-    
-                $decodeddata = json_decode($get_pomp, true);
-    
-                return view('register-patrol',['pomp_serial' => $decodeddata],['success' => 'لا يمكن التسجيل حاليا حاول لاحقا']);
-           
-            }else{
-                die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
-            }
+            $pomp_serial = $_POST['pomp'];
+            $last_record = $request->input('lastrecord');
+            $new_record = $request->input('newrecord');
+            $atm = $request->input('atm');
+            $retard = $request->input('retard');
+            $tank_nbr = DB::table('tanks_has_pomps')->where('pomp_serial',$pompserialandtype[0])->where('tank_fuel_type',$pompserialandtype[1])->first()->tank_id;
 
+
+        $insertDB = DB::table('patrol_transitional')->insert( array ( //inserting into db
+            'id' => null,
+            'tank_id'=>$tank_nbr,
+            'annex_id'=>$get_annex_id,  
+            'pomp_serial'=>$pompserialandtype[0],
+            'new_record'=>$new_record,
+            'tank_fuel_type'=>$pompserialandtype[1],
+            'atm'=>$atm,
+            'retard'=>$retard,
+        ));
+
+        $insertDB2 =  DB::table('tanks_has_pomps')->where('pomp_serial',$pompserialandtype[0])->where('tank_fuel_type',$pompserialandtype[1])->update(['last_approach'=>date('Y-m-d')]);
+
+
+        if($insertDB && $insertDB2){
+            $get_user_email = Auth::user()->email;
+            $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
+        if($getpomps != "[]"){
+            return view('choose-pomp', ['pomps' => $getpomps,'success'=>'تم التسجيل بنجاح']); //sending tanks to user
+        }else{
+            die("<center><h1>سجل خزان اولا</h1></center>");
         }
-
         
-        
-    
-    }else{
-
-        $get_tanks = DB::table('tanks')->where('annex_id',Auth::user()->id)->get();
-    if($get_tanks != "[]"){
-        foreach($get_tanks as $tank){
-            $get_pomps = DB::table('pomps')->where('tank_nbr',$tank->id_tank)->get();
+        }else{
+            die('حاول لاحقا');
         }
-
-        $decodeddata = json_decode($get_pomps, true);
-        return view('choose-pomp', ['pomps' => $decodeddata],['success' => 'لا يمكن التسجيل حاليا حاول لاحقا']);
-    }else{
-        die("<center><h1>سجل خزان اولا</h1></center>");
-    }
-    
-}
-   }
-
+        }
     }
 }

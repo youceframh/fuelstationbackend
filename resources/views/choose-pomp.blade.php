@@ -31,7 +31,7 @@
                             <select id="pompserial" type="text" class="form-control @error('pompserial') is-invalid @enderror" name="pompserial" required autocomplete="pompserial">
                             <option value=""></option>
                                     @foreach ($pomps as $pomp)
-                                    <option value="{{$pomp['serial']}}">{{$pomp['serial']}}</option>
+                                    <option value="{{$pomp->pomp_serial}}&{{$pomp->tank_fuel_type}}">{{$pomp->pomp_serial}} ( {{$pomp->tank_fuel_type}} )</option>
                                     @endforeach
                                 </select>
 

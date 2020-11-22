@@ -32,7 +32,7 @@
 
                             <select id="pomp" type="text" class="form-control @error('pomp') is-invalid @enderror" name="pomp" required autocomplete="pomp">
                             @foreach ($pomp_serial as $pomp)
-                                    <option name="pomp" value="<?php echo $pomp['serial'] ?>"><?php echo $pomp['serial'] ?></option>
+                                    <option name="pomp" value="<?php echo $pomp->pomp_serial.'&'.$pomp->tank_fuel_type ?>"><?php echo $pomp->pomp_serial ?></option>
 
                                     @php 
                                     $pompi = $pomp;
@@ -55,7 +55,7 @@
                             <label for="lastrecord" class="col-md-4 col-form-label text-md-right">{{ __('اخر تسجيل') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastrecord" type="text" value="<?php echo $pompi['last record'] ?>" class="form-control @error('lastrecord') is-invalid @enderror" name="lastrecord"  required autocomplete="lastrecord" autofocus>
+                                <input id="lastrecord" type="text" value="<?php echo $pompi->last_record ?>" class="form-control @error('lastrecord') is-invalid @enderror" name="lastrecord"  required autocomplete="lastrecord" autofocus>
 
                                 @error('lastrecord')
                                     <span class="invalid-feedback" role="alert">
@@ -80,10 +80,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="paymenttype" class="col-md-4 col-form-label text-md-right">{{ __('نوع الدفع') }}</label>
+                            <label for="atm" class="col-md-4 col-form-label text-md-right">{{ __('ATM') }}</label>
 
                             <div class="col-md-6">
-                                <input id="paymenttype"  type="text" class="form-control @error('paymenttype') is-invalid @enderror" name="paymenttype" value="{{ old('paymenttype') }}" required autocomplete="paymenttype" autofocus>
+                                <input id="atm"  type="text" class="form-control @error('atm') is-invalid @enderror" name="atm" value="{{ old('atm') }}" required autocomplete="atm" autofocus>
 
                                 @error('paymenttype')
                                     <span class="invalid-feedback" role="alert">
@@ -95,10 +95,10 @@
 
 
                         <div class="form-group row">
-                            <label for="total" class="col-md-4 col-form-label text-md-right">{{ __('المجموع') }}</label>
+                            <label for="retard" class="col-md-4 col-form-label text-md-right">{{ __('اجل') }}</label>
 
                             <div class="col-md-6">
-                                <input id="total"  type="text" class="form-control @error('total') is-invalid @enderror" name="total" value="{{ old('total') }}" required autocomplete="total" autofocus>
+                                <input id="retard"  type="text" class="form-control @error('retard') is-invalid @enderror" name="retard" value="{{ old('retard') }}" required autocomplete="retard" autofocus>
 
                                 @error('total')
                                     <span class="invalid-feedback" role="alert">
@@ -108,27 +108,12 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group row">
-                            <label for="canberegistredby" class="col-md-4 col-form-label text-md-right">{{ __('يمكن ان يسجل من طرف الفريق') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="canberegistredby"  type="text" class="form-control @error('newrecanberegistredbycord') is-invalid @enderror" name="canberegistredby" value="{{ old('canberegistredby') }}" required autocomplete="canberegistredby" autofocus>
-
-                                @error('canberegistredby')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
     
                         <div class="form-group row">
-                            <label for="notes" class="col-md-4 col-form-label text-md-right">{{ __('رمز qr لاخر تسجيل') }}</label>
+                            <label for="qr" class="col-md-4 col-form-label text-md-right">{{ __('رمز qr لاخر تسجيل') }}</label>
 
                             <div class="col-md-6" style="display:flex;justify-content:right;">
-                                {!! QrCode::size(250)->generate($pompi['last record']) !!}
+                                {!! QrCode::size(250)->generate($pompi->last_record) !!}
                             </div>
                         </div>
                         
