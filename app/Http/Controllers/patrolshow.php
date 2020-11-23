@@ -10,7 +10,7 @@ class patrolshow extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); 
+        $this->middleware('patrolseeaccess');
     }
     public function get(){
         //date("Y-m-d", time() - 60 * 60 * 24);
