@@ -113,6 +113,9 @@ $retard += $rec->retard;
 @endphp
 <td><input type="text" value="{{$rec->new_record}}" name="d{{$rec->pomp_serial}}" readonly/></td>
 @endforeach
+@if($get_new_record == '[]')
+<td><input type="text" value="0" name="d{{$data->pomp_serial}}" readonly/></td>
+@endif
 @endforeach
 </tr>
 
@@ -155,6 +158,9 @@ $retard += $rec->retard;
 @endphp
 <td><input type="text" value="{{$rec->new_record}}" name="g{{$rec->pomp_serial}}" readonly></td>
 @endforeach
+@if($get_new_record == '[]')
+<td><input type="text" value="0" name="g{{$data->pomp_serial}}" readonly/></td>
+@endif
 @endforeach
 </tr>
 
@@ -197,6 +203,9 @@ $retard += $rec->retard;
 @endphp
 <td><input type="text" value="{{$rec->new_record}}" name="es91{{$rec->pomp_serial}}" readonly></td>
 @endforeach
+@if($get_new_record == '[]')
+<td><input type="text" value="0" name="es91{{$es_pomp->pomp_serial}}" readonly/></td>
+@endif
 @endforeach
 </tr>
 
@@ -238,6 +247,9 @@ $retard += $rec->retard;
 @endphp
 <td><input type="text" value="{{$rec->new_record}}" name="es95{{$rec->pomp_serial}}" readonly></td>
 @endforeach
+@if($get_new_record == '[]')
+<td><input type="text" value="0" name="es95{{$es_pomp->pomp_serial}}" readonly/></td>
+@endif
 @endforeach
 </tr>
 
