@@ -22,8 +22,11 @@
   {{$failed}}
 </div>
                     @endif
-
+                    <div class="alert alert-success" role="alert">
+                        <span style="direction:rtl;display: flex;">اذا قمت بتسجيل جميع الخزانات اكد التسجيلات من <a href="/patrol/add">هنا</a></span>
+                        </div>
                     <div class="form-group row">
+               
                             <label for="pompserial" class="col-md-4 col-form-label text-md-right">{{ __('المضخة') }}</label>
 
                             <div class="col-md-6">
@@ -52,6 +55,7 @@
                             </div>
                         </div>
                         {{ Form::close() }}
+                     
                 </div>
             </div>
         </div>

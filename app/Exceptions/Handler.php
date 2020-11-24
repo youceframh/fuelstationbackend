@@ -50,6 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception->getMessage() == "Trying to get property 'headers' of non-object") {
+            return redirect()->route('login');
+          }
         return parent::render($request, $exception);
+        
     }
 }

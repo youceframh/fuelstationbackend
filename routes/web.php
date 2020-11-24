@@ -55,7 +55,7 @@ Route::get('/dashboard',function(Request $request){
         return view('dashboard-main');
     }
     return redirect()->route('login');
-});
+})->name('dashboard');
 
 //Getting dashboard company profile  page and verifying if user is loggedin 
 Route::get('/dashboard/profile', [dashboardprofile::class,'get']);

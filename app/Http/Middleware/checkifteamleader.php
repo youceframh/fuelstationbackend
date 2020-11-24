@@ -34,10 +34,10 @@ class checkifteamleader
                   }
                   return $next($request);
             }else{
-                return redirect('/dashboard');
+                return redirect()->route('dashboard');
             }
         }else{
-            return redirect('/login');
+            return redirect()->route('login');
         }
     
     }

@@ -15,7 +15,9 @@
         opacity: 60%;
     }
     @media print{
-
+        input[type='submit']{
+            display:none;
+        }
         .dashboardmain {
      display: block; 
     }

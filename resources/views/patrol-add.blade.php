@@ -10,12 +10,57 @@
     <link  rel="stylesheet" href="../Assets/css/style.css"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
+    .uppersection{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        justify-content: space-around;
+    }
     ::placeholder{
         color:black;
         opacity: 60%;
     }
     input:read-only{
         background-color:lightgrey;
+    }
+    .printing{
+        display:none;
+    }
+    @media print{
+        .dashboardmain {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: "main";
+        }
+
+        .dashboardmaincontent{
+            grid-area: main;
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: auto;
+            overflow-y: scroll;
+            position: relative;
+            grid-template-areas:
+                "main";
+        }
+        .headerofdashboardmaincontent{
+             display:none;
+        }
+        .mainofdashboardmaincontent > div{
+             display:none;
+        }
+        .dashboardmainsidebar{
+            display:none;
+        }
+        .printing{
+            display:block;
+        }
+        #uppersection{
+            display:none;
+        }
     }
     </style>
 </head>
@@ -36,10 +81,7 @@ $retard = 0;
                </div>
             </div>
             <div class="mainofdashboardmaincontent" style="flex-wrap:no-wrap;flex-direction: column;">
-              <div class="uppersection" style="    display: flex;
-    flex-direction: row-reverse;
-    width: 100%;
-    justify-content: space-around;">
+              <div class="uppersection" id="uppersection" style="">
 
               <div class="right">
 
@@ -71,7 +113,9 @@ $retard = 0;
 </tbody>
 </table>
               </div>
-
+              <center>
+              <h1 class="printing">THIS PAGE ISN'T MADE FOR PRINTING SUBMIT YOUR FORM THEN PRINT FROM /patrol/show</h1>
+              </center>
               <div class="middlesection">
               <form action="/patrol/add" method="POST" style="display: flex;
     flex-direction: column;
@@ -283,6 +327,7 @@ $retard += $rec->retard;
 </table>
 
 </div>
+
 <input type="submit">
 </form>
               </div>
@@ -315,6 +360,7 @@ $retard += $rec->retard;
         <div class="dashboardmainsidebarquestion">
             <div><i class="far fa-question-circle" style="font-size: 30px;color: white;"></i></div>
         </div>
+       
     </div>
     </div>
 </body>
