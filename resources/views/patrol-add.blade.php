@@ -74,7 +74,6 @@ $retard = 0;
         <div class="dashboardmaincontent">
             <div class="headerofdashboardmaincontent">
                <div class="one">
-               <h1>{{$team_leader_annex}}</h1>
                </div>
                <div class="two">
                    <h1 style="color:#308CBA;">الورديات</h1>

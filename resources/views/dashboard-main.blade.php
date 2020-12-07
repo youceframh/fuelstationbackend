@@ -13,7 +13,11 @@
     ::placeholder{
         color:black;
         opacity: 60%;
-    }</style>
+    }
+    #specialmaindashboard .card{
+        margin:10px;
+    }
+    </style>
 </head>
 <body>
     <div class="dashboardmain">
@@ -28,7 +32,8 @@
                    <h1 style="color:#308CBA;">لوحة القيادة</h1>
                </div>
             </div>
-            <div class="mainofdashboardmaincontent">
+            <div class="mainofdashboardmaincontent" id="specialmaindashboard" style="direction:rtl">
+
               @php
               if(Auth::user()->typeofuser == 'delegate'){
                   if(count(DB::table('daily')->where('confirmed',0)->get()) != 0){
@@ -46,26 +51,264 @@
                         @php
                   }
               }
-              @endphp
-              <ul>
-              <li><a href="/dashboard/companies"> تفحص كل الشركات {الويب ماستر}</a></li>
-               <li><a href="/dashboard/annexes"> تفحص كل الفروع { الشركة المفعلة}</a></li>
-                  <li><a href="/register/companies">تسجيل شركة {الويب ماستر}</a></li>
-                  <li><a href="/register/employee">تسجيل موظف { الشركة المفعلة}</a></li>
-                  <li><a href="/register/annex">تسجيل فرع { الشركة المفعلة}</a></li>
-                  <li><a href="/register/suppliers">تسجيل مورد {الشركة المفعلة}</a></li>
-                  <li><a href="/register/shop">تسجيل محل { الفرع}</a></li>
-                  <li><a href="/register/rent/shops">تسجيل  كراء محل { الشركة المفعلة}</a></li>
-                  <li><a href="/sendreport">{الفرع}ارسال تقرير</a></li>
-                  <li><a href="/register/tank">{الفرع}تسجيل خزان </a></li>
-                  <li><a href="/register/pomp">{الفرع}تسجيل مضخة </a></li>
-                  <li><a href="/register/delegate">{الشركة}تسجيل مندوب </a></li>
-                  <li><a href="/maintenance">{الفرع}الصيانة</a></li>
-                  <li><a href="/register/patrol">اضافة دورية{قائد فريق الفرع}</a></li>
-                  <li><a href="/patrol/show">روية دورية{قائد فريق الفرع}</a></li>
-                  <li><a href="/patrol/confirm">تاكيد دورية {المندوب}</a></li>
-                  <li><a href="/fuelprices">تغيير ثمن البنزين {الشركة}</a></li>
-              </ul>
+              @endphp <br>
+
+              <!---->
+
+              <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تفحص كل الشركات </h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها الويب ماستر لرؤية الشركات و تفعيلها</p>
+                     <a href="/dashboard/companies" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب الويب ماستر 
+            </div>
+        </div>
+
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل شركة </h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها الويب ماستر لتسجيل الشركات </p>
+                     <a href="/register/companies" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+             خاص ب الويب ماستر 
+            </div>
+        </div>
+
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تفحص كل الفروع </h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لرؤية الفروع و المحلات التابعة لها</p>
+                     <a href="/dashboard/annexes" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تغيير ثمن البنزين</h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتغيير ثمن البنزين</p>
+                     <a href="/fuelprices" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل مندوب</h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتسجيل مندوب</p>
+                     <a href="/register/delegate" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+
+        <!---->
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل موظف</h5>
+                     <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتسجيل موظف</p>
+                     <a href="/register/employee" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل فرع</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتسجيل فرع</p>
+                     <a href="/register/annex" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل مورد</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتسجيل مورد</p>
+                     <a href="/register/suppliers" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
+        <!---->
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل ايجار محل</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل ايجار محل</p>
+                     <a href="/regiser/rent/shops" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل محل</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل محل</p>
+                     <a href="/regiser/shop" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">ارسال تقرير</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لارسال تقرير</p>
+                     <a href="/sendreport" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل خزان</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل خزان</p>
+                     <a href="/regiser/tank" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تسجيل مضخة (طرمبة)</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل مضخة</p>
+                     <a href="/regiser/pomp" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">الصيانة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل كل شيء خاص بلصيانة  </p>
+                     <a href="/maintenance" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الفرع 
+            </div>
+        </div>
+
+        <!---->
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">اضف دورية</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لتسجيل دورية</p>
+                     <a href="/regiser/patrol" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  قائد فريق الفرع 
+            </div>
+        </div>
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">تفحص الدورية المسجلة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لرؤية دورية</p>
+                     <a href="/patrol/show" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  قائد فريق الفرع 
+            </div>
+        </div>
+
+        <!---->
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">اكد دورية</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها المندوب الخاص بلشركة لتاكيد دورية</p>
+                     <a href="/patrol/confirm" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب المندوب   
+            </div>
+        </div>
+
+
+
             </div>
         </div>
 
