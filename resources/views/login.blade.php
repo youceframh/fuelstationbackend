@@ -45,7 +45,6 @@
                 <a href="">عنوان</a>
                 <a href="">عنوان</a>
             </div>
-        
         </div>
 
         <div class="loginContent">
@@ -60,6 +59,7 @@
                 </div>
             </div>
             <div class="LoginContentLogin">
+                <div> <!--rrr-->
                 <span style="color:#308CBA;font-size:48px ;">تسجيل الدخول</span>
                 @if (isset($loginerror))
                 <div class="alert alert-danger" style="direction: rtl;">
@@ -97,8 +97,8 @@
                     </form>
                 </div>
 
-            </div>
-
+            </div><!---->
+            </div> 
 
             <div class="LoginContentFooter">
                 <span>أو سجل دخولك عبر حسابك على</span>

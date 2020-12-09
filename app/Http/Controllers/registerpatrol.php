@@ -10,7 +10,7 @@ class registerpatrol extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // restricting this page for companies only
+        $this->middleware('teamleader'); // restricting this page for companies only
         //make special middleware for teamleader and add row in db 
     }
 
@@ -69,6 +69,9 @@ class registerpatrol extends Controller
 
             //setting vars
 
+            $pmp_serial = $pompserialandtype[0];
+            $pmp_type = $pompserialandtype[1];
+
             $pomp_serial = $_POST['pomp'];
             $last_record = $request->input('lastrecord');
             $new_record = $request->input('newrecord');
@@ -76,17 +79,32 @@ class registerpatrol extends Controller
             $retard = $request->input('retard');
             $tank_nbr = DB::table('tanks_has_pomps')->where('pomp_serial',$pompserialandtype[0])->where('tank_fuel_type',$pompserialandtype[1])->first()->tank_id;
 
+            $check_if_pomp_exists = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->where('tank_fuel_type',$pmp_type)->get();
 
-        $insertDB = DB::table('patrol_transitional')->insert( array ( //inserting into db
-            'id' => null,
-            'tank_id'=>$tank_nbr,
-            'annex_id'=>$get_annex_id,  
-            'pomp_serial'=>$pompserialandtype[0],
-            'new_record'=>$new_record,
-            'tank_fuel_type'=>$pompserialandtype[1],
-            'atm'=>$atm,
-            'retard'=>$retard,
-        ));
+            if($check_if_pomp_exists != '[]'){
+                $insertDB = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->update([ //inserting into db
+                    'tank_id'=>$tank_nbr,
+                    'annex_id'=>$get_annex_id,  
+                    'pomp_serial'=>$pmp_serial,
+                    'new_record'=>$new_record,
+                    'tank_fuel_type'=>$pmp_type,
+                    'atm'=>$atm,
+                    'retard'=>$retard,
+                ]);
+            }else{
+                $insertDB = DB::table('patrol_transitional')->insert( array ( //inserting into db
+                    'id' => null,
+                    'tank_id'=>$tank_nbr,
+                    'annex_id'=>$get_annex_id,  
+                    'pomp_serial'=>$pompserialandtype[0],
+                    'new_record'=>$new_record,
+                    'tank_fuel_type'=>$pompserialandtype[1],
+                    'atm'=>$atm,
+                    'retard'=>$retard,
+                ));
+            }
+
+       
 
         $insertDB2 =  DB::table('tanks_has_pomps')->where('pomp_serial',$pompserialandtype[0])->where('tank_fuel_type',$pompserialandtype[1])->update(['last_approach'=>date('Y-m-d')]);
 

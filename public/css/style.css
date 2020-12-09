@@ -335,8 +335,8 @@ flex-direction: column;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-
+    text-align: center;
+    margin: 10px;
 }
 
 .LoginSidebarContent span{
@@ -375,6 +375,7 @@ flex-direction: column;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 .LoginContentFooter span{
@@ -1273,6 +1274,14 @@ flex-direction: column;
 
 
  /* Media querie */
+ @media(max-width:170px){
+    .loginContentHeaderCenter {
+        align-self: center;
+        width: 85%;
+        text-align: center;
+        display: none;
+    }
+ }
 @media(min-width:250px){
     .section2 .section2content > div{
         width: 250px;

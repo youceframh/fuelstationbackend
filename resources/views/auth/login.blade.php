@@ -8,13 +8,21 @@
     <script src="{{asset('Assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('/Assets/js/popper.min.js')}}"></script>
     <script src="{{asset('/Assets/js/bootstrap.min.js')}}"></script>
-    <link  rel="stylesheet" href="{{asset('../Assets/css/style.css')}}"></script>
+    <link  rel="stylesheet" href="{{asset('/Assets/css/style.css')}}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
         *{
             margin:0;
             padding:0;
         }
+        @media(max-width:170px){
+    .loginContentHeaderCenter {
+        align-self: center;
+        width: 85%;
+        text-align: center;
+        display: none;
+    }
+ }
     </style>
 </head>
 
@@ -52,7 +60,7 @@
             <div class="LoginContentHeader">
                 <div class="loginContentHeaderLeft">
                     <a href=""><i class="far fa-arrow-alt-circle-left" style="font-size: 50px;color: #308CBA;line-height: normal;"></i></a>
-                </div>
+                </div >
 
                 <div class="loginContentHeaderCenter">
                     <span>Fuelstation</span>
@@ -60,6 +68,7 @@
                 </div>
             </div>
             <div class="LoginContentLogin">
+            <div style="text-align:center;"> <!---->
                 <span style="color:#308CBA;font-size:48px ;">تسجيل الدخول</span>
                 @if (isset($loginerror))
                 <div class="alert alert-danger" style="direction: rtl;">
@@ -78,11 +87,11 @@
         </ul>
     </div>
 @endif
-                <div>
+                <div >
                     <form method="POST" action="/login" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 
-                    <div>
-                    <input type="text" placeholder="الايمايل" name="email" id="email" class=" @error('email') is-invalid @enderror" onkeyup="verifyemail()">
+                    <div style="display:flex;">
+                    <input type="text" style="width:100%" placeholder="الايمايل" name="email" id="email" class=" @error('email') is-invalid @enderror" onkeyup="verifyemail()">
         
                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -90,8 +99,8 @@
                                     </span>
                                 @enderror
                     </div>
-                        <div>
-                        <input type="password" placeholder="كلمة المرور" class=" @error('password') is-invalid @enderror" name="password" id="password" onkeyup="verifypassword()"> 
+                        <div style="display:flex;">
+                        <input type="password" style="width:100%" placeholder="كلمة المرور" class=" @error('password') is-invalid @enderror" name="password" id="password" onkeyup="verifypassword()"> 
                         @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -99,27 +108,29 @@
                                 @enderror
                         </div>
                         
-                        <div style="display: flex;flex-direction: row-reverse;justify-content: space-between;align-self: normal;margin: 0px 20px 0px 20px;padding: 0px 10px 10px 10px">
+                        <div style="display: flex;flex-direction: row-reverse;justify-content: space-between;align-self: normal;margin: 0px 20px 0px 20px;padding: 0px 10px 10px 10px;padding: 0px 10px 10px 10px;
+    align-items: center;">
                             <div>
                                 <span style="color: #308CBA;">ابقني متصلا بالحساب</span>
-                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input type="checkbox" style="margin: 0px;
+    margin-left: 10px;" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             </div>
                             <div>
                                 <a href="/forget">نسيت كلمة المرور؟</a>
                             </div>
                         </div>
                         @csrf
-                        <button type="submit" class="btn btn-light" type="submit" style="background-color:#308CBA;width: 200px;border-radius: 75px;color: white;">الدخول الى الحساب</button>
+                        <button type="submit" class="btn btn-light" type="submit" style="background-color:#308CBA;width: 60%;;border-radius: 75px;color: white;">الدخول الى الحساب</button>
 
                     </form>
                 </div>
-
+                </div> <!---->
             </div>
 
 
             <div class="LoginContentFooter">
                 <span>أو سجل دخولك عبر حسابك على</span>
-                <div style="display: flex;justify-content: center;">
+                <div style="display: flex;justify-content: center;flex-wrap:wrap;">
                 <button type="button" class="btn btn-primary" style="background-color:#308CBA;width: 45px;border-radius: 75px;margin:10px;"><i class="fab fa-facebook-f" style="color:white;"></i></button>
                 <button type="button" class="btn btn-primary" style="background-color:#308CBA;width: 45px;border-radius: 75px;margin:10px;"><i class="far fa-envelope" style="color:white;"></i></button>
                 <button type="button" class="btn btn-primary" style="background-color:#308CBA;width: 45px;border-radius: 75px;margin:10px;"><i class="fab fa-twitter" style="color:white;"></i></button>

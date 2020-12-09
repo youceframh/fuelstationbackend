@@ -55,6 +55,7 @@ class registerpomp extends Controller
                 $tank_fuel_type = DB::table('tanks')->where('tank_number',$tanks)->first()->fuel_type;
                 $insertDB2 = DB::table('tanks_has_pomps')->insert(array(
                     'id' => null,
+                    'tank_annex_id' =>$annex_id_d,
                     'tank_id' => $tanks,
                     'pomp_id' => $insertDB,
                     'pomp_serial' => strtoupper($pompserial),

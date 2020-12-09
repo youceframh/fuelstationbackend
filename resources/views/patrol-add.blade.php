@@ -65,10 +65,6 @@
     </style>
 </head>
 <body>
-@php
-$atm = 0;
-$retard = 0;
-@endphp
     <div class="dashboardmain">
   
         <div class="dashboardmaincontent">
@@ -150,14 +146,10 @@ $pomp_serial = $data->pomp_serial;
 $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','diesel')->where('annex_id',$team_leader_annex)->get();
 @endphp
 @foreach($get_new_record as $rec)
-@php
-$atm += $rec->atm;
-$retard += $rec->retard;
-@endphp
-<td><input type="text" value="{{$rec->new_record}}" name="d{{$rec->pomp_serial}}" readonly/></td>
+<td><input type="text" value="{{$rec->new_record}}" name="d{{$rec->pomp_serial}}" /></td>
 @endforeach
 @if($get_new_record == '[]')
-<td><input type="text" value="0" name="d{{$data->pomp_serial}}" readonly/></td>
+<td><input type="text" value="0" name="d{{$data->pomp_serial}}" /></td>
 @endif
 @endforeach
 </tr>
@@ -195,14 +187,10 @@ $pomp_serial = $data->pomp_serial;
 $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','gasoline')->where('annex_id',$team_leader_annex)->get();
 @endphp
 @foreach($get_new_record as $rec)
-@php
-$atm += $rec->atm;
-$retard += $rec->retard;
-@endphp
-<td><input type="text" value="{{$rec->new_record}}" name="g{{$rec->pomp_serial}}" readonly></td>
+<td><input type="text" value="{{$rec->new_record}}" name="g{{$rec->pomp_serial}}" ></td>
 @endforeach
 @if($get_new_record == '[]')
-<td><input type="text" value="0" name="g{{$data->pomp_serial}}" readonly/></td>
+<td><input type="text" value="0" name="g{{$data->pomp_serial}}" /></td>
 @endif
 @endforeach
 </tr>
@@ -240,14 +228,10 @@ $pomp_serial = $es_pomp->pomp_serial;
 $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence91')->where('annex_id',$team_leader_annex)->get();
 @endphp
 @foreach($get_new_record as $rec)
-@php
-$atm += $rec->atm;
-$retard += $rec->retard;
-@endphp
-<td><input type="text" value="{{$rec->new_record}}" name="es91{{$rec->pomp_serial}}" readonly></td>
+<td><input type="text" value="{{$rec->new_record}}" name="es91{{$rec->pomp_serial}}" ></td>
 @endforeach
 @if($get_new_record == '[]')
-<td><input type="text" value="0" name="es91{{$es_pomp->pomp_serial}}" readonly/></td>
+<td><input type="text" value="0" name="es91{{$es_pomp->pomp_serial}}" /></td>
 @endif
 @endforeach
 </tr>
@@ -284,14 +268,10 @@ $pomp_serial = $es_pomp->pomp_serial;
 $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence95')->where('annex_id',$team_leader_annex)->get();
 @endphp
 @foreach($get_new_record as $rec)
-@php
-$atm += $rec->atm;
-$retard += $rec->retard;
-@endphp
-<td><input type="text" value="{{$rec->new_record}}" name="es95{{$rec->pomp_serial}}" readonly></td>
+<td><input type="text" value="{{$rec->new_record}}" name="es95{{$rec->pomp_serial}}" ></td>
 @endforeach
 @if($get_new_record == '[]')
-<td><input type="text" value="0" name="es95{{$es_pomp->pomp_serial}}" readonly/></td>
+<td><input type="text" value="0" name="es95{{$es_pomp->pomp_serial}}" /></td>
 @endif
 @endforeach
 </tr>
@@ -312,11 +292,11 @@ $retard += $rec->retard;
 		</tr>
 		<tr>
 			<td>ATM</td>
-			<td><input type="text" name="atm" id="" value="{{$atm}}" readonly></td>
+			<td><input type="text" name="atm" id="" value=""></td>
 		</tr>
 		<tr>
 			<td>اجل</td>
-			<td><input type="text" name="retard" id="" value="{{$retard}}" readonly></td>
+			<td><input type="text" name="retard" id="" value=""></td>
 		</tr>
 		<tr>
 			<td colspan="2"> اجمالي الكاش</td>

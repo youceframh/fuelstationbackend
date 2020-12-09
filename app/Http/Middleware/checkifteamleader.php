@@ -30,6 +30,7 @@ class checkifteamleader
                 if(date('H:i') >= $employee_endtime) {
                     return redirect('/patrol/show');
                   }elseif(date('H:i') < $employee_starttime){
+                    die('oi');
                     return redirect('/patrol/show');
                   }
                   return $next($request);

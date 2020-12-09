@@ -184,7 +184,7 @@
              <div class="card-body">
                 <h5 class="card-title">تسجيل ايجار محل</h5>
                 <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل ايجار محل</p>
-                     <a href="/regiser/rent/shops" class="btn btn-primary">ادخل</a>
+                     <a href="/register/rent/shops" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  الفرع 
@@ -198,7 +198,7 @@
              <div class="card-body">
                 <h5 class="card-title">تسجيل محل</h5>
                 <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل محل</p>
-                     <a href="/regiser/shop" class="btn btn-primary">ادخل</a>
+                     <a href="/register/shop" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  الفرع 
@@ -226,7 +226,7 @@
              <div class="card-body">
                 <h5 class="card-title">تسجيل خزان</h5>
                 <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل خزان</p>
-                     <a href="/regiser/tank" class="btn btn-primary">ادخل</a>
+                     <a href="/register/tank" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  الفرع 
@@ -240,7 +240,7 @@
              <div class="card-body">
                 <h5 class="card-title">تسجيل مضخة (طرمبة)</h5>
                 <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع المفعلة لتسجيل مضخة</p>
-                     <a href="/regiser/pomp" class="btn btn-primary">ادخل</a>
+                     <a href="/register/pomp" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  الفرع 
@@ -270,7 +270,7 @@
              <div class="card-body">
                 <h5 class="card-title">اضف دورية</h5>
                 <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لتسجيل دورية</p>
-                     <a href="/regiser/patrol" class="btn btn-primary">ادخل</a>
+                     <a href="/register/patrol" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  قائد فريق الفرع 
