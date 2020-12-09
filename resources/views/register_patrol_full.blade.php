@@ -22,7 +22,9 @@
   {{$failed}}
 </div>
                     @endif
-
+                    <div class="alert alert-success" role="alert">
+                        <span style="direction:rtl;display: flex;">اذا قمت بتسجيل جميع الخزانات اكد التسجيلات من <a href="/patrol/add">هنا</a></span>
+                        </div>
    
                     @foreach ($pomps as $pomp)
                     <div class="form-group row">
