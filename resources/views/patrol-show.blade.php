@@ -384,15 +384,15 @@ $es95_price = $es_pomp->price_of_fuel;
         
 		<tr>
 			<td>ATM</td>
-			<td><input type="text" value="{{$last_table->atm}}" disabled name="atm" id=""></td>
+			<td><input type="text" value="{{$last_table->atm ?? ''}}" disabled name="atm" id=""></td>
 		</tr>
 		<tr>
 			<td>اجل</td>
-			<td><input type="text" value="{{$last_table->retard}}" disabled name="retard" id=""></td>
+			<td><input type="text" value="{{$last_table->retard ?? ''}}" disabled name="retard" id=""></td>
 		</tr>
 		<tr>
 			<td colspan="2"> اجمالي الكاش</td>
-			<td><input type="text" value="{{$last_table->total_cash}}" disabled name="totalofcash" id=""></td>
+			<td><input type="text" value="{{$last_table->total_cash ?? ''}}" disabled name="totalofcash" id=""></td>
 		</tr>
 	</tbody>
 </table>
@@ -405,9 +405,9 @@ $es95_price = $es_pomp->price_of_fuel;
 			<td colspan="2">الاجمالي</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="impotance" value="{{$last_table->impotence}}" disabled></td>
-			<td><textarea name="notes"  value="" disabled>{{$last_table->notes}}</textarea></td>
-			<td><input type="text"  value="{{$last_table->total}}" disabled name="nettotal"></td>
+			<td><input type="text" name="impotance" value="{{$last_table->impotence ?? ''}}" disabled></td>
+			<td><textarea name="notes"  value="" disabled>{{$last_table->notes ?? ''}}</textarea></td>
+			<td><input type="text"  value="{{$last_table->total ?? ''}}" disabled name="nettotal"></td>
 		</tr>
 	</tbody>
 </table>

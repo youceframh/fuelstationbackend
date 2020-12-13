@@ -44,7 +44,7 @@
             </div>
 
             <div class="LoginSidebarContent">
-                <span>ليس لديك حساب؟ لا تقلق أنشئ واحدا الان</span>
+                <span style="text-align:center;">ليس لديك حساب؟ لا تقلق أنشئ واحدا الان</span>
                 <a href="/register"><button type="button" class="btn btn-light" style="border-radius:75px;font-size: 25px;">سجل الان</button></a>
             </div> 
 

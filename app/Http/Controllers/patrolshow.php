@@ -21,7 +21,9 @@ class patrolshow extends Controller
       if(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get() != "[]"){
 
         $last_table_infos_getting_iddaily = $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+        
         $last_table_infos = DB::table('patrol_summ')->where('iddaily',$last_table_infos_getting_iddaily)->first();
+        
         $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->name_of_saver;
 
@@ -32,8 +34,12 @@ class patrolshow extends Controller
         return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$team_leader_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       
     }elseif(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get() != "[]"){
+        
         $last_table_infos_getting_iddaily = $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->first()->iddaily;
+        
         $last_table_infos = DB::table('patrol_summ')->where('iddaily',$last_table_infos_getting_iddaily)->first();
+        
+        
 
         $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->first()->name_of_saver;
 
