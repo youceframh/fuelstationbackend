@@ -107,7 +107,7 @@
 <td>اسم المسجل</td>
 </tr>
 <tr>
-<td>{{$daily_code}}</td>
+<td>{{$daily_code ?? ''}}</td>
 <td>رقم الدورية</td>
 </tr>
 </tbody>

@@ -28,4 +28,5 @@ class showcompanies extends Controller
     public function post(Request $request){
 
     }
+
 }

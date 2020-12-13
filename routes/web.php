@@ -72,6 +72,9 @@ Route::get('/dashboard/companies', [showcompanies::class,'get']);
 
 //Getting dashboard company profile  page and verifying if user is loggedin 
 Route::get('/dashboard/companies/{id}', [showcompanyinfos::class,'get']);
+Route::get('/dashboard/companies/{id}/annexes', [showcompanyinfos::class,'getannexesofcompany']);
+Route::get('/dashboard/companies/{id}/annexes/{id_an}', [showcompanyinfos::class,'getannexesinfosofcompany']);
+Route::get('/dashboard/companies/{id}/annexes/{id_an}/patrols', [showcompanyinfos::class,'getpatrolsbydateforsuperuser']);
 
 Route::post('/dashboard/companies/{id}', [showcompanyinfos::class,'post']);
 

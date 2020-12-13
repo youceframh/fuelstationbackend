@@ -87,21 +87,21 @@ class registeremployee extends Controller
             if($userinsert){
                 $insertDB = DB::table('employees')->insert( array (
                     'id' => null,
-                    'full name' => $fullname,
+                    'full_name' => $fullname,
                     'email' => $email,
                     'password' => Hash::make($password),
-                    'national id card number' => $nationalidcardnumber,
+                    'national_id_card_number' => $nationalidcardnumber,
                     'phone' => $phone,
                     'address' => $adress,
                     'salary' => $salary,
-                    'job start date' => $jobstartdate,
+                    'job_start_date' => $jobstartdate,
                      'patrol_time_start' => $patrolstarttime,
                      'patrol_time_end' =>  $patrolendtime,	
-                    'type of patrol' => $patroltype,
-                    'position in annex'=> $postioninannex,
+                    'type_of_patrol' => $patroltype,
+                    'position_in_annex'=> $postioninannex,
                         'annex_id' => $annex ,
-                    'close person name' => $closepersoname,
-                    'close person number' => $closepersonumber,
+                    'close_person_name' => $closepersoname,
+                    'close_person_number' => $closepersonumber,
                     'worksincompanyid' => $company_id,
                 ));
                 //checking the status

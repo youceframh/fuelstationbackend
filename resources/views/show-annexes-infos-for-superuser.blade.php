@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -49,31 +49,23 @@
                </div>
             </div>
             <div class="mainofdashboardmaincontent">
-            @if(isset($company))
-        @foreach($company as $companyinfos)
-              <div class="companyinfoscard">
+            @if(isset($annex))
+        @foreach($annex as $annexinfos)
+              <div class="companyinfoscard" style="    display: flex;
+    flex-direction: column;
+    align-items: center;">
               <div class="persinfosofcomp">
-                <span>{{$companyinfos['commercial name']}}<b>الاسم التجاري</b></span>
-                <span>{{$companyinfos['email']}}<b>الايمايل</b></span>
-                <span>{{$companyinfos['first name']}}<b>الاسم</b></span>
-                <span>{{$companyinfos['last name']}}<b>اللقب</b></span>
-                <span>{{$companyinfos['phone']}}<b>رقم الهاتف</b></span>
-                <span>{{$annex_count}}<b>عدد الفروع تفقدها من <a href="/dashboard/companies/{{$comp_id}}/annexes">هنا</a></b></span>
-                <span>{{$companyinfos['country']}}<b>البلد</b></span>
-                <span>{{$companyinfos['city']}}<b>المدينة</b></span>
-                <span>{{$companyinfos['commercial number']}}<b>الرقم التجاري</b></span>
-                <span>{{$companyinfos['tax number']}}<b>الرقم الضريبي</b></span>
+                <span>{{$annexinfos['name']}}<b>الاسم</b></span>
+                <span>{{$annexinfos['address']}}<b>العنوان</b></span>
+                <span>{{$annexinfos['email']}}<b>الايمايل</b></span>
+                <span>{{$annexinfos['country']}}<b>البلد</b></span>
+                <span>{{$annexinfos['phone']}}<b>رقم الهاتف</b></span>
+                <span>{{$annexinfos['city']}}<b>المدينة</b></span>
+                <span>{{$annexinfos['rent type']}}<b>نوع الايجار</b></span>
+                <span>{{$annex_TL->full_name ?? 'لا يوجد'}}<b>اسم رئيس فريق الفرع</b></span>
+                <span><b> <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols">اطلع على الدوريات</a> </b></span>
                 </div>
 
-                <div class="buttonsofvalidatio">
-                
-             <form action="/dashboard/companies/{{$companyinfos['idcompanies']}}" method="post">
-             @csrf
-                <button type="submit" name="type" value="accept" class="btn btn-success btn2" type="submit" style="">قبول ملفات التعريف</button>
-                <button type="submit" name="type" value="decline" class="btn btn-danger btn2" type="submit" style="">رفض ملفات التعريف</button>
-                   <button type="submit" name="type" value="download" class="btn btn-info btn2" type="submit" style="">نحميل ملفات تعريف الشركة</button>
-                   </form>
-                </div>
               </div>
               @endforeach
               @endif
