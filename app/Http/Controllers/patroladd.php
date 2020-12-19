@@ -54,22 +54,40 @@ class patroladd extends Controller
         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
+        $request->validate([
+            'atm' => ['required','digits_between:0,999999999129294']
+        ]);
+
+        $total_liters_diesel = 0;
+
+            $total_liters_gasoline = 0;
+
+            $total_liters_es91 = 0;
+
+            $total_liters_es95 = 0;
+
         $date =  date('Y-m-d');
         function randomPassword() {
-            $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            $alphabet = '01234567890';
             $pass = array(); //remember to declare $pass as an array
             $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-            for ($i = 0; $i <= 8; $i++) {
+            for ($i = 0; $i <= 14; $i++) {
                 $n = rand(0, $alphaLength);
                 $pass[] = $alphabet[$n];
             }
             return implode($pass); //turn the array into a string
         }
 
+        $team_leader_email = Auth::user()->email;
+        $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
+        $get_annex_name = DB::table('annexes')->where('idannexes',$team_leader_annex)->first()->name;
+        
+        $daily_code = strtoupper(substr($get_annex_name,0,2));
+
         $daily = DB::table('daily')->insertGetId(array(
             'iddaily' => null,
             'timing' => $date,
-            'code' => randomPassword(),  
+            'code' => $daily_code.randomPassword(),  
         ));
 
             foreach($searchQGasoline as $pomp){ //gasoline insert
@@ -78,6 +96,7 @@ class patroladd extends Controller
                  $pomp_newrecord = $request->input('g'.$pomp_serial);
                  $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                  $fuel_price = DB::table('fuel_price')->where('fuel_type','gasoline')->first()->price;
+                 $total_liters_gasoline += $pomp_newrecord*$fuel_price;
                   //insertGetId
                 $patrol = DB::table('patrol')->insert(array(
                     'date' =>$date,
@@ -98,6 +117,7 @@ class patroladd extends Controller
                
             }
        
+            
 
     foreach($searchQDiesel as $pomp){ //diesel insert
         $pomp_serial = $pomp->pomp_serial;
@@ -105,6 +125,8 @@ class patroladd extends Controller
              $pomp_newrecord = $request->input('d'.$pomp_serial);
              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
              $fuel_price = DB::table('fuel_price')->where('fuel_type','diesel')->first()->price;
+
+             $total_liters_diesel += $pomp_newrecord*$fuel_price;
               //insertGetId
             $patrol = DB::table('patrol')->insert(array(
                 'date' =>$date,
@@ -129,6 +151,7 @@ class patroladd extends Controller
                  $pomp_newrecord = $request->input('es91'.$pomp_serial);
                  $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                  $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
+                 $total_liters_es91 += $pomp_newrecord*$fuel_price;
                   //insertGetId
                 $patrol = DB::table('patrol')->insert(array(
                     'date' =>$date,
@@ -153,6 +176,7 @@ class patroladd extends Controller
                      $pomp_newrecord = $request->input('es95'.$pomp_serial);
                      $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                      $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
+                     $total_liters_es95 += $pomp_newrecord*$fuel_price;
                       //insertGetId
                     $patrol = DB::table('patrol')->insert(array(
                         'date' =>$date,
@@ -178,7 +202,7 @@ class patroladd extends Controller
          $atm = $request->input('atm');
          $retard = $request->input('retard');
          $impotence = $request->input('impotence');
-         $total_cash = $request->input('totalofcash');
+         $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard);
          $total_net = $request->input('nettotal');
          $notes = $request->input('notes');
          $iddaily = $daily;

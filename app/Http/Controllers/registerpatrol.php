@@ -61,7 +61,7 @@ class registerpatrol extends Controller
             'atm' => ['nullable','numeric'],
             'retard' => ['nullable','numeric'],
         ]);
-            
+    
         
         if(!$checkPompSerial && !$checkPompFueltype){ //checkinf for sql injection
             die('<center><h1>الخزان الذي تبحث عنه غير موجود</h1></center>');
@@ -80,8 +80,9 @@ class registerpatrol extends Controller
             $tank_nbr = DB::table('tanks_has_pomps')->where('pomp_serial',$pompserialandtype[0])->where('tank_fuel_type',$pompserialandtype[1])->first()->tank_id;
 
             $check_if_pomp_exists = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->where('tank_fuel_type',$pmp_type)->get();
-
+            
             if($check_if_pomp_exists != '[]'){
+               
                 $insertDB = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->update([ //inserting into db
                     'tank_id'=>$tank_nbr,
                     'annex_id'=>$get_annex_id,  

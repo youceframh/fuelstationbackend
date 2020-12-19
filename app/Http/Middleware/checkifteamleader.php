@@ -32,7 +32,9 @@ class checkifteamleader
                 if(date('H:i') >= $employee_endtime) {
                     return redirect('/patrol/show');
                   }elseif(date('H:i') < $employee_starttime){
-                    die('oi');
+                      if(date('H:i') < $employee_endtime){
+                        return $next($request);
+                      }
                     return redirect('/patrol/show');
                   }
                   if(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get() != "[]"){

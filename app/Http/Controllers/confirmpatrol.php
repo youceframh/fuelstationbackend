@@ -42,8 +42,6 @@ class confirmpatrol extends Controller
                 'moneyplace'=>['required','string'],
                 'totalofmoney'=>['required','string'],
                 'restofmoney'=>['string'],
-                'receiptnumber'=>['nullable'],
-                'receiptnumberofbank'=>['nullable'],
             ]);
 
             $patrol_id = $request->input('patrol');
@@ -63,8 +61,6 @@ class confirmpatrol extends Controller
                 'patrol_code'=>$patrol_code,
                 'money_place'=>$moneyplace,
                 'total_cash'=>$totalofmoney,
-                'rest_cash'=> $restofmoney,
-                'innovice_nbr'=> $receiptnumber,
             ));
 
             $insertDBupdate = DB::table('daily')->where('code',$patrol_code)->update([

@@ -60,19 +60,6 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-                            <label for="totalofmoney" class="col-md-4 col-form-label text-md-right">{{ __('قيمة الاموال المنقولة') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="totalofmoney"  type="text" class="form-control @error('totalofmoney') is-invalid @enderror" name="totalofmoney" value="{{ old('totalofmoney') }}" required autocomplete="totalofmoney" autofocus>
-
-                                @error('totalofmoney')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="restofmoney" class="col-md-4 col-form-label text-md-right">{{ __('قيمة الاموال المتبقية') }}</label>
@@ -88,33 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row" id="receiptnumber">
-                            <label for="receiptnumber" class="col-md-4 col-form-label text-md-right">{{ __('رقم قاتورة القبض') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="receiptnumber"   type="text" class="form-control @error('receiptnumber') is-invalid @enderror" name="receiptnumber" value="{{ old('receiptnumber') }}"  autocomplete="receiptnumber" autofocus>
-
-                                @error('receiptnumber')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row" id="receiptnumberofbank">
-                            <label for="receiptnumber" class="col-md-4 col-form-label text-md-right">{{ __('رقم قاتورة البنك') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="receiptnumber"   type="text" class="form-control @error('receiptnumber') is-invalid @enderror" name="receiptnumber" value="{{ old('receiptnumber') }}" autocomplete="receiptnumber" autofocus>
-
-                                @error('receiptnumber')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row" id="receiptnumberofbank">
                             <label for="impotence" class="col-md-4 col-form-label text-md-right">{{ __('العجز') }}</label>
@@ -144,13 +105,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row" id="receiptnumberofbank">
-                            <label for="totalnet" class="col-md-4 col-form-label text-md-right">{{ __('الكاش الاجمالي') }}</label>
+                        <div class="form-group row">
+                            <label for="totalofmoney" class="col-md-4 col-form-label text-md-right">{{ __('الكاش الاجمالي') }}</label>
 
                             <div class="col-md-6">
-                                <input id="totalnet"   type="text" class="form-control @error('totalnet') is-invalid @enderror" name="totalnet" value="{{ old('totalnet') }}" autocomplete="totalnet" autofocus>
+                                <input id="totalofmoney"   type="text" class="form-control @error('totalofmoney') is-invalid @enderror" name="totalofmoney" value="{{ old('totalofmoney') }}" autocomplete="totalofmoney" autofocus>
 
-                                @error('totalnet')
+                                @error('totalofmoney')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

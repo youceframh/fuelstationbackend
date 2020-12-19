@@ -4,15 +4,15 @@ $(document).ready(function() {
         switch(type){
             case 'company':
                 $('#receiptnumber').css('display','none');
-                $('#receiptnumberofbank').css('display','none');
+                $('#impotence').css('display','flex');
                 break;
             case 'bank' :
            $('#receiptnumber').css('display','none');
-           $('#receiptnumberofbank').css('display','flex');
+           $('#impotence').css('display','flex');
            break;
            case 'supplier' :
            $('#receiptnumber').css('display','flex');
-           $('#receiptnumberofbank').css('display','none');
+           $('#impotence').css('display','flex');
            break;
         }
     });

@@ -17,7 +17,7 @@ class checkifdelegate
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(!Auth::user()->typeofuser == 'delegate'){
+            if(!(Auth::user()->typeofuser == 'delegate')){
                 return redirect('/dashboard');
             }
             return $next($request);

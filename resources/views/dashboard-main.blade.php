@@ -268,8 +268,8 @@
                      
                 </div>
              <div class="card-body">
-                <h5 class="card-title">اضف دورية</h5>
-                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لتسجيل دورية</p>
+                <h5 class="card-title">اضف وردية</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لتسجيل وردية</p>
                      <a href="/register/patrol" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
@@ -281,10 +281,21 @@
                 <div class="card-header">
                      
                 </div>
+
              <div class="card-body">
-                <h5 class="card-title">تفحص الدورية المسجلة</h5>
-                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لرؤية دورية</p>
+                <h5 class="card-title">تفحص الوردية المسجلة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لرؤية وردية</p>
                      <a href="/patrol/show" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  قائد فريق الفرع 
+            </div>
+        </div>
+
+        <div class="card-body">
+                <h5 class="card-title">تفحص الورديات المسجلة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها رئيس الفرع لرؤية الورديات</p>
+                     <a href="/patrols" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  قائد فريق الفرع 
@@ -298,8 +309,8 @@
                      
                 </div>
              <div class="card-body">
-                <h5 class="card-title">اكد دورية</h5>
-                <p class="card-text">هذه الصفحة يلجئ اليها المندوب الخاص بلشركة لتاكيد دورية</p>
+                <h5 class="card-title">اكد وردية</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها المندوب الخاص بلشركة لتاكيد وردية</p>
                      <a href="/patrol/confirm" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">

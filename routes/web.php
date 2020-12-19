@@ -30,6 +30,7 @@ use App\Http\Controllers\fuelprices;
 use App\Http\Controllers\confirmpatrol;
 use App\Http\Controllers\showpatrolfordelegate;
 use App\Http\Controllers\registerpatrolF;
+use App\Http\Controllers\showPatrolsForAnnexDirector;
 
 /*
 |--------------------------------------------------------------------------
@@ -160,9 +161,9 @@ Route::get('/maintenance ',[maintenance::class,'get']); // Getting maintenance p
 
 Route::post('/maintenance',[maintenance::class,'post']); // Creating maintenance route in association with db
 
-Route::get('/register/patrol ',[/*registerpatrol*/registerpatrolF::class,'get']); // Getting patrol registration page
+Route::get('/register/patrol ',[registerpatrolF::class,'get'])->name('register_patrol'); // Getting patrol registration page
 
-Route::post('/register/patrol',[/*registerpatrol*/registerpatrolF::class,'post']); // Creating patrol route in association with db
+Route::post('/register/patrol',[registerpatrolF::class,'post']); // Creating patrol route in association with db
 
 Route::put('/dashboard/profilepic',[profilepic::class,'post']); //profile picture changing route
 
@@ -192,3 +193,6 @@ Route::get('/patrol/confirm/{id}',[showpatrolfordelegate::class,'get']); //confi
 
 Route::post('/patrol/confirm/{id}',[showpatrolfordelegate::class,'post']); //confirm patrol post show patrol with id
 
+Route::get('/patrols',[showPatrolsForAnnexDirector::class,'get']); //confirm patrol get show patrol with id
+
+Route::post('/patrols',[showPatrolsForAnnexDirector::class,'post']); //confirm patrol post show patrol with id

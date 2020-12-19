@@ -298,10 +298,6 @@ $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_se
 			<td>اجل</td>
 			<td><input type="text" name="retard" id="" value=""></td>
 		</tr>
-		<tr>
-			<td colspan="2"> اجمالي الكاش</td>
-			<td><input type="text" name="totalofcash" id=""></td>
-		</tr>
 	</tbody>
 </table>
 
