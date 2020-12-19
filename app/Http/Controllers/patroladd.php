@@ -20,13 +20,24 @@ class patroladd extends Controller
 
       if(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get() != "[]"){
         $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->name_of_saver;
-        $last_table_infos_getting_iddaily = $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+
+        $last_table_infos_getting_iddaily;
+
+        if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+            $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+        }elseif(DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+            $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+        }elseif(DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+            $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+        }elseif(DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+            $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
+        }
+        
         $last_table_infos = DB::table('patrol_summ')->where('iddaily',$last_table_infos_getting_iddaily)->first();
         $get_gas_pomps = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_diesel_pomps = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_es91_pomps = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_es95_pomps = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
-        $last_table_infos;
 
         return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'saver_name'=> $get_name_of_saver,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$get_gas_pomps,'fuelprices'=>$fuel_prices,'last_table'=>$last_table_infos],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       }else{

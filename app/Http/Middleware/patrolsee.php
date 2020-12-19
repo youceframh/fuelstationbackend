@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class patrolsee
 {
@@ -16,10 +17,13 @@ class patrolsee
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(!(Auth::user()->typeofuser == 'delegate') || !(Auth::user()->typeofuser == 'annex_TL')){
+            if((Auth::user()->typeofuser == 'delegate') || (Auth::user()->typeofuser == 'annex_TL')){
+                return $next($request);
+            }else{
                 return redirect('/dashboard');
             }
+           
         }
-        return $next($request);
+       
     }
 }

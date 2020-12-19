@@ -72,24 +72,10 @@
 
               </div>
               <div style="display:flex;flex-direction:column;">
-              @if(isset($id))
-              @if(DB::table('daily')->where('iddaily',$id)->first())
-              @php $daily_code = DB::table('daily')->where('iddaily',$id)->first()->code; @endphp
-              {!! QrCode::size(250)->generate($daily_code) !!}
-              {{$daily_code}}
-               @endif
-               @else
+              
+              {!! QrCode::size(250)->generate($id) !!}
+              {{$id}}
 
-              @if(DB::table('daily')->where('timing',date('Y-m-d'))->first())
-              @php $daily_code = DB::table('daily')->where('timing',date('Y-m-d'))->first()->code; @endphp
-              {!! QrCode::size(250)->generate($daily_code) !!}
-              {{$daily_code}}
-              @elseif(DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first())
-              @php $daily_code = DB::table('daily')->where('timing',date("Y-m-d", time() - 60 * 60 * 24))->first()->code; @endphp
-               {!! QrCode::size(250)->generate($daily_code) !!}
-               
-               @endif
-               @endif
                </div>
               <div class="left">
               <table border="1">
@@ -107,7 +93,7 @@
 <td>اسم المسجل</td>
 </tr>
 <tr>
-<td>{{$daily_code ?? ''}}</td>
+<td>{{$id ?? ''}}</td>
 <td>رقم الدورية</td>
 </tr>
 </tbody>

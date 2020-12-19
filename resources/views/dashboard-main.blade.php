@@ -282,20 +282,25 @@
                      
                 </div>
 
-             <div class="card-body">
-                <h5 class="card-title">تفحص الوردية المسجلة</h5>
-                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لرؤية وردية</p>
-                     <a href="/patrol/show" class="btn btn-primary">ادخل</a>
+        <div class="card-body">
+                <h5 class="card-title">تفحص الورديات المسجلة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الفرع لرؤية الورديات</p>
+                     <a href="/patrols" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  قائد فريق الفرع 
             </div>
         </div>
 
-        <div class="card-body">
-                <h5 class="card-title">تفحص الورديات المسجلة</h5>
-                <p class="card-text">هذه الصفحة يلجئ اليها رئيس الفرع لرؤية الورديات</p>
-                     <a href="/patrols" class="btn btn-primary">ادخل</a>
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+
+             <div class="card-body">
+                <h5 class="card-title">تفحص الوردية المسجلة</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لرؤية وردية</p>
+                     <a href="/patrol/show" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">
         خاص ب  قائد فريق الفرع 

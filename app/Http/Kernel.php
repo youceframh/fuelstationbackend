@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'teamleader'=> \App\Http\Middleware\checkifteamleader::class,
         'delegate'=> \App\Http\Middleware\checkifdelegate::class,
         'patrolseeaccess'=> \App\Http\Middleware\checkifdelegate::class,
+        'patrolsee'=> \App\Http\Middleware\patrolsee::class,
     ];
 }
