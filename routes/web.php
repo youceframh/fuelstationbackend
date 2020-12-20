@@ -193,6 +193,11 @@ Route::get('/patrol/confirm/{id}',[showpatrolfordelegate::class,'get']); //confi
 
 Route::post('/patrol/confirm/{id}',[showpatrolfordelegate::class,'post']); //confirm patrol post show patrol with id
 
-Route::get('/patrols',[showPatrolsForAnnexDirector::class,'get']); //confirm patrol get show patrol with id
+Route::get('/patrols',[showPatrolsForAnnexDirector::class,'get']); //select patrols to show using date
 
-Route::post('/patrols',[showPatrolsForAnnexDirector::class,'post']); //confirm patrol post show patrol with id
+Route::post('/patrols',[showPatrolsForAnnexDirector::class,'post']); //editing patrols to show using date
+
+Route::get('/patrols/all',[showPatrolsForAnnexDirector::class,'getAll']); //select patrols to show all of them
+
+Route::post('/patrols/all',[showPatrolsForAnnexDirector::class,'postAll']); //editing patrols to show all of them
+

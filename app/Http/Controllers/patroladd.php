@@ -101,7 +101,9 @@ class patroladd extends Controller
             'code' => $daily_code.randomPassword(),  
         ));
 
-            foreach($searchQGasoline as $pomp){ //gasoline insert
+
+    if($searchQGasoline != '[]'){
+        foreach($searchQGasoline as $pomp){ //gasoline insert
             $pomp_serial = $pomp->pomp_serial;
                  $pomp_s = $request->input('g'.$pomp_serial);
                  $pomp_newrecord = $request->input('g'.$pomp_serial);
@@ -127,9 +129,12 @@ class patroladd extends Controller
 
                
             }
+    }
+
+            
        
             
-
+if($searchQDiesel != '[]'){
     foreach($searchQDiesel as $pomp){ //diesel insert
         $pomp_serial = $pomp->pomp_serial;
              $pomp_s = $request->input('d'.$pomp_serial);
@@ -155,39 +160,18 @@ class patroladd extends Controller
                 'last_record' => $pomp_newrecord
             ]);
         }
+}
 
-        foreach($searchQEssence91 as $pomp){ //diesel insert
-            $pomp_serial = $pomp->pomp_serial;
-                 $pomp_s = $request->input('es91'.$pomp_serial);
-                 $pomp_newrecord = $request->input('es91'.$pomp_serial);
-                 $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
-                 $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
-                 $total_liters_es91 += $pomp_newrecord*$fuel_price;
-                  //insertGetId
-                $patrol = DB::table('patrol')->insert(array(
-                    'date' =>$date,
-                    'pomp_serial'=>$pomp_serial,
-                    'new_record'=>$pomp_newrecord,
-                    'diffrenece_in_l'=>($pomp_newrecord-$diffence),
-                    'annex_id'=>$team_leader_annex,
-                    'name_of_saver'=>Auth::user()->name,
-                    'fuel_type'=>'essence91',
-                    'iddaily'=>$daily,
-                    'price_of_fuel' => $fuel_price,
-                ));
-    
-                $thp = DB::table('tanks_has_pomps')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence91')->update([
-                    'last_record' => $pomp_newrecord
-                ]);
-            }
+   
 
-            foreach($searchQEssence95 as $pomp){ //diesel insert
+        if($searchQEssence91 != '[]'){
+            foreach($searchQEssence91 as $pomp){ //diesel insert
                 $pomp_serial = $pomp->pomp_serial;
-                     $pomp_s = $request->input('es95'.$pomp_serial);
-                     $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                     $pomp_s = $request->input('es91'.$pomp_serial);
+                     $pomp_newrecord = $request->input('es91'.$pomp_serial);
                      $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
-                     $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
-                     $total_liters_es95 += $pomp_newrecord*$fuel_price;
+                     $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
+                     $total_liters_es91 += $pomp_newrecord*$fuel_price;
                       //insertGetId
                     $patrol = DB::table('patrol')->insert(array(
                         'date' =>$date,
@@ -196,16 +180,48 @@ class patroladd extends Controller
                         'diffrenece_in_l'=>($pomp_newrecord-$diffence),
                         'annex_id'=>$team_leader_annex,
                         'name_of_saver'=>Auth::user()->name,
-                        'fuel_type'=>'essence95',
+                        'fuel_type'=>'essence91',
                         'iddaily'=>$daily,
                         'price_of_fuel' => $fuel_price,
                     ));
         
-                    $thp = DB::table('tanks_has_pomps')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence95')->update([
+                    $thp = DB::table('tanks_has_pomps')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence91')->update([
                         'last_record' => $pomp_newrecord
                     ]);
                 }
+        }
 
+       
+
+            if($searchQEssence95 != '[]'){
+                foreach($searchQEssence95 as $pomp){ //diesel insert
+                    $pomp_serial = $pomp->pomp_serial;
+                         $pomp_s = $request->input('es95'.$pomp_serial);
+                         $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                         $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
+                         $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
+                         $total_liters_es95 += $pomp_newrecord*$fuel_price;
+                          //insertGetId
+                        $patrol = DB::table('patrol')->insert(array(
+                            'date' =>$date,
+                            'pomp_serial'=>$pomp_serial,
+                            'new_record'=>$pomp_newrecord,
+                            'diffrenece_in_l'=>($pomp_newrecord-$diffence),
+                            'annex_id'=>$team_leader_annex,
+                            'name_of_saver'=>Auth::user()->name,
+                            'fuel_type'=>'essence95',
+                            'iddaily'=>$daily,
+                            'price_of_fuel' => $fuel_price,
+                        ));
+            
+                        $thp = DB::table('tanks_has_pomps')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type','essence95')->update([
+                            'last_record' => $pomp_newrecord
+                        ]);
+                    }
+    
+            }
+
+           
         // INDEPENDENT SECTION
 
          //get last table infos

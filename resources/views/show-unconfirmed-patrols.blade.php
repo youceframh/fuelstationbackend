@@ -21,7 +21,11 @@
         <div class="dashboardmaincontent">
             <div class="headerofdashboardmaincontent">
                <div class="one">
+               @if(Auth::user()->typeofuser == 'delegate')
                <form action="/patrol/confirm" method="GET" style="width:80%;">
+               @elseif (Auth::user()->typeofuser == 'annex')
+               <form action="/patrols/all" method="GET" style="width:80%;">
+               @endif
                <div class="one">
                 <input type="text" placeholder="ابحث" style="padding: 10px 2rem 10px 5rem;text-align:right;" name="searchquery">
                 <i class="fas fa-search" style="align-self: center;position: absolute;right: 10px;"></i>   
@@ -56,10 +60,15 @@
                                 @foreach($patrols as $patrol)
                                 <tr style="background-color: #F4F4F4;border: 0px solid #F4F4F4;">
                                   <td style="color: green;">
+                                  @if(Auth::user()->typeofuser == 'delegate')
                                   <a href="/patrol/confirm?patrol={{$patrol->iddaily}}">فعل الدورية</a> |
                                   <a href="/patrol/confirm/{{$patrol->iddaily}}">المزيد من المعلومات</a>
+                                  @elseif (Auth::user()->typeofuser == 'annex')
+                                  <a href="/patrols/all?patrol={{$patrol->code}}">عدل الدورية</a> |
+                                  <a href="/patrols/all?patrol={{$patrol->code}}">المزيد من المعلومات</a>
+                                  @endif
                                   </td>
-                                  <td style="color:red;">غير مفعل</td>
+                                  <td>@php  if($patrol->confirmed == 0){ @endphp <span style="color:red;"> غير مفعل </span> @php }elseif($patrol->confirmed == 1){ @endphp <span style="color:green;"> مفعل @php } @endphp</span></td>
                                   <td>{{$patrol->timing}}</td>
                                   <td>{{$patrol->code}}</td>
                                 </tr>
