@@ -92,20 +92,9 @@
 
                     <div style="display:flex;">
                     <input type="text" style="width:100%" placeholder="الايمايل" name="email" id="email" class=" @error('email') is-invalid @enderror" onkeyup="verifyemail()">
-        
-                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                     </div>
                         <div style="display:flex;">
                         <input type="password" style="width:100%" placeholder="كلمة المرور" class=" @error('password') is-invalid @enderror" name="password" id="password" onkeyup="verifypassword()"> 
-                        @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                         </div>
                         
                         <div style="display: flex;flex-direction: row-reverse;justify-content: space-between;align-self: normal;margin: 0px 20px 0px 20px;padding: 0px 10px 10px 10px;padding: 0px 10px 10px 10px;

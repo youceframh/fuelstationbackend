@@ -20,7 +20,7 @@ class registerpatrolF extends Controller
         $todaysdate = date('Y-m-d');
         $get_user_email = Auth::user()->email;
         $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-        $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
+        $getpomps = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND last_approach != $todaysdate");
     if($getpomps != "[]"){
         return view('register_patrol_full', ['pomps' => $getpomps]); //sending tanks to user
     }else{
@@ -35,7 +35,7 @@ class registerpatrolF extends Controller
         $get_user_email = Auth::user()->email;
         $todaysdate = date('Y-m-d');
         $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-        $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");    
+        $getpomps = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND last_approach != $todaysdate"); 
        global $success;
         $success = 0;
 
@@ -44,7 +44,7 @@ class registerpatrolF extends Controller
             $get_user_email = Auth::user()->email;
             $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
             $tank_nbr = DB::table('tanks_has_pomps')->where('pomp_serial',$pmp_serial)->where('tank_fuel_type',$pmp_type)->where('tank_annex_id',$get_annex_id)->first()->tank_id;
-            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");    
+            $getpomps = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND last_approach != $todaysdate");  
             $get_last_insert_value = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->where('tank_fuel_type',$pmp_type)->where('annex_id',$get_annex_id)->first();
 
             $check_if_pomp_exists = DB::table('patrol_transitional')->where('pomp_serial',$pmp_serial)->where('tank_fuel_type',$pmp_type)->where('annex_id',$get_annex_id)->get();
@@ -86,12 +86,16 @@ class registerpatrolF extends Controller
                         $pomp_serial = $pomp->pomp_serial;
                         $pomp_type = 'diesel';
                         $get_last_insert_value = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type',$pomp_type)->where('annex_id',$get_annex_id)->first();
-                        if(($getDieselPomp) <= ($get_last_insert_value->new_record)){
-                            return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                        if($get_last_insert_value){
+                            if(($getDieselPomp) <= ($get_last_insert_value->new_record)){
+                                return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                            }else{
+                            insert($pomp_serial,$pomp_type,$getDieselPomp);
+                        }
                         }else{
-                        insert($pomp_serial,$pomp_type,$getDieselPomp);
-                    }
-            
+                            insert($pomp_serial,$pomp_type,$getDieselPomp);
+                        }
+                        $success = 4;
                     }
                 break;
         
@@ -103,11 +107,14 @@ class registerpatrolF extends Controller
                         $pomp_serial = $pomp->pomp_serial;
                         $pomp_type = 'gasoline';
                         $get_last_insert_value = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type',$pomp_type)->where('annex_id',$get_annex_id)->first();
-                        if(($getGasPomp) <= ($get_last_insert_value->new_record)){
-                            return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
-                        }else{
-                        insert($pomp_serial,$pomp_type,$getGasPomp);
-                    }
+                        if($get_last_insert_value){
+                            if(($getGasPomp) <= ($get_last_insert_value->new_record)){
+                                return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                            }else{
+                            insert($pomp_serial,$pomp_type,$getGasPomp);
+                        }
+                        }else{insert($pomp_serial,$pomp_type,$getGasPomp);}
+                        $success = 4;
                     }
                 break;
                 case 'essence91':
@@ -118,11 +125,16 @@ class registerpatrolF extends Controller
                         $pomp_serial = $pomp->pomp_serial;
                         $pomp_type = 'essence91';
                         $get_last_insert_value = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type',$pomp_type)->where('annex_id',$get_annex_id)->first();
-                        if(($getEs91Pomp) <= ($get_last_insert_value->new_record)){
-                            return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                        if($get_last_insert_value){
+                            if(($getEs91Pomp) <= ($get_last_insert_value->new_record)){
+                                return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                            }else{
+                            insert($pomp_serial,$pomp_type,$getEs91Pomp);
+                        }
                         }else{
-                        insert($pomp_serial,$pomp_type,$getEs91Pomp);
-                    }
+                            insert($pomp_serial,$pomp_type,$getEs91Pomp);
+                        }
+                        $success = 4;
                     }
                 break;
                 case 'essence95':
@@ -133,11 +145,14 @@ class registerpatrolF extends Controller
                         $pomp_serial = $pomp->pomp_serial;
                         $pomp_type = 'essence95';
                         $get_last_insert_value = DB::table('patrol_transitional')->where('pomp_serial',$pomp_serial)->where('tank_fuel_type',$pomp_type)->where('annex_id',$get_annex_id)->first();
-                        if(($getEs95Pomp) <= ($get_last_insert_value->new_record)){
-                            return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
-                        }else{
-                        insert($pomp_serial,$pomp_type,$getEs95Pomp);
-                    }
+                        if($get_last_insert_value){
+                            if(($getEs95Pomp) <= ($get_last_insert_value->new_record)){
+                                return view('register_patrol_full', ['pomps' => $getpomps,'failed'=>"لا يمكنك تسجيل قيمة اقل من القيمة المدخلة سابقا في $pomp_serial"]);
+                            }else{
+                            insert($pomp_serial,$pomp_type,$getEs95Pomp);
+                        }
+                        }else{insert($pomp_serial,$pomp_type,$getEs95Pomp);}
+                        
                         $success = 4;
                     }
                 break;

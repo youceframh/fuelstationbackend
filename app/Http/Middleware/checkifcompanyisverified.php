@@ -23,10 +23,12 @@ class checkifcompanyisverified
             $getuseremail = Auth::user()->email;
             $query = DB::table('companies')->where('email',$getuseremail)->first();
             if($query){
-               if($query->verified !== 1){
+               if($query->verified == 3 || $query->verified == 2 || $query->verified == 0){
+                return $next($request);
+               }else{
                 return redirect('/dashboard');
                }
-               return $next($request);
+               
         }else{
             return redirect('/dashboard');
         }

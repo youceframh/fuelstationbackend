@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="../Assets/css/bootstrap.min.css">
-    <script src="../Assets/js/jquery.min.js"></script>
-    <script src="../Assets/js/popper.min.js"></script>
-    <script src="../Assets/js/bootstrap.min.js"></script>
-    <link  rel="stylesheet" href="../Assets/css/style.css"></script>
+    <link rel="stylesheet" href="{{asset('/Assets/css/bootstrap.min.css')}}">
+    <script src="{{asset('/Assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/Assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('/Assets/js/bootstrap.min.js')}}"></script>
+    <link  rel="stylesheet" href="{{asset('/Assets/css/style.css')}}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
     ::placeholder{
@@ -25,6 +25,8 @@
                <form action="/patrol/confirm" method="GET" style="width:80%;">
                @elseif (Auth::user()->typeofuser == 'annex')
                <form action="/patrols/all" method="GET" style="width:80%;">
+               @elseif (Auth::user()->typeofuser == 'superuser')
+               <form action="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all" method="GET" style="width:80%;">
                @endif
                <div class="one">
                 <input type="text" placeholder="ابحث" style="padding: 10px 2rem 10px 5rem;text-align:right;" name="searchquery">
@@ -66,6 +68,9 @@
                                   @elseif (Auth::user()->typeofuser == 'annex')
                                   <a href="/patrols/all?patrol={{$patrol->code}}">عدل الدورية</a> |
                                   <a href="/patrols/all?patrol={{$patrol->code}}">المزيد من المعلومات</a>
+                                  @elseif (Auth::user()->typeofuser == 'superuser')
+                                  <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all?patrol={{$patrol->code}}">عدل الدورية</a> |
+                                  <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all?patrol={{$patrol->code}}">المزيد من المعلومات</a>
                                   @endif
                                   </td>
                                   <td>@php  if($patrol->confirmed == 0){ @endphp <span style="color:red;"> غير مفعل </span> @php }elseif($patrol->confirmed == 1){ @endphp <span style="color:green;"> مفعل @php } @endphp</span></td>
@@ -95,12 +100,12 @@
         
 
         <div class="dashboardmainsidebarnavigations">
-            <a href=""><button><img src="../Assets/images/dashboard assets/dashboard (1).svg" width="30px" alt="" srcset=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/user.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/wallet.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/Icons.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/supermarket.svg" width="30px" alt=""></button></a>
-            <a href=""><button id="activebutton"><img src="../Assets/images/dashboard assets/add.svg" width="30px" alt="" srcset=""></button></a>
+        <a href=""><button id="activebutton"><img src="{{asset('/Assets/images/dashboard assets/dashboard (1).svg')}}" width="30px" alt="" srcset=""></button></a>
+            <a href=""><button><img src="{{asset('/Assets/images/dashboard assets/user.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('/Assets/images/dashboard assets/wallet.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('/Assets/images/dashboard assets/Icons.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('/Assets/images/dashboard assets/supermarket.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('/Assets/images/dashboard assets/add.svg')}}" width="30px" alt="" srcset=""></button></a>
             <a href="/logout"><button>Logout</button></a>
         </div>
 

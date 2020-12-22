@@ -38,7 +38,7 @@
 
     
                         <div class="form-group row">
-                            <label for="adress" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل') }}</label>
+                            <label for="adress" class="col-md-4 col-form-label text-md-right">{{ __('عنوان الفرع') }}</label>
 
                             <div class="col-md-6">
                                 <input id="adress" type="text" class="form-control @error('adress') is-invalid @enderror" name="adress" value="{{ old('adress') }}" required autocomplete="adress">

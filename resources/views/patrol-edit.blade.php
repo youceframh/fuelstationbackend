@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="../Assets/css/bootstrap.min.css">
-    <script src="../Assets/js/jquery.min.js"></script>
-    <script src="../Assets/js/popper.min.js"></script>
-    <script src="../Assets/js/bootstrap.min.js"></script>
-    <link  rel="stylesheet" href="../Assets/css/style.css"></script>
+    <link rel="stylesheet" href="{{asset('Assets/css/bootstrap.min.css')}}">
+    <script src="{{asset('Assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('Assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('Assets/js/bootstrap.min.js')}}"></script>
+    <link  rel="stylesheet" href="{{asset('Assets/css/style.css')}}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
     .uppersection{
@@ -116,11 +116,15 @@
               <h1 class="printing">THIS PAGE ISN'T MADE FOR PRINTING SUBMIT YOUR FORM THEN PRINT FROM /patrol/show</h1>
               </center>
               <div class="middlesection">
-              <form action="/patrols" method="POST" style="display: flex;
-    flex-direction: column;
-    align-items: flex-end;">
+              @if (Auth::user()->typeofuser == 'annex')
+              <form action="/patrols" method="POST" style="display: flex;flex-direction: column;align-items: flex-end;">
+    @elseif (Auth::user()->typeofuser == 'superuser')
+    <form action="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all" method="POST" style="display: flex;flex-direction: column;align-items: flex-end;">
+    @endif
               @csrf
     <input type="hidden" value="{{$date}}" name="date">
+    <input type="hidden" value="{{$id}}" name="patrol">
+
               <h1>ديزل</h1>
 
               <table border="1" style="
@@ -327,12 +331,12 @@ $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_se
         
 
             <div class="dashboardmainsidebarnavigations">
-            <a href=""><button id="activebutton"><img src="../Assets/images/dashboard assets/dashboard (1).svg" width="30px" alt="" srcset=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/user.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/wallet.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/Icons.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/supermarket.svg" width="30px" alt=""></button></a>
-            <a href=""><button><img src="../Assets/images/dashboard assets/add.svg" width="30px" alt="" srcset=""></button></a>
+            <a href=""><button id="activebutton"><img src="{{asset('Assets/images/dashboard assets/dashboard (1).svg')}}" width="30px" alt="" srcset=""></button></a>
+            <a href=""><button><img src="{{asset('Assets/images/dashboard assets/user.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('Assets/images/dashboard assets/wallet.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('Assets/images/dashboard assets/Icons.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('Assets/images/dashboard assets/supermarket.svg')}}" width="30px" alt=""></button></a>
+            <a href=""><button><img src="{{asset('Assets/images/dashboard assets/add.svg')}}" width="30px" alt="" srcset=""></button></a>
             <a href="/logout"><button>Logout</button></a>
         </div>
 

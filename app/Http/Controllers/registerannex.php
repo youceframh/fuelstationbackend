@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class registerannex extends Controller
 {
     public function __construct(){
-        $this->middleware('company.status'); //checking if the company is eligible to add annexes through verification
+        $this->middleware('company'); //checking if the company is eligible to add annexes through verification
     }
 
     public function get(){

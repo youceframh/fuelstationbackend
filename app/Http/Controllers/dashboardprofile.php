@@ -18,25 +18,31 @@ class dashboardprofile extends Controller
     public function get(){
         //send verification status for companies
 
-        if(Auth::user()->is_admin){
-            return view('dashboard-profile',['pic' => Auth::user()->picture ]);
-        }elseif(Auth::user()->typeofuser == 'companies'){
-            $userinfos = DB::table('companies')->where('email',Auth::user()->email)->first();
-            return view('dashboard-profile',['pic' => Auth::user()->picture],['verified'=>$userinfos->verified]);
-        }elseif(Auth::user()->typeofuser == 'annex'){
-            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
-            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'فرع']);
-        }elseif(Auth::user()->typeofuser == 'annex_TL'){
-            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
-            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'رئيس فريق في الفرع']);
-        }elseif(Auth::user()->typeofuser == 'annex_ُ'){
-            $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
-            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'موظف  في الفرع']);
-        }elseif(Auth::user()->typeofuser == 'delegate'){
-            $userinfos = DB::table('delegates')->where('email',Auth::user()->email)->first();
-            return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'مندوب شركة']);
-
+        if(Auth::check()){
+            if(Auth::user()->is_admin){
+                return view('dashboard-profile',['pic' => Auth::user()->picture ]);
+            }elseif(Auth::user()->typeofuser == 'companies'){
+                $userinfos = DB::table('companies')->where('email',Auth::user()->email)->first();
+                return view('dashboard-profile',['pic' => Auth::user()->picture],['verified'=>$userinfos->verified]);
+            }elseif(Auth::user()->typeofuser == 'annex'){
+                $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+                return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'فرع']);
+            }elseif(Auth::user()->typeofuser == 'annex_TL'){
+                $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+                return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'رئيس فريق في الفرع']);
+            }elseif(Auth::user()->typeofuser == 'annex_ُ'){
+                $userinfos = DB::table('annexes')->where('email',Auth::user()->email)->first();
+                return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'موظف  في الفرع']);
+            }elseif(Auth::user()->typeofuser == 'delegate'){
+                $userinfos = DB::table('delegates')->where('email',Auth::user()->email)->first();
+                return view('dashboard-profile',['pic' => Auth::user()->picture],['type'=>'مندوب شركة']);
+    
+            }
+        }else{
+            return redirect('/');
         }
+
+       
        
     }
 

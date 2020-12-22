@@ -23,13 +23,14 @@ class checkifcompany
         $getuseremail = Auth::user()->email;
             $query = DB::table('companies')->where('email',$getuseremail)->first();
             if($query){
-               if(!$query->verified){
+               if($query->verified == 3 || $query->verified == 2 || $query->verified == 0){
                 return redirect('/submitdocuments');
+               }else{
+                return $next($request);
                }
         }else{
             return redirect('/dashboard');
            }
-        return $next($request);
     }
   }
 }

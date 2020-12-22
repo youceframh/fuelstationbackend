@@ -10,7 +10,7 @@ class fuelprices extends Controller
 {
     public function __construct()
     {
-        $this->middleware('company'); 
+        $this->middleware('auth.web'); 
     }
 
     public function get(){

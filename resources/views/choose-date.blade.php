@@ -22,6 +22,10 @@
   {{$failed}}
 </div>
                     @endif
+
+                    <div class="alert alert-success" role="alert" style="display:flex;">
+                        يمكنك تفحص كل الدوريات من  <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all">&nbsp;هنا</a>
+                    </div>
                       
                         <div class="form-group row">
                             <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('التاريخ') }}</label>

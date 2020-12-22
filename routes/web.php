@@ -76,6 +76,8 @@ Route::get('/dashboard/companies/{id}', [showcompanyinfos::class,'get']);
 Route::get('/dashboard/companies/{id}/annexes', [showcompanyinfos::class,'getannexesofcompany']);
 Route::get('/dashboard/companies/{id}/annexes/{id_an}', [showcompanyinfos::class,'getannexesinfosofcompany']);
 Route::get('/dashboard/companies/{id}/annexes/{id_an}/patrols', [showcompanyinfos::class,'getpatrolsbydateforsuperuser']);
+Route::get('/dashboard/companies/{id}/annexes/{id_an}/patrols/all', [showcompanyinfos::class,'getpatrolsbydateforsuperuserAllGet']);
+Route::post('/dashboard/companies/{id}/annexes/{id_an}/patrols/all', [showcompanyinfos::class,'getpatrolsbydateforsuperuserAllPost']);
 
 Route::post('/dashboard/companies/{id}', [showcompanyinfos::class,'post']);
 

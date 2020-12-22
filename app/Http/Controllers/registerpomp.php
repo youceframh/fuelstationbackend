@@ -52,7 +52,7 @@ class registerpomp extends Controller
             ));
     
             foreach($request->input('tanknbr') as $tanks){
-                $tank_fuel_type = DB::table('tanks')->where('tank_number',$tanks)->first()->fuel_type;
+                $tank_fuel_type = DB::table('tanks')->where('tank_number',$tanks)->where('annex_id',$annex_id_d)->first()->fuel_type;
                 $insertDB2 = DB::table('tanks_has_pomps')->insert(array(
                     'id' => null,
                     'tank_annex_id' =>$annex_id_d,
@@ -61,7 +61,7 @@ class registerpomp extends Controller
                     'pomp_serial' => strtoupper($pompserial),
                     'last_record' => $pomplastrecord,
                     'tank_fuel_type' =>$tank_fuel_type,
-    
+                    'last_approach' => '2020-10-10'
                 ));
             }
     

@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'picture' => null,
             'is_admin' => true,
-            'typeofuser' => 'admin'
+            'typeofuser' => 'superuser'
         ]); 
     }
 }

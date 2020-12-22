@@ -19,17 +19,29 @@ class patroladd extends Controller
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
 
       if(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get() != "[]"){
-        $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->name_of_saver;
+          
+        $get_name_of_saver;
+        $official_date = date("Y-m-d");
+
+        if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()){
+            $get_name_of_saver = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()->name_of_saver;
+        }elseif(DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()){
+            $get_name_of_saver = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()->name_of_saver;
+        }elseif(DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()){
+            $get_name_of_saver = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()->name_of_saver;
+        }elseif(DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()){
+            $get_name_of_saver = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$get_annex_id)->where('date',$official_date)->first()->name_of_saver;
+        }
 
         $last_table_infos_getting_iddaily;
 
-        if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+        if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()){
             $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
-        }elseif(DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+        }elseif(DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()){
             $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','diesel')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
-        }elseif(DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+        }elseif(DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()){
             $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
-        }elseif(DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily){
+        }elseif(DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()){
             $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->first()->iddaily;
         }
         
@@ -45,11 +57,11 @@ class patroladd extends Controller
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
         $get_tanks = DB::table('tanks')->where('annex_id',$team_leader_annex)->get();
 
-        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
-        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
+        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
 
-         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
-         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
+         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'");
+         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
         return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
     
@@ -60,10 +72,11 @@ class patroladd extends Controller
         $fuel_prices = DB::table('fuel_price')->get();
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
-        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
-        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
-        $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
-        $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
+        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
+
+         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'");
+         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
         $request->validate([
             'atm' => ['required','digits_between:0,999999999129294']
@@ -99,6 +112,7 @@ class patroladd extends Controller
             'iddaily' => null,
             'timing' => $date,
             'code' => $daily_code.randomPassword(),  
+            'annex_id'=> $team_leader_annex
         ));
 
 

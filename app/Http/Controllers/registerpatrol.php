@@ -29,7 +29,8 @@ class registerpatrol extends Controller
                
             //get all pomps
 
-            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND pomp_serial='."'$pompserialandtype[0]'".' AND tank_fuel_type='."'$pompserialandtype[1]'");
+
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id='.$get_annex_id.' AND annex_id='.$get_annex_id.' AND pomp_serial='."'$pompserialandtype[0]'".' AND fuel_type='."'$pompserialandtype[1]'");
             
             return view('register-patrol',['pomp_serial' => $getpomps]);
 
@@ -38,7 +39,7 @@ class registerpatrol extends Controller
         }else{
             $get_user_email = Auth::user()->email;
             $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id='.$get_annex_id.' AND annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
         if($getpomps != "[]"){
             return view('choose-pomp', ['pomps' => $getpomps]); //sending tanks to user
         }else{
@@ -113,7 +114,7 @@ class registerpatrol extends Controller
         if($insertDB && $insertDB2){
             $get_user_email = Auth::user()->email;
             $get_annex_id = DB::table('employees')->where('email',$get_user_email)->first()->annex_id;
-            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
+            $getpomps = DB::select('SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id='.$get_annex_id.' AND annex_id='.$get_annex_id.' AND last_approach !='."'$todaysdate'");
         if($getpomps != "[]"){
             return view('choose-pomp', ['pomps' => $getpomps,'success'=>'تم التسجيل بنجاح']); //sending tanks to user
         }else{

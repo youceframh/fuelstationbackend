@@ -106,7 +106,7 @@
                 </div>
              <div class="card-body">
                 <h5 class="card-title">تغيير ثمن البنزين</h5>
-                     <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لتغيير ثمن البنزين</p>
+                     <p class="card-text">هذه الصفحة يلجئ اليها الويب ماستر المفعلة لتغيير ثمن البنزين</p>
                      <a href="/fuelprices" class="btn btn-primary">ادخل</a>
              </div>
              <div class="card-footer text-muted">

@@ -94,7 +94,7 @@
 
             @elseif($company['verified'] == 3)
             <div class="alert alert-danger" role="alert">
-في انظار الشركة لاعادة ارسال الملفات                 
+في انتظار الشركة لاعادة ارسال الملفات                 
     </div>
             @elseif($company['verified'] == 0)
             <div class="alert alert-danger" role="alert">
