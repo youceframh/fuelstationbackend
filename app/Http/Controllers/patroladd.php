@@ -52,7 +52,25 @@ class patroladd extends Controller
         $get_es91_pomps = DB::table('patrol')->where('fuel_type','essence91')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
         $get_es95_pomps = DB::table('patrol')->where('fuel_type','essence95')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d"))->get();
 
-        return view('patrol-show',['diesel_pomps'=>$get_diesel_pomps,'saver_name'=> $get_name_of_saver,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$get_gas_pomps,'fuelprices'=>$fuel_prices,'last_table'=>$last_table_infos],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        global $diesel_tanks_left;
+        global $gasoline_tanks_left;
+        global $essence91_tanks_left;
+        global $essence95_tanks_left;
+        
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','diesel')->get() != '[]'){
+            $diesel_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','diesel')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','gasoline')->get() != '[]'){
+            $gasoline_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','gasoline')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence91')->get() != '[]'){
+            $essence91_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence91')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get() != '[]'){
+            $essence95_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get();
+        }
+
+        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence95_tanks_left,'diesel_pomps'=>$get_diesel_pomps,'saver_name'=> $get_name_of_saver,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$get_gas_pomps,'fuelprices'=>$fuel_prices,'last_table'=>$last_table_infos],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       }else{
          
         $team_leader_email = Auth::user()->email;

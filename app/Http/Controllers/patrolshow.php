@@ -73,7 +73,7 @@ class patrolshow extends Controller
             $essence95_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get();
         }
         
-        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence91_tanks_left,'id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$team_leader_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence95_tanks_left,'id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$team_leader_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
       
     }elseif(DB::table('patrol')->where('annex_id',$team_leader_annex)->where('date',date("Y-m-d", time() - 60 * 60 * 24))->get() != "[]"){
         
@@ -129,7 +129,7 @@ class patrolshow extends Controller
             $essence95_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get();
         }
         
-        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence91_tanks_left,'id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$team_leader_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
+        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence95_tanks_left,'id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$team_leader_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps]);
 
       }else{
 /*Patrol-add */

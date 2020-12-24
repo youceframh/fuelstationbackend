@@ -164,7 +164,25 @@ class showcompanyinfos extends Controller
         
         $daily_id = DB::table('daily')->where('iddaily',$last_table_infos_getting_iddaily)->first()->code;
 
-        return view('patrol-show',['id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$id_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps,'comp_id'=>$id_comp,'an_id'=>$id_annex]);
+        global $diesel_tanks_left;
+        global $gasoline_tanks_left;
+        global $essence91_tanks_left;
+        global $essence95_tanks_left;
+        
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','diesel')->get() != '[]'){
+            $diesel_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','diesel')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','gasoline')->get() != '[]'){
+            $gasoline_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','gasoline')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence91')->get() != '[]'){
+            $essence91_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence91')->get();
+        }
+        if(DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get() != '[]'){
+            $essence95_tanks_left = DB::table('tanks')->where('annex_id',$team_leader_annex)->where('fuel_type','essence95')->get();
+        }
+
+        return view('patrol-show',['diesel_tanks_left'=>$diesel_tanks_left,'gasoline_tanks_left'=>$gasoline_tanks_left,'essence91_tanks_left'=>$essence91_tanks_left,'essence95_tanks_left'=>$essence95_tanks_left,'id'=>$daily_id,'diesel_pomps'=>$get_diesel_pomps,'team_leader_annex'=>$id_annex,'saver_name'=> $get_name_of_saver,'gas_pomps'=>$get_gas_pomps,'last_table'=>$last_table_infos,'fuelprices'=>$fuel_prices],['es91_pomps'=>$get_es91_pomps,'es95_pomps'=>$get_es95_pomps,'comp_id'=>$id_comp,'an_id'=>$id_annex]);
       
     }else{
         
