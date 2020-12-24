@@ -222,15 +222,16 @@ class showcompanyinfos extends Controller
         }elseif(isset($_GET['patrol'])){
             $get_all_unconfirmed_patrols = DB::table('daily')->where('annex_id',$id_an)->get();
             if(preg_match("/^[A-Za-z0-9]+$/", $_GET['patrol'])){
-    
                 $official_code_of_patrol = $_GET['patrol'];
-                $patrol_id = DB::table('daily')->where('annex_id',$id_an)->where('code',$official_code_of_patrol)->first()->iddaily;
-                
                 if(isset($id) && isset($id_an)){
                     if(preg_match('/^[1-9][0-9]*$/',$id) && preg_match('/^[1-9][0-9]*$/',$id_an)){
                         $id_comp = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
                         $id_annex = filter_var($id_an, FILTER_SANITIZE_NUMBER_INT);
                         $get_annex_id = $id_annex;
+                        $official_date = DB::table('daily')->where('code',$official_code_of_patrol)->first()->timing;
+                        if(DB::table('daily')->where('annex_id',$id_an)->where('code',$official_code_of_patrol)->first()){
+                            $patrol_id = DB::table('daily')->where('annex_id',$id_an)->where('code',$official_code_of_patrol)->first()->iddaily;
+                        }
 
                         $fuel_prices = DB::table('fuel_price')->get();
     
@@ -335,6 +336,19 @@ class showcompanyinfos extends Controller
     }
 
     public function getpatrolsbydateforsuperuserAllPost(Request $request,$id,$id_an){
+
+        $validation = $request->validate([
+            'atm' => ['required','digits_between:1,99999999999'],
+            'retard' => ['nullable','digits_between:1,99999999999'],
+            'repayment' => ['required','digits_between:1,99999999999'],
+            'repayment_desc' => ['required','string'],
+        ]);
+
+        $atm = $request->input('atm');
+        $retard = $request->input('retard');
+        $repayment = $request->input('repayment');
+        $repayment_desc = $request->input('repayment_desc');
+
         if(isset($_POST['patrol'])){
             $get_all_unconfirmed_patrols = DB::table('daily')->where('annex_id',$id_an)->get();
             if(preg_match("/^[A-Za-z0-9]+$/", $_POST['patrol'])){
@@ -391,8 +405,7 @@ class showcompanyinfos extends Controller
                                 if($searchQGasoline != '[]'){
                                     foreach($searchQGasoline as $pomp){ //gasoline insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('g'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('g'.$pomp_serial);
+                                             $pomp_newrecord = filter_var($request->input('g'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','gasoline')->first()->price;
                                              $total_liters_gasoline += $pomp_newrecord*$fuel_price;
@@ -417,8 +430,7 @@ class showcompanyinfos extends Controller
                                 if($searchQDiesel != '[]'){
                                     foreach($searchQDiesel as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('d'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('d'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('d'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','diesel')->first()->price;
                                 
@@ -441,8 +453,7 @@ class showcompanyinfos extends Controller
                                 if($searchQEssence91 != '[]'){
                                     foreach($searchQEssence91 as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('es91'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('es91'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('es91'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
                                              $total_liters_es91 += $pomp_newrecord*$fuel_price;
@@ -465,8 +476,7 @@ class showcompanyinfos extends Controller
                                 if($searchQEssence95 != '[]'){
                                     foreach($searchQEssence95 as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('es95'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('es95'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
                                              $total_liters_es95 += $pomp_newrecord*$fuel_price;
@@ -487,23 +497,21 @@ class showcompanyinfos extends Controller
                                 }
                         
                                    
-                                        $atm = $request->input('atm');
-                                        $retard = $request->input('retard');
-                                        $impotence = $request->input('impotence');
+
                                         $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard);
-                                        $total_net = $request->input('nettotal');
-                                        $notes = $request->input('notes');
                                
                                         DB::table('patrol_summ')->where('iddaily',$daily_id_number)->update([
                                            'atm' => $atm,
                                            'retard' => $retard,
                                            'total_cash' => $total_cash,
+                                           'repayment' => $repayment,
+                                           'repayment_desc' => $repayment_desc,
                                         ]);
                     
                         }else{
                             return redirect("/dashboard/companies");
                         }           
-                          return redirect("/patrols?date=".$_POST['date']);
+                        return redirect("/dashboard/companies/$id_comp/annexes/$id_annex/patrols/all?patrol=$official_code_of_patrol");
                     }
                 }
                 }else{
@@ -511,7 +519,7 @@ class showcompanyinfos extends Controller
                 }
                
         }else{
-            return redirect("/dashboard/companies/{{$id_comp}}/annexes/{{$id_annex}}/patrols/all");
+            return redirect("/dashboard/companies/$id_comp/annexes/$id_annex/patrols/all");
         }
     }
 }

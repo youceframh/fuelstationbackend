@@ -100,11 +100,11 @@ $fuel_prices = DB::table('fuel_price')->get();
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
         $get_tanks = DB::table('tanks')->where('annex_id',$team_leader_annex)->get();
 
-        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
-        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
+        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
 
-         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
-         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
+         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'");
+         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
         return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
     
@@ -115,10 +115,10 @@ $fuel_prices = DB::table('fuel_price')->get();
     public function post(Request $request){
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
-        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
-        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
-        $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence91'");
-        $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE annex_id=$team_leader_annex AND `fuel_type`='essence95'");
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
+        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
+         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'");
+         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'");
 
 
         $date =  date('Y-m-d');
@@ -141,8 +141,7 @@ $fuel_prices = DB::table('fuel_price')->get();
 
             foreach($searchQGasoline as $pomp){ //gasoline insert
             $pomp_serial = $pomp->pomp_serial;
-                 $pomp_s = $request->input('g'.$pomp_serial);
-                 $pomp_newrecord = $request->input('g'.$pomp_serial);
+                 $pomp_newrecord = filter_var($request->input('g'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                  $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                  $fuel_price = DB::table('fuel_price')->where('fuel_type','gasoline')->first()->price;
                   //insertGetId
@@ -169,7 +168,7 @@ $fuel_prices = DB::table('fuel_price')->get();
     foreach($searchQDiesel as $pomp){ //diesel insert
         $pomp_serial = $pomp->pomp_serial;
              $pomp_s = $request->input('d'.$pomp_serial);
-             $pomp_newrecord = $request->input('d'.$pomp_serial);
+             $pomp_newrecord = filter_var($request->input('d'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
              $fuel_price = DB::table('fuel_price')->where('fuel_type','diesel')->first()->price;
               //insertGetId
@@ -192,8 +191,7 @@ $fuel_prices = DB::table('fuel_price')->get();
 
         foreach($searchQEssence91 as $pomp){ //diesel insert
             $pomp_serial = $pomp->pomp_serial;
-                 $pomp_s = $request->input('es91'.$pomp_serial);
-                 $pomp_newrecord = $request->input('es91'.$pomp_serial);
+                 $pomp_newrecord = filter_var($request->input('es91'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                  $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                  $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
                   //insertGetId
@@ -217,7 +215,7 @@ $fuel_prices = DB::table('fuel_price')->get();
             foreach($searchQEssence95 as $pomp){ //diesel insert
                 $pomp_serial = $pomp->pomp_serial;
                      $pomp_s = $request->input('es95'.$pomp_serial);
-                     $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                     $pomp_newrecord = filter_var($request->input('es95'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                      $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                      $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
                       //insertGetId

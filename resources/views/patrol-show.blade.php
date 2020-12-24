@@ -376,6 +376,14 @@ $es95_price = $es_pomp->price_of_fuel;
 			<td>اجل</td>
 			<td><input type="text" value="{{$last_table->retard ?? ''}}" disabled name="retard" id=""></td>
 		</tr>
+        <tr>
+			<td>التسديد</td>
+			<td><input type="text" value="{{$last_table->repayment ?? ''}}" disabled name="retard" id=""></td>
+		</tr>
+        <tr>
+			<td>ملاحظات التسديد</td>
+			<td><input type="text" value="{{$last_table->repayment_desc ?? ''}}" disabled name="retard" id=""></td>
+		</tr>
 		<tr>
 			<td colspan="2"> اجمالي الكاش</td>
 			<td><input type="text" value="{{$last_table->total_cash ?? ''}}" disabled name="totalofcash" id=""></td>

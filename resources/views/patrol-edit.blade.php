@@ -10,6 +10,9 @@
     <link  rel="stylesheet" href="{{asset('Assets/css/style.css')}}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <style>
+    .is-invalid{
+        border:2px solid red;
+    }
     .uppersection{
         display: flex;
         flex-direction: row-reverse;
@@ -295,12 +298,21 @@ $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_se
 <table border="1px" style="direction:rtl;">
 	<tbody>
     <tr>
-			<td>ATM</td>
-			<td><input type="text" value="{{$last_table->atm ?? ''}}"  name="atm" id=""></td>
+    <tr>
+        <td>ATM</td>
+			<td><input type="text" class="@error('atm') is-invalid @enderror" name="atm" id="" value="{{$last_table->atm ?? ''}}" required autocomplete="atm" autofocus></td>
 		</tr>
 		<tr>
 			<td>اجل</td>
-			<td><input type="text" value="{{$last_table->retard ?? ''}}"  name="retard" id=""></td>
+			<td><input type="text" class="@error('retard') is-invalid @enderror" name="retard" id="" value="{{$last_table->retard ?? ''}}" required autocomplete="retard" autofocus></td>
+		</tr>
+        <tr>
+			<td>التسديد</td>
+			<td><input type="text" class="@error('repayment') is-invalid @enderror" name="repayment" id="" value="{{$last_table->repayment ?? ''}}" required autocomplete="repayment" autofocus></td>
+		</tr>
+        <tr>
+			<td>ملاحظات التسديد</td>
+			<td><textarea type="text" class="@error('repayment_desc') is-invalid @enderror" name="repayment_desc" id="" value="" required autocomplete="repayment_desc" autofocus>{{$last_table->repayment_desc ?? ''}}</textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2"> اجمالي الكاش</td>

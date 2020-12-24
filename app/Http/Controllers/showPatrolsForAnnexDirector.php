@@ -89,6 +89,19 @@ class showPatrolsForAnnexDirector extends Controller
     }
 
     public function post(Request $request){
+
+        $validation = $request->validate([
+            'atm' => ['required','digits_between:1,99999999999'],
+            'retard' => ['nullable','digits_between:1,99999999999'],
+            'repayment' => ['required','digits_between:1,99999999999'],
+            'repayment_desc' => ['required','string'],
+        ]);
+    
+        $atm = $request->input('atm');
+        $retard = $request->input('retard');
+        $repayment = $request->input('repayment');
+        $repayment_desc = $request->input('repayment_desc');
+        
         if(isset($_POST['date'])){
             $Unsanitized_date = $_POST['date'];
             if(preg_match('/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/',$Unsanitized_date)){
@@ -141,8 +154,7 @@ class showPatrolsForAnnexDirector extends Controller
                                 if($searchQGasoline != '[]'){
                                     foreach($searchQGasoline as $pomp){ //gasoline insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('g'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('g'.$pomp_serial);
+                                             $pomp_newrecord = filter_var($request->input('g'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','gasoline')->first()->price;
                                              $total_liters_gasoline += $pomp_newrecord*$fuel_price;
@@ -150,7 +162,7 @@ class showPatrolsForAnnexDirector extends Controller
                                             $patrol = DB::table('patrol')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->where('pomp_serial',$pomp_serial)->where('fuel_type','gasoline')->update([
                                                 'new_record'=>$pomp_newrecord,
                                                 'diffrenece_in_l'=>($pomp_newrecord-$diffence),
-                                                'name_of_saver'=>'2تم التعديل عليه من طرف رئيس الفرع',
+                                                'name_of_saver'=>'تم التعديل عليه من طرف رئيس الفرع',
                                                 'fuel_type'=>'gasoline',
                                                 'price_of_fuel' => $fuel_price,
                                             ]);
@@ -167,8 +179,7 @@ class showPatrolsForAnnexDirector extends Controller
                                 if($searchQDiesel != '[]'){
                                     foreach($searchQDiesel as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('d'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('d'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('d'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','diesel')->first()->price;
                                 
@@ -177,7 +188,7 @@ class showPatrolsForAnnexDirector extends Controller
                                             $patrol = DB::table('patrol')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->where('pomp_serial',$pomp_serial)->where('fuel_type','diesel')->update([
                                                 'new_record'=>$pomp_newrecord,
                                                 'diffrenece_in_l'=>($pomp_newrecord-$diffence),
-                                                'name_of_saver'=>'2تم التعديل عليه من طرف رئيس الفرع',
+                                                'name_of_saver'=>'تم التعديل عليه من طرف رئيس الفرع',
                                                 'fuel_type'=>'diesel',
                                                 'price_of_fuel' => $fuel_price,
                                             ]);
@@ -191,8 +202,7 @@ class showPatrolsForAnnexDirector extends Controller
                                 if($searchQEssence91 != '[]'){
                                     foreach($searchQEssence91 as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('es91'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('es91'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('es91'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
                                              $total_liters_es91 += $pomp_newrecord*$fuel_price;
@@ -200,7 +210,7 @@ class showPatrolsForAnnexDirector extends Controller
                                               $patrol = DB::table('patrol')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->where('pomp_serial',$pomp_serial)->where('fuel_type','essence91')->update([
                                                 'new_record'=>$pomp_newrecord,
                                                 'diffrenece_in_l'=>($pomp_newrecord-$diffence),
-                                                'name_of_saver'=>'2تم التعديل عليه من طرف رئيس الفرع',
+                                                'name_of_saver'=>'تم التعديل عليه من طرف رئيس الفرع',
                                                 'fuel_type'=>'essence91',
                                                 'price_of_fuel' => $fuel_price,
                                             ]);
@@ -215,8 +225,7 @@ class showPatrolsForAnnexDirector extends Controller
                                 if($searchQEssence95 != '[]'){
                                     foreach($searchQEssence95 as $pomp){ //diesel insert
                                         $pomp_serial = $pomp->pomp_serial;
-                                             $pomp_s = $request->input('es95'.$pomp_serial);
-                                             $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                                        $pomp_newrecord = filter_var($request->input('es95'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                              $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                              $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
                                              $total_liters_es95 += $pomp_newrecord*$fuel_price;
@@ -224,7 +233,7 @@ class showPatrolsForAnnexDirector extends Controller
                                               $patrol = DB::table('patrol')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->where('pomp_serial',$pomp_serial)->where('fuel_type','essence95')->update([
                                                 'new_record'=>$pomp_newrecord,
                                                 'diffrenece_in_l'=>($pomp_newrecord-$diffence),
-                                                'name_of_saver'=>'2تم التعديل عليه من طرف رئيس الفرع',
+                                                'name_of_saver'=>'تم التعديل عليه من طرف رئيس الفرع',
                                                 'fuel_type'=>'essence95',
                                                 'price_of_fuel' => $fuel_price,
                                             ]);
@@ -236,18 +245,15 @@ class showPatrolsForAnnexDirector extends Controller
                                         }
                                 }
                         
-                                   
-                                        $atm = $request->input('atm');
-                                        $retard = $request->input('retard');
-                                        $impotence = $request->input('impotence');
                                         $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard);
-                                        $total_net = $request->input('nettotal');
-                                        $notes = $request->input('notes');
+
                                
                                         DB::table('patrol_summ')->where('iddaily',$daily_id_number)->update([
                                            'atm' => $atm,
                                            'retard' => $retard,
                                            'total_cash' => $total_cash,
+                                           'repayment' => $repayment,
+                                           'repayment_desc' => $repayment_desc,
                                         ]);
                     
                                         return redirect("/patrols?date=".$_POST['date']);
@@ -356,7 +362,22 @@ class showPatrolsForAnnexDirector extends Controller
     }
   }
 
-  public function postAll(){
+  public function postAll(Request $request){
+
+    
+    $validation = $request->validate([
+        'atm' => ['required','digits_between:1,99999999999'],
+        'retard' => ['nullable','digits_between:1,99999999999'],
+        'repayment' => ['required','digits_between:1,99999999999'],
+        'repayment_desc' => ['required','string'],
+    ]);
+
+    $atm = $request->input('atm');
+    $retard = $request->input('retard');
+    $repayment = $request->input('repayment');
+    $repayment_desc = $request->input('repayment_desc');
+    
+
 
     if(isset($_POST['date'])){
         $Unsanitized_date = $_POST['date'];
@@ -364,6 +385,7 @@ class showPatrolsForAnnexDirector extends Controller
             $official_date = $_POST['date'];
             $get_directors_email = Auth::user()->email;
             $get_annex_id = DB::table('annexes')->where('email',$get_directors_email)->first()->idannexes;
+            $id_an  = $get_annex_id;
 
             if(isset($_POST['patrol'])){
                 $get_all_unconfirmed_patrols = DB::table('daily')->where('annex_id',$id_an)->get();
@@ -411,8 +433,7 @@ class showPatrolsForAnnexDirector extends Controller
                             if($searchQGasoline != '[]'){
                                 foreach($searchQGasoline as $pomp){ //gasoline insert
                                     $pomp_serial = $pomp->pomp_serial;
-                                         $pomp_s = $request->input('g'.$pomp_serial);
-                                         $pomp_newrecord = $request->input('g'.$pomp_serial);
+                                       $pomp_newrecord = filter_var($request->input('g'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                          $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                          $fuel_price = DB::table('fuel_price')->where('fuel_type','gasoline')->first()->price;
                                          $total_liters_gasoline += $pomp_newrecord*$fuel_price;
@@ -437,8 +458,7 @@ class showPatrolsForAnnexDirector extends Controller
                             if($searchQDiesel != '[]'){
                                 foreach($searchQDiesel as $pomp){ //diesel insert
                                     $pomp_serial = $pomp->pomp_serial;
-                                         $pomp_s = $request->input('d'.$pomp_serial);
-                                         $pomp_newrecord = $request->input('d'.$pomp_serial);
+                                         $pomp_newrecord = filter_var($request->input('d'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                          $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                          $fuel_price = DB::table('fuel_price')->where('fuel_type','diesel')->first()->price;
                             
@@ -461,8 +481,7 @@ class showPatrolsForAnnexDirector extends Controller
                             if($searchQEssence91 != '[]'){
                                 foreach($searchQEssence91 as $pomp){ //diesel insert
                                     $pomp_serial = $pomp->pomp_serial;
-                                         $pomp_s = $request->input('es91'.$pomp_serial);
-                                         $pomp_newrecord = $request->input('es91'.$pomp_serial);
+                                    $pomp_newrecord = filter_var($request->input('es91'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                          $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                          $fuel_price = DB::table('fuel_price')->where('fuel_type','essence91')->first()->price;
                                          $total_liters_es91 += $pomp_newrecord*$fuel_price;
@@ -485,8 +504,7 @@ class showPatrolsForAnnexDirector extends Controller
                             if($searchQEssence95 != '[]'){
                                 foreach($searchQEssence95 as $pomp){ //diesel insert
                                     $pomp_serial = $pomp->pomp_serial;
-                                         $pomp_s = $request->input('es95'.$pomp_serial);
-                                         $pomp_newrecord = $request->input('es95'.$pomp_serial);
+                                    $pomp_newrecord = filter_var($request->input('es95'.$pomp_serial),FILTER_SANITIZE_NUMBER_INT);
                                          $diffence = DB::table('pomps')->where('serial',$pomp_serial)->first()->last_record;
                                          $fuel_price = DB::table('fuel_price')->where('fuel_type','essence95')->first()->price;
                                          $total_liters_es95 += $pomp_newrecord*$fuel_price;
@@ -507,17 +525,15 @@ class showPatrolsForAnnexDirector extends Controller
                             }
                     
                                
-                                    $atm = $request->input('atm');
-                                    $retard = $request->input('retard');
-                                    $impotence = $request->input('impotence');
+                        
                                     $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard);
-                                    $total_net = $request->input('nettotal');
-                                    $notes = $request->input('notes');
                            
                                     DB::table('patrol_summ')->where('iddaily',$daily_id_number)->update([
                                        'atm' => $atm,
                                        'retard' => $retard,
                                        'total_cash' => $total_cash,
+                                       'repayment' => $repayment,
+                                       'repayment_desc' => $repayment_desc,
                                     ]);
                 
                                     return redirect("/patrols?date=".$_POST['date']);
