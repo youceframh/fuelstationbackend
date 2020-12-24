@@ -391,6 +391,90 @@ $es95_price = $es_pomp->price_of_fuel;
 	</tbody>
 </table>
 
+<div style="display: flex;flex-direction: column;justify-content: space-between;">
+<table border="1px" style="align-self: flex-end;direction:rtl;">
+	<tbody>
+		<tr>
+			<td>رقم الخزان</td>
+            @if($diesel_tanks_left)
+                @foreach($diesel_tanks_left as $diesel_left)
+			<td>{{$diesel_left->tank_number}}</td>
+            @endforeach
+            @endif
+
+            @if($gasoline_tanks_left)
+                @foreach($gasoline_tanks_left as $gas_left)
+			<td>{{$gas_left->tank_number}}</td>
+            @endforeach
+            @endif
+
+            @if($essence91_tanks_left)
+                @foreach($essence91_tanks_left as $es91_left)
+			<td>{{$es91_left->tank_number}}</td>
+            @endforeach
+            @endif
+
+            @if($essence95_tanks_left)
+                @foreach($essence95_tanks_left as $es95_left)
+			<td>{{$es95_left->tank_number}}</td>
+            @endforeach
+            @endif
+		</tr>
+		<tr>
+            <td>نوع الوقود</td>
+            @if($diesel_tanks_left)
+                @foreach($diesel_tanks_left as $diesel_left)
+			<td>{{$diesel_left->fuel_type}}</td>
+            @endforeach
+            @endif
+
+            @if($gasoline_tanks_left)
+                @foreach($gasoline_tanks_left as $gas_left)
+			<td>{{$gas_left->fuel_type}}</td>
+            @endforeach
+            @endif
+
+            @if($essence91_tanks_left)
+                @foreach($essence91_tanks_left as $es91_left)
+			<td>{{$es91_left->fuel_type}}</td>
+            @endforeach
+            @endif
+
+            @if($essence95_tanks_left)
+                @foreach($essence95_tanks_left as $es95_left)
+			<td>{{$es95_left->fuel_type}}</td>
+            @endforeach
+            @endif
+		</tr>
+        <tr>
+        <td>الكمية المتبقية</td>
+            @if($diesel_tanks_left)
+                @foreach($diesel_tanks_left as $diesel_left)
+			<td>{{($diesel_left->tank_volume) - ($diesel_liter_record_count)}}</td>
+            @endforeach
+            @endif
+
+            @if($gasoline_tanks_left)
+                @foreach($gasoline_tanks_left as $gas_left)
+			<td>{{($gas_left->tank_volume) - ($gas_liter_record_count)}}</td>
+            @endforeach
+            @endif
+
+            @if($essence91_tanks_left)
+                @foreach($essence91_tanks_left as $es91_left)
+			<td>{{($es91_left->tank_volume) - ($essence91_liter_record_count)}}</td>
+            @endforeach
+            @endif
+
+            @if($essence95_tanks_left)
+                @foreach($essence95_tanks_left as $es95_left)
+			<td>{{($es95_left->tank_volume) - ($essence95_liter_record_count)}}</td>
+            @endforeach
+            @endif
+		</tr>
+	</tbody>
+</table>
+
 <table border="1px" style="align-self: flex-end;direction:rtl;">
 	<tbody>
 		<tr>
@@ -405,6 +489,9 @@ $es95_price = $es_pomp->price_of_fuel;
 		</tr>
 	</tbody>
 </table>
+
+</div>
+
 </div>
 <input type="submit">
 </form>
