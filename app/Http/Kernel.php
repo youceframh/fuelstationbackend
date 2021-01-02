@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'delegate'=> \App\Http\Middleware\checkifdelegate::class,
         'patrolseeaccess'=> \App\Http\Middleware\checkifdelegate::class,
         'patrolsee'=> \App\Http\Middleware\patrolsee::class,
+        'teamleaderNotime'=> \App\Http\Middleware\teamleaderNotime::class,
     ];
 }

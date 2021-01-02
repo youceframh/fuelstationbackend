@@ -10,7 +10,7 @@
             </div>
 
                 <div class="card-body">
-                {{ Form::open( array('url' => '/sendreport','method' => 'post')) }}
+                {{ Form::open( array('url' => '/report/company','method' => 'post')) }}
                         @csrf
                     @if(isset($success))
                     <div class="alert alert-success" role="alert">
@@ -51,37 +51,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="to" class="col-md-4 col-form-label text-md-right">{{ __('الى') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="to" type="text" class="form-control @error('to') is-invalid @enderror" name="to" value="{{ old('to') }}" required autocomplete="to">
-                                <option value="comp">الشركة</option>
-                                <option value="an">الفرع</option>
-                                </select>
-
-                                @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="getannex_name" class="col-md-4 col-form-label text-md-right">{{ __('اسم الفرع') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="getannex_name" type="text" class="form-control @error('getannex_name') is-invalid @enderror" name="getannex_name" value="{{ old('getannex_name') }}" required autocomplete="getannex_name" /> 
-
-                                @error('getannex_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
                         <div class="form-group row">
                             <label for="datePicker" class="col-md-4 col-form-label text-md-right">{{ __('تاريخ اليوم') }}</label>
 

@@ -46,7 +46,7 @@ class submitdocuments extends Controller
                 ]);
 
             }catch (\Illuminate\Database\QueryException $e){
-               die($e);
+               die('حصل خطا حاول مجددا');
             }
             
             if($insertDB){

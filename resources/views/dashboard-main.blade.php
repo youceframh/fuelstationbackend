@@ -175,6 +175,20 @@
             </div>
         </div>
 
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">ارسال خطاب لكل الفروع</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها مدير الشركة المفعلة لارسال خطاب معمم لكل الفروع</p>
+                     <a href="/report/company" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  الشركة المفعلة 
+            </div>
+        </div>
+
         <!---->
 
         <div class="card text-center" style="max-width:330px;">
@@ -262,6 +276,34 @@
         </div>
 
         <!---->
+
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">قم بطباعة رقم الطرمبات</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع  لطباعة رقم الطرمبات</p>
+                     <a href="/print/pompinfos" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  قائد فريق الفرع 
+            </div>
+        </div>
+        
+        <div class="card text-center" style="max-width:330px;">
+                <div class="card-header">
+                     
+                </div>
+             <div class="card-body">
+                <h5 class="card-title">اضف بترول</h5>
+                <p class="card-text">هذه الصفحة يلجئ اليها قائد فريق الفرع لتسجيل بترول</p>
+                     <a href="/addfuel" class="btn btn-primary">ادخل</a>
+             </div>
+             <div class="card-footer text-muted">
+        خاص ب  قائد فريق الفرع 
+            </div>
+        </div>
 
         <div class="card text-center" style="max-width:330px;">
                 <div class="card-header">

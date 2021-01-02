@@ -31,6 +31,11 @@ use App\Http\Controllers\confirmpatrol;
 use App\Http\Controllers\showpatrolfordelegate;
 use App\Http\Controllers\registerpatrolF;
 use App\Http\Controllers\showPatrolsForAnnexDirector;
+use App\Http\Controllers\addfuel;
+use App\Http\Controllers\managepomps;
+use App\Http\Controllers\reportsshowCompany;
+use App\Http\Controllers\reportsshowAnnex;
+use App\Http\Controllers\companyreport;
 
 /*
 |--------------------------------------------------------------------------
@@ -203,3 +208,29 @@ Route::get('/patrols/all',[showPatrolsForAnnexDirector::class,'getAll']); //sele
 
 Route::post('/patrols/all',[showPatrolsForAnnexDirector::class,'postAll']); //editing patrols to show all of them
 
+
+//new addings
+
+Route::get('/addfuel',[addfuel::class,'get']); //getting the view of adding fuel
+
+Route::post('/addfuel',[addfuel::class,'post']); //posting any new changes concerning fuel
+
+Route::get('/print/addfuel/{tank_id}',[addfuel::class,'print']); //getting the view of printing the infos of fuel addition
+
+Route::get('/managepomps',[managepomps::class,'get']); //getting the view of managing pomps on/off
+
+Route::post('/managepomps',[managepomps::class,'post']); //posting any new changes concerning pomp changes
+
+Route::get('/print/pompinfos',[managepomps::class,'print']); //getting the view of managing pomps on/off
+
+Route::get('/reports/company',[reportsshowCompany::class,'get']); //getting the view of reports
+
+Route::get('/reports/annex',[reportsshowAnnex::class,'get']); //getting the view of reports
+
+Route::get('/notifications',[reportsshowCompany::class,'showpatrolchangesnotifications']); //getting the view of reports
+
+Route::get('/report/company',[companyreport::class,'get']); //getting the view of sending reports
+
+Route::post('/report/company',[companyreport::class,'post']); //getting the view of reports
+
+Route::get('/reportsfromcompany',[reportsshowAnnex::class,'showcompreports']); //getting the view of reports

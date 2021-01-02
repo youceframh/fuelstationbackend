@@ -21,21 +21,6 @@
         <div class="dashboardmaincontent">
             <div class="headerofdashboardmaincontent">
                <div class="one">
-               @if(Auth::user()->typeofuser == 'delegate')
-               <form action="/patrol/confirm" method="GET" style="width:80%;">
-               @elseif (Auth::user()->typeofuser == 'annex')
-               <form action="/patrols/all" method="GET" style="width:80%;">
-               @elseif (Auth::user()->typeofuser == 'superuser')
-               <form action="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all" method="GET" style="width:80%;">
-               @endif
-               <div class="one">
-                <input type="text" placeholder="ابحث" style="padding: 10px 2rem 10px 5rem;text-align:right;" name="searchquery">
-                <i class="fas fa-search" style="align-self: center;position: absolute;right: 10px;"></i>   
-                <button type="submit" style="    position: absolute;
-    align-self: center;
-    left: 1rem;">ابحث</button>
-               </div>
-               </form>
                </div>
                <div class="two">
                    <h1 style="color:#308CBA;">لوحة القيادة</h1>
@@ -49,39 +34,20 @@
                         <table class="table">
                             <thead style="background-color: white;">
                                 <tr>
-                                    <th scope="col">
-                                        <img src="../Assets/images/dashboard assets/arrows.png" alt="">
-                                    </th>
-                                  <th scope="col">الحالة</th>
-                                  <th scope="col">التوقيت</th>
-                                  <th scope="col">اجمالي الاموال</th>
-                                  <th scope="col">الرقم الخاص بليومية الخاصة بلدورية</th>
+                                  <th scope="col">من طرف</th>
+                                  <th scope="col">تاريخ التغيير</th>
+                                  <th scope="col">رقم الدورية</th>
+                                  <th scope="col">رقم التغيير</th>
                                 </tr>
                               </thead>
                               <tbody>
-                              @if(isset($patrols))
-                                @foreach($patrols as $patrol)
+                              @if(isset($notifs))
+                                @foreach($notifs as $notif)
                                 <tr style="background-color: #F4F4F4;border: 0px solid #F4F4F4;">
-                                  <td style="color: green;">
-                                  @if(Auth::user()->typeofuser == 'delegate')
-                                  <a href="/patrol/confirm?patrol={{$patrol->iddaily}}">فعل الدورية</a> |
-                                  <a href="/patrol/confirm/{{$patrol->iddaily}}">المزيد من المعلومات</a>
-                                  @elseif (Auth::user()->typeofuser == 'annex')
-                                  <a href="/patrols/all?patrol={{$patrol->code}}">عدل الدورية</a> |
-                                  <a href="/patrols/all?patrol={{$patrol->code}}">المزيد من المعلومات</a>
-                                  @elseif (Auth::user()->typeofuser == 'superuser')
-                                  <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all?patrol={{$patrol->code}}">عدل الدورية</a> |
-                                  <a href="/dashboard/companies/{{$comp_id}}/annexes/{{$an_id}}/patrols/all?patrol={{$patrol->code}}">المزيد من المعلومات</a>
-                                  @endif
-                                  </td>
-                                  @php 
-                            $money;
-                            $money = DB::table('patrol_summ')->where('iddaily',$patrol->iddaily)->first()->total_cash;
-                                  @endphp
-                                  <td>@php  if($patrol->confirmed == 0){ @endphp <span style="color:red;"> غير مفعل </span> @php }elseif($patrol->confirmed == 1){ @endphp <span style="color:green;"> مفعل @php } @endphp</span></td>
-                                  <td>{{$patrol->timing}}</td>
-                                  <td>{{$money}}</td>
-                                  <td>{{$patrol->code}}</td>
+                                <td>{{$notif->by_user}}</td>
+                                <td>{{$notif->changed_on}}</td>
+                                <td>{{$notif->patrol_code}}</td>
+                                <td>{{$notif->id}}</td>
                                 </tr>
                                 @endforeach
                                 @endif

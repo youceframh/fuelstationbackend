@@ -68,6 +68,16 @@
     </style>
 </head>
 <body>
+@php
+
+$repaymentFull = 0;
+
+foreach($repayments as $repayment){
+    $repaymentFull += $repayment->amount_spend;
+}
+
+@endphp
+
     <div class="dashboardmain">
   
         <div class="dashboardmaincontent">
@@ -303,7 +313,7 @@ $get_new_record = DB::table('patrol_transitional')->where('pomp_serial',$pomp_se
 		</tr>
         <tr>
 			<td>التسديد</td>
-			<td><input type="text" class="@error('repayment') is-invalid @enderror" name="repayment" id="" value="{{ old('repayment') }}" required autocomplete="repayment" autofocus></td>
+			<td><input type="text" class="@error('repayment') is-invalid @enderror" name="repayment" id="" value="{{$repaymentFull}}" required autocomplete="repayment" readonly></td>
 		</tr>
         <tr>
 			<td>ملاحظات التسديد</td>

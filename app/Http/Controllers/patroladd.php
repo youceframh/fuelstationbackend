@@ -76,14 +76,15 @@ class patroladd extends Controller
         $team_leader_email = Auth::user()->email;
         $team_leader_annex = DB::table('employees')->where('email',$team_leader_email)->first()->annex_id;
         $get_tanks = DB::table('tanks')->where('annex_id',$team_leader_annex)->get();
+        $get_repayment = DB::table('addfuelrepayment_and_addfuel_infos')->where('annex_id',$team_leader_annex)->where('date_of_last_addition',date('Y-m-d'))->get();
 
-        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' ");
-        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel' ");
+        $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='gasoline' AND `status`=1 ");
+        $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='diesel'  AND `status`=1 ");
 
-         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'");
-         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'");
+         $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence91'  AND `status`=1 ");
+         $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$team_leader_annex AND annex_id=$team_leader_annex AND `fuel_type`='essence95'  AND `status`=1");
 
-        return view('patrol-add',['diesel_pomps'=>$searchQDiesel,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
+        return view('patrol-add',['repayments'=>$get_repayment,'diesel_pomps'=>$searchQDiesel,'team_leader_annex'=>$team_leader_annex,'gas_pomps'=>$searchQGasoline,'fuelprices'=>$fuel_prices],['es91_pomps'=>$searchQEssence91,'es95_pomps'=>$searchQEssence95]);
     
       }
         
@@ -270,7 +271,7 @@ if($searchQDiesel != '[]'){
 
          //get last table infos
 
-         $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard);
+         $total_cash = ($total_liters_gasoline+$total_liters_diesel+$total_liters_es91+$total_liters_es95) - ($atm+$retard+$repayment);
          $iddaily = $daily;
 
          DB::table('patrol_summ')->insert(array(

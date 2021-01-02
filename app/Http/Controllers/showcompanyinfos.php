@@ -283,11 +283,11 @@ class showcompanyinfos extends Controller
                 $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get();
     
                
-                $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='gasoline' ");
-                $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='diesel' ");
+                $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='gasoline'  AND `status`=1 ");
+                $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='diesel'  AND `status`=1 ");
         
-                 $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence91'");
-                 $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence95'");
+                 $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence91'  AND `status`=1");
+                 $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence95'  AND `status`=1");
 
                  if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->first()){
                     $last_table_infos_getting_iddaily = DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->first()->iddaily;
@@ -399,11 +399,11 @@ class showcompanyinfos extends Controller
                             if(DB::table('patrol')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->get() != "[]"){
                                 $get_tanks = DB::table('tanks')->where('annex_id',$get_annex_id)->get();
                                
-                $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='gasoline' ");
-                $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='diesel' ");
+                $searchQGasoline = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='gasoline'  AND `status`=1 ");
+                $searchQDiesel = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='diesel'  AND `status`=1 ");
         
-                 $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence91'");
-                 $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence95'");
+                 $searchQEssence91 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence91'  AND `status`=1");
+                 $searchQEssence95 = DB::select("SELECT * FROM `tanks` t LEFT JOIN tanks_has_pomps thp ON thp.tank_id=t.`tank_number` WHERE tank_annex_id=$get_annex_id AND annex_id=$get_annex_id AND `fuel_type`='essence95'  AND `status`=1");
                     
                     
                                 if(DB::table('patrol')->where('fuel_type','gasoline')->where('annex_id',$get_annex_id)->where('iddaily',$patrol_id)->first()){

@@ -23,7 +23,7 @@
 </div>
                     @endif
                         <div class="form-group row">
-                            <label for="familly name" class="col-md-4 col-form-label text-md-right">{{ __('الاسم التجاري') }}</label>
+                            <label for="commercialname" class="col-md-4 col-form-label text-md-right">{{ __('الاسم التجاري') }}</label>
 
                             <div class="col-md-6">
                                 <input id="commercialname" type="text" class="form-control @error('commercialname') is-invalid @enderror" name="commercialname" value="{{ old('commercialname') }}" required autocomplete="commercial name" autofocus>
@@ -40,7 +40,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('الايمايل') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -179,7 +179,7 @@
 
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('اللغة') }}</label>
+                            <label for="language" class="col-md-4 col-form-label text-md-right">{{ __('اللغة') }}</label>
 
                             <div class="col-md-6">
                                 <input id="language" type="text" class="form-control @error('language') is-invalid @enderror" name="language" value="{{ old('language') }}" required autocomplete="language">
@@ -193,7 +193,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('الرقم التجاري') }}</label>
+                            <label for="commercialnumber" class="col-md-4 col-form-label text-md-right">{{ __('الرقم التجاري') }}</label>
 
                             <div class="col-md-6">
                                 <input id="commercialnumber" type="number" class="form-control @error('commercialnumber') is-invalid @enderror" name="commercialnumber" required autocomplete="new-commercialnumber">
@@ -209,7 +209,7 @@
                         
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الاول') }}</label>
+                            <label for="adress1" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الاول') }}</label>
 
                             <div class="col-md-6">
                                 <input id="adress1" type="text" class="form-control @error('adress1') is-invalid @enderror" name="adress1" value="{{ old('adress1') }}" required autocomplete="adress1">
@@ -223,7 +223,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الثاني') }}</label>
+                            <label for="adress2" class="col-md-4 col-form-label text-md-right">{{ __('عنوان المنزل الثاني') }}</label>
 
                             <div class="col-md-6">
                                 <input id="adress2" type="text" class="form-control @error('adress2') is-invalid @enderror" name="adress2" value="{{ old('adress2') }}" required autocomplete="adress2">
@@ -237,7 +237,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Language" class="col-md-4 col-form-label text-md-right">{{ __('شعار الشركة') }}</label>
+                            <label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('شعار الشركة') }}</label>
 
                             <div class="col-md-6">
                                 <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}" required autocomplete="logo">

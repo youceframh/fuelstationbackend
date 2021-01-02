@@ -392,7 +392,7 @@ $es95_price = $es_pomp->price_of_fuel;
 </table>
 
 <div style="display: flex;flex-direction: column;justify-content: space-between;">
-<table border="1px" style="align-self: flex-end;direction:rtl;">
+<table border="1px" style="align-self: center;direction:rtl;">
 	<tbody>
 		<tr>
 			<td>رقم الخزان</td>
